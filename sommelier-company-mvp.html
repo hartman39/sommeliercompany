@@ -197,6 +197,72 @@
             box-shadow: 0 10px 20px rgba(114, 47, 55, 0.2);
         }
 
+        /* Enhanced Book Event Button in Navigation */
+        .nav-menu .cta-button {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.9rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: pulseGlow 2s infinite;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+        }
+
+        .nav-menu .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-menu .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-menu .cta-button:hover {
+            background: linear-gradient(135deg, #ff5722, #ff9800);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 25px rgba(255, 107, 53, 0.5), 0 0 30px rgba(255, 107, 53, 0.2);
+            }
+        }
+
+        /* Add blinking dot for urgency */
+        .nav-menu .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 12px;
+            height: 12px;
+            background: #52a373;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
         .mobile-menu-toggle {
             display: none;
             flex-direction: column;
@@ -804,8 +870,49 @@
             color: #999;
         }
 
+        /* Floating Action Button for Mobile */
+        .floating-cta {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+            z-index: 999;
+            text-decoration: none;
+            animation: bounceIn 0.5s ease, floatButton 3s ease-in-out infinite;
+            border: 3px solid white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: translateX(-50%) scale(0); }
+            50% { transform: translateX(-50%) scale(1.1); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        @keyframes floatButton {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .floating-cta:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .floating-cta {
+                display: block;
+            }
             .nav-menu {
                 position: fixed;
                 left: -100%;
@@ -907,7 +1014,7 @@
     <div style="background: linear-gradient(90deg, #ff6b35, #f7931e); color: white; padding: 0.75rem; text-align: center; font-weight: 600; position: fixed; top: 0; width: 100%; z-index: 9999; display: flex; justify-content: center; align-items: center; gap: 1rem;">
         <span style="animation: pulse 2s infinite;">🔥 Limited December Availability</span>
         <span>Book Your Holiday Event Now - Save 15% This Week Only!</span>
-        <a href="#bookingWidget" style="background: white; color: #ff6b35; padding: 0.5rem 1rem; border-radius: 20px; text-decoration: none; font-weight: 700;">Get Quote</a>
+        <a href="#bookingWidget" style="background: white; color: #ff6b35; padding: 0.6rem 1.25rem; border-radius: 25px; text-decoration: none; font-weight: 700; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: all 0.3s; display: inline-block;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 10px rgba(0,0,0,0.2)'">Get Quote →</a>
     </div>
     <!-- Header -->
     <header id="header" style="margin-top: 50px;">
@@ -922,7 +1029,7 @@
                 <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="tel:415-289-9760">📞 415-289-9760</a></li>
-                <li><a href="#bookingWidget" class="cta-button">Book Event</a></li>
+                <li><a href="#bookingWidget" class="cta-button"><span style="margin-right: 0.5rem;">🎆</span>Book Event<span style="margin-left: 0.5rem;">→</span></a></li>
             </ul>
             <div class="mobile-menu-toggle" id="mobileToggle">
                 <span></span>
@@ -952,6 +1059,30 @@
                     <span>Satisfaction Guarantee</span>
                 </div>
             </div>
+
+            <!-- Hero CTA Buttons -->
+            <div style="margin-top: 2rem; animation: fadeInUp 1s ease 0.5s both;">
+                <a href="#bookingWidget" style="background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 1.2rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.3rem; display: inline-block; margin: 0.5rem; box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4); transform: scale(1); transition: all 0.3s; position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 1px;" onmouseover="this.style.transform='scale(1.1) translateY(-3px)'; this.style.boxShadow='0 12px 40px rgba(255, 107, 53, 0.5)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 30px rgba(255, 107, 53, 0.4)'">
+                    <span style="position: relative; z-index: 1;">🎆 Get Instant Quote</span>
+                    <span style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s;"></span>
+                </a>
+                <a href="tel:415-289-9760" style="background: transparent; border: 3px solid white; color: white; padding: 1.15rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block; margin: 0.5rem; transition: all 0.3s;" onmouseover="this.style.background='white'; this.style.color='#722f37'; this.style.transform='scale(1.05) translateY(-2px)'" onmouseout="this.style.background='transparent'; this.style.color='white'; this.style.transform='scale(1)'">
+                    📞 Call Now
+                </a>
+            </div>
+
+            <style>
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            </style>
         </div>
     </section>
 
@@ -1608,7 +1739,7 @@
         if (testVariant === 'B') {
             // Example: Test different CTA text
             document.querySelectorAll('.cta-button').forEach(button => {
-                if (button.textContent === 'Book Event') {
+                if (button.textContent.includes('Book Event')) {
                     button.textContent = 'Get Started';
                 }
             });
@@ -1618,6 +1749,29 @@
         window.addEventListener('load', () => {
             const perfData = performance.getEntriesByType('navigation')[0];
             console.log('Page Load Time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
+        });
+    </script>
+
+    <!-- Floating CTA Button for Mobile -->
+    <a href="#bookingWidget" class="floating-cta">
+        🍷 Book Now
+    </a>
+
+    <script>
+        // Hide floating CTA when near booking widget
+        window.addEventListener('scroll', () => {
+            const bookingWidget = document.getElementById('bookingWidget');
+            const floatingCTA = document.querySelector('.floating-cta');
+            if (bookingWidget && floatingCTA) {
+                const rect = bookingWidget.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    floatingCTA.style.opacity = '0';
+                    floatingCTA.style.pointerEvents = 'none';
+                } else {
+                    floatingCTA.style.opacity = '1';
+                    floatingCTA.style.pointerEvents = 'auto';
+                }
+            }
         });
     </script>
 </body>
