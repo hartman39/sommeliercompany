@@ -343,6 +343,53 @@
             line-height: 1.6;
         }
 
+        .ai-chatbot-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-chatbot-card h3,
+        .ai-chatbot-card p {
+            color: white;
+        }
+
+        .ai-chatbot-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
         /* Wine Pairing Tool */
         .pairing-tool {
             background: linear-gradient(135deg, #fff 50%, var(--bg-light) 50%);
@@ -979,6 +1026,13 @@
             </div>
 
             <div class="tools-grid">
+                <div class="tool-card ai-chatbot-card" onclick="window.open('wine-ai-chatbot.html', '_blank')">
+                    <div class="tool-icon">🤖</div>
+                    <h3>AI Wine Expert</h3>
+                    <p>Ask anything about wine! Get instant answers from our AI sommelier</p>
+                    <span class="new-badge">NEW!</span>
+                </div>
+
                 <div class="tool-card" onclick="scrollToPairing()">
                     <div class="tool-icon">🍽️</div>
                     <h3>Food Pairing Finder</h3>
