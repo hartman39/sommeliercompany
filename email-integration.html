@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Integration Setup - The Sommelier Company</title>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #faf8f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #722f37, #d4af37);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .setup-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .step {
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-left: 4px solid #722f37;
+            margin: 1rem 0;
+        }
+        code {
+            background: #2c1810;
+            color: #d4af37;
+            padding: 1rem;
+            display: block;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .test-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 2px solid #e5e5e5;
+            border-radius: 5px;
+        }
+        button {
+            background: #722f37;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #5a242a;
+        }
+        .success {
+            background: #52a373;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        .error {
+            background: #c9302c;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        .important {
+            background: #fff4e6;
+            border: 2px solid #ff6b35;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🍷 The Sommelier Company - Email Integration Setup</h1>
+        <p>Configure EmailJS to receive instant notifications for all form submissions</p>
+    </div>
+
+    <div class="setup-section">
+        <h2>📧 Step 1: Set Up Your EmailJS Account</h2>
+
+        <div class="step">
+            <h3>1.1 Create Your Free Account</h3>
+            <p>1. Go to <a href="https://www.emailjs.com/sign-up/" target="_blank">https://www.emailjs.com/sign-up/</a></p>
+            <p>2. Sign up for a free account (200 emails/month free)</p>
+            <p>3. Verify your email address</p>
+        </div>
+
+        <div class="step">
+            <h3>1.2 Create an Email Service</h3>
+            <p>1. Go to Email Services → Add New Service</p>
+            <p>2. Choose your email provider (Gmail, Outlook, etc.)</p>
+            <p>3. Connect your email account</p>
+            <p>4. Name it "sommelier_notifications"</p>
+            <p>5. Save the Service ID (looks like: service_abc123)</p>
+        </div>
+
+        <div class="step">
+            <h3>1.3 Create Email Templates</h3>
+            <p>Go to Email Templates → Create New Template for each:</p>
+
+            <h4>Template 1: Lead Notification (for you)</h4>
+            <code>
+Template Name: lead_notification
+Subject: 🍷 New Wine Event Lead - {{location}} - {{guestCount}} guests
+To Email: Office@SommelierCompany.com
+
+Content:
+New lead received from {{source}}!
+
+EVENT DETAILS:
+- Type: {{eventType}}
+- Date: {{eventDate}}
+- Guests: {{guestCount}}
+- Location: {{location}}
+
+CONTACT INFORMATION:
+- Name: {{firstName}} {{lastName}}
+- Email: {{email}}
+- Phone: {{phone}}
+- Company: {{company}}
+
+QUOTE DETAILS:
+- Base Price: ${{basePrice}}
+- Total Quote: ${{totalPrice}}
+- Discount Applied: {{discount}}%
+
+SPECIAL REQUESTS:
+{{specialRequests}}
+
+Lead captured at: {{timestamp}}
+
+---
+Respond within 24 hours to maintain our service standard!
+            </code>
+
+            <h4>Template 2: Auto-Response (for customer)</h4>
+            <code>
+Template Name: customer_confirmation
+Subject: Your Wine Event Quote - The Sommelier Company
+To Email: {{email}}
+
+Content:
+Dear {{firstName}},
+
+Thank you for your interest in The Sommelier Company!
+
+We've received your request for a {{eventType}} on {{eventDate}} for {{guestCount}} guests in {{location}}.
+
+YOUR QUOTE: ${{totalPrice}}
+(Including your 15% discount!)
+
+What happens next:
+✅ Within 1 hour: Detailed quote email
+📞 Within 24 hours: Personal call from a sommelier specialist
+📅 Flexible booking: Hold your date with just 25% deposit
+
+Your Quote ID: {{quoteId}}
+
+Questions? Call us at 415-289-9760 or reply to this email.
+
+We look forward to making your event unforgettable!
+
+Best regards,
+The Sommelier Company Team
+
+P.S. December dates are filling fast - secure your booking soon!
+            </code>
+        </div>
+
+        <div class="step">
+            <h3>1.4 Get Your Public Key</h3>
+            <p>1. Go to Account → API Keys</p>
+            <p>2. Copy your Public Key (looks like: AbCdEf123)</p>
+            <p>3. Keep this page open - you'll need these IDs</p>
+        </div>
+    </div>
+
+    <div class="setup-section">
+        <h2>🔧 Step 2: Add EmailJS to Your Website</h2>
+
+        <div class="important">
+            <strong>⚠️ IMPORTANT:</strong> Replace these placeholders with your actual IDs:
+            <ul>
+                <li>YOUR_PUBLIC_KEY</li>
+                <li>YOUR_SERVICE_ID</li>
+                <li>YOUR_TEMPLATE_ID</li>
+            </ul>
+        </div>
+
+        <h3>Add this code to your HTML files:</h3>
+
+        <h4>For sommelier-company-mvp.html:</h4>
+        <code>
+&lt;!-- Add before closing &lt;/body&gt; tag --&gt;
+&lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    // Initialize EmailJS
+    (function() {
+        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
+    })();
+
+    // Update the form submission function
+    document.getElementById('quickBookingForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            eventType: document.getElementById('eventType').value,
+            eventDate: document.getElementById('eventDate').value,
+            guestCount: document.getElementById('guestCount').value,
+            location: document.getElementById('location').value,
+            source: 'Landing Page',
+            timestamp: new Date().toLocaleString(),
+            discount: 15,
+            basePrice: 150 * document.getElementById('guestCount').value,
+            totalPrice: Math.round(150 * document.getElementById('guestCount').value * 0.85)
+        };
+
+        // Show loading
+        const button = e.target.querySelector('button[type="submit"]');
+        button.innerHTML = 'Sending...';
+        button.disabled = true;
+
+        try {
+            // Send notification email to you
+            await emailjs.send(
+                'YOUR_SERVICE_ID',  // Replace with your service ID
+                'lead_notification', // Your template ID for notifications
+                formData
+            );
+
+            // Optional: Send confirmation to customer if you collect email
+            console.log('Lead email sent successfully!');
+
+            // Continue to booking wizard
+            sessionStorage.setItem('bookingData', JSON.stringify(formData));
+            window.location.href = 'sommelier-booking-wizard-v2.html';
+
+        } catch (error) {
+            console.error('Email failed:', error);
+            alert('There was an issue. Please call us at 415-289-9760');
+            button.innerHTML = 'Get My Free Quote Now →';
+            button.disabled = false;
+        }
+    });
+&lt;/script&gt;
+        </code>
+
+        <h4>For sommelier-booking-wizard-v2.html:</h4>
+        <code>
+&lt;!-- Add before closing &lt;/body&gt; tag --&gt;
+&lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+    // Initialize EmailJS
+    (function() {
+        emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+
+    // Update the submitBooking function
+    async function submitBooking() {
+        bookingData.specialRequests = document.getElementById('specialRequests')?.value || '';
+        bookingData.timestamp = new Date().toLocaleString();
+        bookingData.source = 'Booking Wizard';
+        bookingData.quoteId = 'SQ-' + Date.now().toString().slice(-8);
+
+        document.getElementById('submitBtn').innerHTML = 'Processing...';
+        document.getElementById('submitBtn').disabled = true;
+
+        try {
+            // Send notification email
+            await emailjs.send(
+                'YOUR_SERVICE_ID',
+                'lead_notification',
+                bookingData
+            );
+
+            // Send confirmation to customer
+            await emailjs.send(
+                'YOUR_SERVICE_ID',
+                'customer_confirmation',
+                bookingData
+            );
+
+            console.log('Emails sent successfully!');
+
+            // Move to confirmation page
+            currentStep = 5;
+            updateStepDisplay();
+
+        } catch (error) {
+            console.error('Email failed:', error);
+            alert('Booking saved! We will contact you shortly.');
+            currentStep = 5;
+            updateStepDisplay();
+        }
+    }
+&lt;/script&gt;
+        </code>
+
+        <h4>For Exit Intent Popups:</h4>
+        <code>
+function handleExitOffer(e) {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+
+    // Send to EmailJS
+    emailjs.send('YOUR_SERVICE_ID', 'lead_notification', {
+        email: email,
+        source: 'Exit Intent Popup',
+        timestamp: new Date().toLocaleString(),
+        eventType: 'Exit Intent Lead',
+        discount: 15
+    }).then(
+        () => {
+            alert('Thank you! Check your email for your 15% discount code.');
+            e.target.parentElement.parentElement.remove();
+        },
+        (error) => {
+            console.error('Failed to send:', error);
+            alert('Thank you! Call us at 415-289-9760 for your discount.');
+        }
+    );
+}
+        </code>
+    </div>
+
+    <div class="setup-section">
+        <h2>🧪 Step 3: Test Your Email Integration</h2>
+
+        <div class="test-form">
+            <h3>Test Email Sender</h3>
+            <p>Enter your EmailJS credentials and test the integration:</p>
+
+            <input type="text" id="publicKey" placeholder="Your Public Key (e.g., AbCdEf123)">
+            <input type="text" id="serviceId" placeholder="Your Service ID (e.g., service_abc123)">
+            <input type="text" id="templateId" placeholder="Your Template ID (e.g., lead_notification)">
+
+            <h4>Test Lead Data:</h4>
+            <input type="text" id="testName" placeholder="Name" value="Test Customer">
+            <input type="email" id="testEmail" placeholder="Email" value="test@example.com">
+            <input type="tel" id="testPhone" placeholder="Phone" value="555-123-4567">
+            <select id="testEventType">
+                <option value="corporate">Corporate Event</option>
+                <option value="private">Private Party</option>
+                <option value="wedding">Wedding</option>
+            </select>
+
+            <button onclick="testEmailIntegration()">Send Test Email</button>
+
+            <div id="testResult"></div>
+        </div>
+    </div>
+
+    <div class="setup-section">
+        <h2>✅ Step 4: Verification Checklist</h2>
+
+        <div class="step">
+            <h3>Confirm These Are Working:</h3>
+            <ul>
+                <li>☐ EmailJS account created and verified</li>
+                <li>☐ Email service connected (Gmail/Outlook)</li>
+                <li>☐ Templates created (lead_notification & customer_confirmation)</li>
+                <li>☐ Public Key added to all HTML files</li>
+                <li>☐ Service ID added to all forms</li>
+                <li>☐ Template IDs match your created templates</li>
+                <li>☐ Test email successfully received</li>
+                <li>☐ Main landing form sends emails</li>
+                <li>☐ Booking wizard sends emails</li>
+                <li>☐ Exit popups send emails</li>
+            </ul>
+        </div>
+
+        <div class="important">
+            <h3>📊 Email Limits:</h3>
+            <ul>
+                <li><strong>Free Plan:</strong> 200 emails/month</li>
+                <li><strong>Personal:</strong> 1,000 emails/month ($5)</li>
+                <li><strong>Professional:</strong> 10,000 emails/month ($15)</li>
+            </ul>
+            <p>Each form submission sends 2 emails (notification + confirmation), so free plan = 100 leads/month</p>
+        </div>
+    </div>
+
+    <div class="setup-section">
+        <h2>🚀 Advanced Features</h2>
+
+        <div class="step">
+            <h3>Add These Enhancements:</h3>
+
+            <h4>1. Backup to Google Sheets:</h4>
+            <code>
+// Add after EmailJS send
+fetch('YOUR_GOOGLE_SCRIPT_URL', {
+    method: 'POST',
+    mode: 'no-cors',
+    body: JSON.stringify(formData)
+});
+            </code>
+
+            <h4>2. SMS Notifications (Twilio):</h4>
+            <code>
+// For urgent leads over $5000
+if (formData.totalPrice > 5000) {
+    // Send SMS via Twilio webhook
+    fetch('YOUR_TWILIO_WEBHOOK', {
+        method: 'POST',
+        body: JSON.stringify({
+            to: '+14152899760',
+            message: `URGENT: ${formData.guestCount} guest event - $${formData.totalPrice}`
+        })
+    });
+}
+            </code>
+
+            <h4>3. Slack Notifications:</h4>
+            <code>
+// Send to Slack channel
+fetch('YOUR_SLACK_WEBHOOK', {
+    method: 'POST',
+    body: JSON.stringify({
+        text: `New Lead: ${formData.location} - ${formData.guestCount} guests - $${formData.totalPrice}`
+    })
+});
+            </code>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Test function
+        function testEmailIntegration() {
+            const publicKey = document.getElementById('publicKey').value;
+            const serviceId = document.getElementById('serviceId').value;
+            const templateId = document.getElementById('templateId').value;
+
+            if (!publicKey || !serviceId || !templateId) {
+                alert('Please enter all EmailJS credentials');
+                return;
+            }
+
+            // Initialize EmailJS with provided key
+            emailjs.init(publicKey);
+
+            const testData = {
+                firstName: document.getElementById('testName').value,
+                email: document.getElementById('testEmail').value,
+                phone: document.getElementById('testPhone').value,
+                eventType: document.getElementById('testEventType').value,
+                eventDate: new Date().toLocaleDateString(),
+                guestCount: 50,
+                location: 'New York, NY',
+                company: 'Test Company',
+                totalPrice: 7500,
+                basePrice: 7500,
+                discount: 15,
+                source: 'Integration Test',
+                timestamp: new Date().toLocaleString(),
+                specialRequests: 'This is a test email from the integration setup',
+                quoteId: 'TEST-' + Date.now().toString().slice(-6)
+            };
+
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.innerHTML = '<div class="info">Sending test email...</div>';
+
+            emailjs.send(serviceId, templateId, testData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            ✅ Test email sent successfully!<br>
+                            Check your email at Office@SommelierCompany.com<br>
+                            <br>
+                            Your EmailJS Configuration:<br>
+                            - Public Key: ${publicKey}<br>
+                            - Service ID: ${serviceId}<br>
+                            - Template ID: ${templateId}<br>
+                            <br>
+                            Save these IDs and add them to your HTML files!
+                        </div>
+                    `;
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            ❌ Test failed: ${error.text || error}<br>
+                            <br>
+                            Common issues:<br>
+                            - Invalid public key<br>
+                            - Service not connected<br>
+                            - Template ID doesn't exist<br>
+                            - Email service not verified<br>
+                            <br>
+                            Check your EmailJS dashboard and try again.
+                        </div>
+                    `;
+                });
+        }
+    </script>
+</body>
+</html>

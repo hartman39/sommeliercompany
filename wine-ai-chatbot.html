@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine AI Assistant - Ask Anything About Wine | The Sommelier Company</title>
+    <meta name="description" content="Free AI-powered wine expert. Ask any question about wine pairing, tasting, regions, varieties, serving, and more. Instant answers from sommelier knowledge.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #722f37;
+            --primary-dark: #5a242a;
+            --secondary: #d4af37;
+            --text-dark: #2c1810;
+            --text-light: #6b5d54;
+            --bg-light: #faf8f5;
+            --bg-white: #ffffff;
+            --success: #52a373;
+            --accent: #c9302c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #ffffff 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .badge-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Chat Interface */
+        .chat-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            height: 600px;
+            animation: slideUp 0.5s ease 0.2s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .quick-topics {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .topic-btn {
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .topic-btn:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+            background: white;
+        }
+
+        .topic-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Chat Window */
+        .chat-window {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background: #52a373;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #ffffff 0%, #faf8f5 100%);
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            max-width: 70%;
+            padding: 1rem 1.25rem;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .message.bot .message-bubble {
+            background: white;
+            border: 2px solid #e5e5e5;
+            color: var(--text-dark);
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.user .message-bubble {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-meta {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 20px;
+            border-bottom-left-radius: 5px;
+            display: inline-block;
+        }
+
+        .typing-indicator.show {
+            display: inline-block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--text-light);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e5e5;
+            background: white;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(114, 47, 55, 0.1);
+        }
+
+        .send-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .send-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Suggested Questions */
+        .suggestions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .suggestion-chip {
+            background: var(--bg-light);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .suggestion-chip:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Knowledge Cards */
+        .knowledge-card {
+            background: linear-gradient(135deg, #fff 0%, var(--bg-light) 100%);
+            border: 2px solid var(--secondary);
+            border-radius: 15px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .knowledge-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .knowledge-card ul {
+            margin-left: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .knowledge-card li {
+            margin: 0.5rem 0;
+        }
+
+        /* Wine Recommendations */
+        .wine-rec {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wine-info h5 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .wine-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .wine-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        /* Pairing Chart */
+        .pairing-chart {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .pairing-item {
+            background: var(--bg-light);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .pairing-item strong {
+            color: var(--primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+            box-shadow: 0 20px 40px rgba(114, 47, 55, 0.3);
+        }
+
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .message-bubble {
+                max-width: 85%;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(114, 47, 55, 0.3);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍷 Wine Knowledge AI Assistant</h1>
+            <p>Ask me anything about wine - from pairings to regions, tasting notes to serving tips!</p>
+
+            <div class="trust-badges">
+                <div class="badge">
+                    <span class="badge-icon">🎓</span>
+                    <span>Sommelier-Trained AI</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">🌍</span>
+                    <span>500+ Wine Regions</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">🍇</span>
+                    <span>1000+ Grape Varieties</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">⚡</span>
+                    <span>Instant Answers</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <!-- Sidebar with Quick Topics -->
+            <div class="sidebar">
+                <h3>🔥 Popular Topics</h3>
+                <div class="quick-topics">
+                    <button class="topic-btn" onclick="askQuestion('What wine pairs best with steak?')">
+                        🥩 Wine & Steak Pairing
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('Explain the difference between Cabernet and Merlot')">
+                        🍇 Cabernet vs Merlot
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('What temperature should I serve red wine?')">
+                        🌡️ Serving Temperatures
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('How do I taste wine like a sommelier?')">
+                        👃 Tasting Techniques
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('What are the best wines under $20?')">
+                        💰 Best Value Wines
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('How long can I keep an open bottle of wine?')">
+                        ⏰ Wine Storage
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('What wines go with spicy food?')">
+                        🌶️ Spicy Food Pairing
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('Tell me about French wine regions')">
+                        🇫🇷 French Regions
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('What is natural wine?')">
+                        🌿 Natural Wine
+                    </button>
+                    <button class="topic-btn" onclick="askQuestion('Wine and cheese pairing guide')">
+                        🧀 Cheese Pairing
+                    </button>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-light); border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">💡 Pro Tip</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-light);">
+                        Ask specific questions for better answers! Include details like meal type, budget, or occasion.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Chat Window -->
+            <div class="chat-window">
+                <div class="chat-header">
+                    <h2>
+                        <span class="status-indicator"></span>
+                        Wine Expert AI
+                    </h2>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Powered by Sommelier Knowledge</span>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Welcome Message -->
+                    <div class="message bot">
+                        <div class="message-bubble">
+                            <p>🍷 Hello! I'm your personal wine expert AI assistant.</p>
+                            <p style="margin-top: 0.75rem;">I can help you with:</p>
+                            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                <li>Wine and food pairings</li>
+                                <li>Wine recommendations by budget</li>
+                                <li>Understanding wine regions and grapes</li>
+                                <li>Tasting notes and techniques</li>
+                                <li>Serving and storage tips</li>
+                                <li>And much more!</li>
+                            </ul>
+                            <p style="margin-top: 0.75rem;">What would you like to know about wine today?</p>
+                        </div>
+                        <div class="message-meta">Wine AI • Just now</div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <input
+                            type="text"
+                            class="chat-input"
+                            id="userInput"
+                            placeholder="Ask me anything about wine..."
+                            onkeypress="handleKeyPress(event)"
+                        >
+                        <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+                            ➤
+                        </button>
+                    </div>
+
+                    <div class="suggestions">
+                        <span style="font-size: 0.85rem; color: var(--text-light); margin-right: 0.5rem;">Try:</span>
+                        <div class="suggestion-chip" onclick="askQuestion('Best wine for beginners')">
+                            Best for beginners
+                        </div>
+                        <div class="suggestion-chip" onclick="askQuestion('Wine with pasta')">
+                            Wine with pasta
+                        </div>
+                        <div class="suggestion-chip" onclick="askQuestion('Red vs white wine')">
+                            Red vs white
+                        </div>
+                        <div class="suggestion-chip" onclick="askQuestion('Wine tasting steps')">
+                            How to taste
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Want Personalized Wine Education?</h3>
+            <p>Book a private sommelier for your next event and learn while you taste!</p>
+            <a href="sommelier-company-mvp.html#book" class="cta-button">Book a Sommelier →</a>
+        </div>
+    </div>
+
+    <script>
+        // Wine Knowledge Base
+        const wineKnowledge = {
+            pairings: {
+                'steak': {
+                    wines: ['Cabernet Sauvignon', 'Malbec', 'Syrah/Shiraz', 'Bordeaux Blend'],
+                    explanation: 'Bold red wines with high tannins complement the protein and fat in steak.',
+                    specific: {
+                        'Ribeye': 'Try a bold Napa Valley Cabernet or Argentine Malbec',
+                        'Filet Mignon': 'Elegant Pinot Noir or aged Bordeaux',
+                        'NY Strip': 'Australian Shiraz or Rhône Valley Syrah'
+                    }
+                },
+                'fish': {
+                    wines: ['Sauvignon Blanc', 'Albariño', 'Vermentino', 'Pinot Grigio'],
+                    explanation: 'Light, crisp white wines enhance delicate fish flavors without overpowering.',
+                    specific: {
+                        'Salmon': 'Pinot Noir or rich Chardonnay',
+                        'Halibut': 'Grüner Veltliner or Verdicchio',
+                        'Tuna': 'Light red like Beaujolais or rosé'
+                    }
+                },
+                'pasta': {
+                    wines: ['Chianti', 'Barbera', 'Sangiovese', 'Pinot Grigio'],
+                    explanation: 'Italian wines naturally pair with pasta. Match the wine to the sauce intensity.',
+                    specific: {
+                        'Tomato sauce': 'Chianti Classico or Barbera',
+                        'Cream sauce': 'Chardonnay or Soave',
+                        'Pesto': 'Vermentino or Gavi'
+                    }
+                },
+                'cheese': {
+                    wines: ['Port', 'Sauternes', 'Riesling', 'Champagne'],
+                    explanation: 'Match intensity: delicate cheeses with light wines, strong cheeses with bold wines.',
+                    specific: {
+                        'Brie': 'Champagne or Chardonnay',
+                        'Blue cheese': 'Port or Sauternes',
+                        'Cheddar': 'Cabernet Sauvignon or Rioja'
+                    }
+                },
+                'spicy': {
+                    wines: ['Riesling', 'Gewürztraminer', 'Rosé', 'Sparkling wine'],
+                    explanation: 'Slightly sweet or sparkling wines cool the palate and balance spice.',
+                    specific: {
+                        'Thai food': 'Off-dry Riesling or Gewürztraminer',
+                        'Mexican': 'Albariño or Verdejo',
+                        'Indian': 'Rosé or Grüner Veltliner'
+                    }
+                }
+            },
+            grapes: {
+                'cabernet sauvignon': {
+                    profile: 'Full-bodied red with black currant, cedar, and tobacco notes',
+                    regions: 'Napa Valley, Bordeaux, Australia, Chile',
+                    pairings: 'Grilled meats, aged cheeses, dark chocolate',
+                    serving: 'Serve at 60-65°F, decant for 30-60 minutes'
+                },
+                'pinot noir': {
+                    profile: 'Light to medium-bodied red with cherry, mushroom, and earth notes',
+                    regions: 'Burgundy, Oregon, New Zealand, California',
+                    pairings: 'Duck, salmon, mushroom dishes, soft cheeses',
+                    serving: 'Serve at 55-60°F, minimal decanting needed'
+                },
+                'chardonnay': {
+                    profile: 'Full-bodied white ranging from crisp to buttery',
+                    regions: 'Burgundy, California, Australia, Chile',
+                    pairings: 'Lobster, creamy pasta, roasted chicken',
+                    serving: 'Serve at 50-55°F for oaked, 45-50°F for unoaked'
+                },
+                'sauvignon blanc': {
+                    profile: 'Crisp, refreshing white with citrus and herb notes',
+                    regions: 'Loire Valley, New Zealand, California, Chile',
+                    pairings: 'Goat cheese, seafood, salads, Asian cuisine',
+                    serving: 'Serve well chilled at 45-50°F'
+                }
+            },
+            regions: {
+                'france': {
+                    famous: 'Bordeaux, Burgundy, Champagne, Rhône Valley, Loire Valley',
+                    specialty: 'Old World elegance, terroir-driven wines',
+                    mustTry: 'Bordeaux blends, Burgundy Pinot Noir, Champagne'
+                },
+                'italy': {
+                    famous: 'Tuscany, Piedmont, Veneto, Sicily',
+                    specialty: 'Food-friendly wines, indigenous grapes',
+                    mustTry: 'Barolo, Brunello di Montalcino, Amarone'
+                },
+                'spain': {
+                    famous: 'Rioja, Ribera del Duero, Priorat, Rías Baixas',
+                    specialty: 'Value wines, Tempranillo, Albariño',
+                    mustTry: 'Gran Reserva Rioja, Priorat blends'
+                },
+                'usa': {
+                    famous: 'Napa Valley, Sonoma, Oregon, Washington',
+                    specialty: 'Bold fruit-forward wines, innovation',
+                    mustTry: 'Napa Cabernet, Oregon Pinot Noir, Sonoma Chardonnay'
+                }
+            },
+            serving: {
+                'red wine': {
+                    light: '55-60°F (Pinot Noir, Beaujolais)',
+                    medium: '60-65°F (Merlot, Sangiovese)',
+                    full: '60-68°F (Cabernet, Syrah)',
+                    tip: 'Chill for 15 minutes if too warm'
+                },
+                'white wine': {
+                    sparkling: '40-45°F (Champagne, Prosecco)',
+                    light: '45-50°F (Pinot Grigio, Albariño)',
+                    full: '50-55°F (Chardonnay, Viognier)',
+                    tip: 'Take out of fridge 10 minutes before serving'
+                }
+            },
+            tasting: {
+                steps: [
+                    'Look: Check color and clarity',
+                    'Swirl: Release aromatic compounds',
+                    'Smell: Identify primary, secondary, tertiary aromas',
+                    'Taste: Note sweetness, acidity, tannins, body, finish',
+                    'Savor: Consider overall balance and quality'
+                ],
+                terms: {
+                    'Tannins': 'Drying sensation from grape skins',
+                    'Acidity': 'Tartness that makes you salivate',
+                    'Body': 'Weight and texture in your mouth',
+                    'Finish': 'How long flavors linger after swallowing'
+                }
+            }
+        };
+
+        // AI Response Generator
+        function generateAIResponse(question) {
+            const q = question.toLowerCase();
+            let response = '';
+
+            // Check for pairing questions
+            if (q.includes('pair') || q.includes('with')) {
+                for (let food in wineKnowledge.pairings) {
+                    if (q.includes(food)) {
+                        const pairing = wineKnowledge.pairings[food];
+                        response = `<div class="knowledge-card">
+                            <h4>🍷 Wine Pairing for ${food.charAt(0).toUpperCase() + food.slice(1)}</h4>
+                            <p>${pairing.explanation}</p>
+                            <p><strong>Recommended Wines:</strong></p>
+                            <ul>${pairing.wines.map(w => `<li>${w}</li>`).join('')}</ul>`;
+
+                        if (pairing.specific) {
+                            response += `<div class="pairing-chart">`;
+                            for (let item in pairing.specific) {
+                                response += `<div class="pairing-item"><strong>${item}:</strong> ${pairing.specific[item]}</div>`;
+                            }
+                            response += `</div>`;
+                        }
+                        response += `</div>`;
+                        break;
+                    }
+                }
+            }
+
+            // Check for grape variety questions
+            for (let grape in wineKnowledge.grapes) {
+                if (q.includes(grape)) {
+                    const info = wineKnowledge.grapes[grape];
+                    response = `<div class="knowledge-card">
+                        <h4>🍇 ${grape.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</h4>
+                        <p><strong>Profile:</strong> ${info.profile}</p>
+                        <p><strong>Key Regions:</strong> ${info.regions}</p>
+                        <p><strong>Food Pairings:</strong> ${info.pairings}</p>
+                        <p><strong>Serving:</strong> ${info.serving}</p>
+                    </div>`;
+                    break;
+                }
+            }
+
+            // Check for region questions
+            if (q.includes('region') || q.includes('france') || q.includes('italy') || q.includes('spain')) {
+                for (let region in wineKnowledge.regions) {
+                    if (q.includes(region)) {
+                        const info = wineKnowledge.regions[region];
+                        response = `<div class="knowledge-card">
+                            <h4>🌍 ${region.charAt(0).toUpperCase() + region.slice(1)} Wine Regions</h4>
+                            <p><strong>Famous Regions:</strong> ${info.famous}</p>
+                            <p><strong>Specialty:</strong> ${info.specialty}</p>
+                            <p><strong>Must-Try Wines:</strong> ${info.mustTry}</p>
+                        </div>`;
+                        break;
+                    }
+                }
+            }
+
+            // Temperature questions
+            if (q.includes('temperature') || q.includes('serve') || q.includes('serving')) {
+                response = `<div class="knowledge-card">
+                    <h4>🌡️ Wine Serving Temperatures</h4>
+                    <div class="pairing-chart">
+                        <div class="pairing-item"><strong>Sparkling:</strong> 40-45°F</div>
+                        <div class="pairing-item"><strong>Light White:</strong> 45-50°F</div>
+                        <div class="pairing-item"><strong>Full White:</strong> 50-55°F</div>
+                        <div class="pairing-item"><strong>Light Red:</strong> 55-60°F</div>
+                        <div class="pairing-item"><strong>Medium Red:</strong> 60-65°F</div>
+                        <div class="pairing-item"><strong>Full Red:</strong> 60-68°F</div>
+                    </div>
+                    <p style="margin-top: 1rem;"><em>Tip: Most people serve red wine too warm and white wine too cold!</em></p>
+                </div>`;
+            }
+
+            // Tasting questions
+            if (q.includes('taste') || q.includes('tasting') || q.includes('how to')) {
+                response = `<div class="knowledge-card">
+                    <h4>👃 How to Taste Wine Like a Sommelier</h4>
+                    <ol>
+                        ${wineKnowledge.tasting.steps.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                    <p style="margin-top: 1rem;"><strong>Key Terms:</strong></p>
+                    <ul>
+                        ${Object.entries(wineKnowledge.tasting.terms).map(([term, def]) =>
+                            `<li><strong>${term}:</strong> ${def}</li>`
+                        ).join('')}
+                    </ul>
+                </div>`;
+            }
+
+            // Budget wine questions
+            if (q.includes('under') || q.includes('budget') || q.includes('cheap') || q.includes('value')) {
+                response = `<div class="knowledge-card">
+                    <h4>💰 Best Value Wines Under $20</h4>
+                    <div class="wine-rec">
+                        <div class="wine-info">
+                            <h5>Portuguese Vinho Verde</h5>
+                            <p>Light, refreshing white perfect for summer</p>
+                        </div>
+                        <div class="wine-price">$8-12</div>
+                    </div>
+                    <div class="wine-rec">
+                        <div class="wine-info">
+                            <h5>Spanish Garnacha</h5>
+                            <p>Juicy, fruit-forward red with great complexity</p>
+                        </div>
+                        <div class="wine-price">$10-15</div>
+                    </div>
+                    <div class="wine-rec">
+                        <div class="wine-info">
+                            <h5>Argentine Malbec</h5>
+                            <p>Bold, smooth red perfect with grilled meats</p>
+                        </div>
+                        <div class="wine-price">$12-18</div>
+                    </div>
+                    <div class="wine-rec">
+                        <div class="wine-info">
+                            <h5>Washington State Riesling</h5>
+                            <p>Versatile white with perfect sweet-acid balance</p>
+                        </div>
+                        <div class="wine-price">$10-15</div>
+                    </div>
+                </div>`;
+            }
+
+            // Storage questions
+            if (q.includes('store') || q.includes('storage') || q.includes('keep') || q.includes('open')) {
+                response = `<div class="knowledge-card">
+                    <h4>🍾 Wine Storage Tips</h4>
+                    <p><strong>Unopened Wine:</strong></p>
+                    <ul>
+                        <li>Store at 55°F in a dark, humid place</li>
+                        <li>Keep bottles on their side (for cork closure)</li>
+                        <li>Avoid temperature fluctuations</li>
+                        <li>Most wines are meant to drink within 2-3 years</li>
+                    </ul>
+                    <p><strong>Opened Wine:</strong></p>
+                    <ul>
+                        <li>Red wine: 3-5 days with cork/stopper</li>
+                        <li>White/Rosé: 3-5 days in refrigerator</li>
+                        <li>Sparkling: 1-3 days with sparkling wine stopper</li>
+                        <li>Fortified: 28 days (Port, Sherry)</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>Tip: Use a vacuum pump to extend life by 2-3 days!</em></p>
+                </div>`;
+            }
+
+            // Natural wine questions
+            if (q.includes('natural') || q.includes('organic') || q.includes('biodynamic')) {
+                response = `<div class="knowledge-card">
+                    <h4>🌿 Natural, Organic & Biodynamic Wine</h4>
+                    <p><strong>Natural Wine:</strong> Minimal intervention, native yeasts, no/low sulfites added</p>
+                    <p><strong>Organic Wine:</strong> Grapes grown without synthetic pesticides/fertilizers</p>
+                    <p><strong>Biodynamic:</strong> Organic + holistic farming following lunar calendar</p>
+                    <p style="margin-top: 1rem;"><strong>What to Expect:</strong></p>
+                    <ul>
+                        <li>More variation between bottles</li>
+                        <li>Funkier, more "alive" flavors</li>
+                        <li>Often cloudy appearance</li>
+                        <li>Generally lower alcohol</li>
+                    </ul>
+                </div>`;
+            }
+
+            // Beginner questions
+            if (q.includes('beginner') || q.includes('start') || q.includes('new to wine')) {
+                response = `<div class="knowledge-card">
+                    <h4>🎓 Wine for Beginners</h4>
+                    <p><strong>Start with these approachable wines:</strong></p>
+                    <div class="pairing-chart">
+                        <div class="pairing-item"><strong>White:</strong> Pinot Grigio, Moscato</div>
+                        <div class="pairing-item"><strong>Red:</strong> Pinot Noir, Merlot</div>
+                        <div class="pairing-item"><strong>Rosé:</strong> Provence style</div>
+                        <div class="pairing-item"><strong>Sparkling:</strong> Prosecco, Cava</div>
+                    </div>
+                    <p style="margin-top: 1rem;"><strong>Tips for Learning:</strong></p>
+                    <ul>
+                        <li>Start with lighter wines and work up to bolder ones</li>
+                        <li>Try the same grape from different regions</li>
+                        <li>Take notes on what you like/dislike</li>
+                        <li>Attend tastings to try many wines affordably</li>
+                    </ul>
+                </div>`;
+            }
+
+            // Default response if no specific match
+            if (!response) {
+                response = `I understand you're asking about "${question}". While I have extensive wine knowledge, let me provide you with some general guidance:
+
+                <p style="margin-top: 1rem;">This is a great question that would benefit from personalized expertise. Here are some resources that might help:</p>
+
+                <ul style="margin: 1rem 0;">
+                    <li>Check our wine education guides for detailed information</li>
+                    <li>Consider booking a sommelier consultation for personalized advice</li>
+                    <li>Try asking about specific wine pairings, regions, or grape varieties</li>
+                </ul>
+
+                <p>You can also try rephrasing your question or selecting one of the popular topics from the sidebar!</p>`;
+            }
+
+            return response;
+        }
+
+        // Chat Functions
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+
+            if (message) {
+                addMessage(message, 'user');
+                input.value = '';
+
+                // Show typing indicator
+                showTyping();
+
+                // Simulate AI response delay
+                setTimeout(() => {
+                    hideTyping();
+                    const response = generateAIResponse(message);
+                    addMessage(response, 'bot');
+                }, 1000 + Math.random() * 1000);
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.innerHTML = sender === 'bot' ? text : `<p>${text}</p>`;
+
+            const meta = document.createElement('div');
+            meta.className = 'message-meta';
+            meta.textContent = sender === 'bot' ? 'Wine AI • Just now' : 'You • Just now';
+
+            messageDiv.appendChild(bubble);
+            messageDiv.appendChild(meta);
+            messagesDiv.appendChild(messageDiv);
+
+            // Scroll to bottom
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function askQuestion(question) {
+            document.getElementById('userInput').value = question;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function showTyping() {
+            const messagesDiv = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="typing-indicator show">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+            messagesDiv.appendChild(typingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) {
+                typing.remove();
+            }
+        }
+
+        // Track usage
+        let messageCount = 0;
+        function trackUsage() {
+            messageCount++;
+            if (messageCount === 5) {
+                setTimeout(() => {
+                    addMessage(`
+                        <div style="background: linear-gradient(135deg, #722f37, #d4af37); color: white; padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                            <p style="font-weight: 600; margin-bottom: 0.5rem;">🍷 Enjoying our AI assistant?</p>
+                            <p>Get personalized wine education with a private sommelier at your next event!</p>
+                            <a href="sommelier-company-mvp.html#book" style="display: inline-block; background: white; color: #722f37; padding: 0.5rem 1rem; border-radius: 20px; text-decoration: none; margin-top: 0.75rem; font-weight: 600;">Book a Sommelier →</a>
+                        </div>
+                    `, 'bot');
+                }, 2000);
+            }
+        }
+
+        // Initialize
+        document.getElementById('userInput').focus();
+    </script>
+</body>
+</html>
