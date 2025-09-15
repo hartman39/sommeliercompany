@@ -949,30 +949,470 @@
             text-align: center;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
+        /* Enhanced Responsive Design - Premium UX Experience */
+
+        /* Large Desktop (1440px+) - Ultimate luxury experience */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1400px;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 2rem;
+            }
+
+            .wineries-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+            }
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 4rem;
+                line-height: 1.1;
+                letter-spacing: -0.02em;
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+            }
+
+            .winery-card {
+                padding: 2rem;
+            }
+
+            .tool-card {
+                padding: 2.5rem;
+            }
+        }
+
+        /* Desktop (1200px-1439px) - Standard desktop experience */
+        @media (min-width: 1200px) and (max-width: 1439px) {
+            .tools-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .wineries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: -0.01em;
+            }
+        }
+
+        /* Tablet Landscape (992px-1199px) - Optimized for tablets */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .container {
+                max-width: 960px;
+                padding: 0 2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+
+            .wineries-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .tool-card {
+                padding: 1.75rem;
+            }
+
+            .winery-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Tablet Portrait (768px-991px) - Touch-optimized */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .container {
+                max-width: 720px;
+                padding: 0 1.5rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .wineries-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
             }
 
             .pairing-selector {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
             }
 
             .region-info {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .tool-card {
+                padding: 1.5rem;
+            }
+
+            .winery-card {
+                padding: 1.25rem;
+            }
+
+            .download-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            /* Better touch targets */
+            .travel-tab,
+            .region-btn {
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile Large (576px-767px) - Premium mobile experience */
+        @media (min-width: 576px) and (max-width: 767px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .wineries-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .pairing-selector {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .tool-card {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+
+            .tool-icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .winery-card {
+                padding: 1.25rem;
+                border-radius: 10px;
+            }
+
+            .region-info {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .articles-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .download-grid {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .travel-nav {
+                gap: 0.5rem;
+                padding-bottom: 1rem;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .travel-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                min-width: max-content;
+                white-space: nowrap;
             }
 
             .newsletter-form {
                 flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            /* Improved accessibility */
+            .winery-link,
+            .add-itinerary {
+                min-height: 44px;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        /* Mobile Small (320px-575px) - Optimized for smallest screens */
+        @media (max-width: 575px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .hero {
+                padding: 2.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+                line-height: 1.3;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+                margin-bottom: 1.25rem;
+                line-height: 1.5;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .tool-card {
+                padding: 1.25rem;
+                border-radius: 10px;
+            }
+
+            .tool-icon {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .tool-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .tool-card p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .winery-card {
+                padding: 1rem;
+                border-radius: 8px;
+            }
+
+            .winery-header h5 {
+                font-size: 1rem;
+            }
+
+            .winery-tagline {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .winery-details {
+                font-size: 0.8rem;
+            }
+
+            .winery-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .quick-stats {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .stat {
+                padding: 0.75rem;
+                text-align: center;
+            }
+
+            .travel-nav {
+                gap: 0.25rem;
+                padding-bottom: 0.75rem;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .travel-tab {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.8rem;
+                border-radius: 15px;
+                min-width: max-content;
+            }
+
+            .tab-icon {
+                font-size: 1rem;
+            }
+
+            .region-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+                min-height: 40px;
+            }
+
+            .new-badge {
+                top: 5px;
+                right: 5px;
+                padding: 0.2rem 0.4rem;
+                font-size: 0.65rem;
+            }
+
+            /* Enhanced touch targets for mobile */
+            .winery-link,
+            .add-itinerary {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.9rem;
+                padding: 0.75rem;
+            }
+
+            /* Better spacing for readability */
+            section {
+                padding: 2rem 0;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .section-header p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            /* Improved form elements */
+            .pairing-selector {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            select, input {
+                min-height: 44px;
+                font-size: 1rem; /* Prevents zoom on iOS */
+                padding: 0.75rem;
+                border-radius: 8px;
+            }
+
+            .region-info {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .download-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .newsletter-form input {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Ultra-wide screens (1920px+) */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1600px;
+            }
+
+            .wineries-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+        }
+
+        /* High DPI displays - Performance optimization */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero {
+                background-attachment: scroll; /* Better performance on high DPI */
+            }
+        }
+
+        /* Print styles for wine guides */
+        @media print {
+            .hero,
+            .quick-tools,
+            .wine-travel,
+            .travel-consultation-cta {
+                display: none;
+            }
+
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+
+            .winery-card {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -3632,24 +4072,232 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        @media (max-width: 768px) {
-            .travel-nav {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
+        /* Premium UX Enhancements */
 
-            .form-row {
-                grid-template-columns: 1fr;
-            }
+        /* Improved Typography & Readability */
+        body {
+            font-feature-settings: "kern" 1, "liga" 1;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-            .quick-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* Enhanced Focus States for Accessibility */
+        .tool-card:focus,
+        .winery-card:focus,
+        .travel-tab:focus,
+        .region-btn:focus,
+        .winery-link:focus,
+        .add-itinerary:focus {
+            outline: 3px solid var(--secondary);
+            outline-offset: 2px;
+        }
 
-            .wineries-grid {
-                grid-template-columns: 1fr;
+        /* Loading States */
+        .loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Improved button hover states */
+        .winery-link,
+        .add-itinerary,
+        .cta-button,
+        .travel-tab,
+        .region-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .winery-link:hover,
+        .add-itinerary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Enhanced card hover effects */
+        .winery-card,
+        .tool-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .winery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        /* Improved text selection */
+        ::selection {
+            background: var(--secondary);
+            color: white;
+        }
+
+        ::-moz-selection {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Better scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .winery-card,
+            .tool-card {
+                border: 2px solid #000;
+            }
+
+            .ai-chatbot-card {
+                border: 2px solid #fff;
+            }
+        }
+
+        /* Dark mode preference */
+        @media (prefers-color-scheme: dark) {
+            /* Note: Full dark mode would require extensive color scheme updates */
+            /* This is a placeholder for future dark mode implementation */
+        }
+
+        /* Performance optimizations */
+        .wineries-grid,
+        .tools-grid {
+            contain: layout style;
+        }
+
+        /* Image optimization */
+        img {
+            max-width: 100%;
+            height: auto;
+            loading: lazy;
+        }
+
+        /* Form improvements */
+        input, select, textarea {
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+        }
+
+        /* Enhanced error states */
+        .error {
+            border-color: #e74c3c !important;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1) !important;
+        }
+
+        /* Success states */
+        .success {
+            border-color: #27ae60 !important;
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1) !important;
+        }
+
+        /* Skeleton loading for content */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Improved spacing and rhythm */
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Better link states */
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        a:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+
+        /* Duplicate mobile styles removed - now handled in comprehensive responsive design above */
     </style>
 
     <script>
