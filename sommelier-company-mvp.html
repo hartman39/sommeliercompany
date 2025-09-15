@@ -145,21 +145,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 5%;
+            padding: 1.5rem 5%;
             max-width: 1400px;
             margin: 0 auto;
+            min-height: 80px;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.9rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.7rem;
+            gap: 0.8rem;
             letter-spacing: -0.5px;
             transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .logo span:first-child {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 2px 4px rgba(114, 47, 55, 0.2));
         }
 
         .logo:hover {
@@ -170,8 +177,10 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2.8rem;
+            gap: 2.5rem;
             align-items: center;
+            padding: 0;
+            margin: 0;
         }
 
         .nav-menu a {
@@ -179,9 +188,32 @@
             color: var(--text-dark);
             font-weight: 600;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.95rem;
             position: relative;
-            padding: 0.5rem 0;
+            padding: 0.7rem 0;
+            white-space: nowrap;
+        }
+
+        /* Special styling for phone number */
+        .nav-menu a[href^="tel"] {
+            background: linear-gradient(135deg, var(--bg-light), #f5f5f5);
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(114, 47, 55, 0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .nav-menu a[href^="tel"]:hover {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.2);
+        }
+
+        .nav-menu a[href^="tel"]::after {
+            display: none;
         }
 
         .nav-menu a::after {
@@ -229,16 +261,19 @@
         .nav-menu .cta-button {
             background: linear-gradient(135deg, #ff6b35, #f7931e);
             color: white;
-            padding: 0.9rem 2rem;
-            font-size: 1.1rem;
+            padding: 1rem 2.2rem;
+            font-size: 1rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            letter-spacing: 0.3px;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
             position: relative;
             overflow: hidden;
-            animation: pulseGlow 2s infinite;
             border: 2px solid transparent;
             text-transform: uppercase;
+            border-radius: 50px;
+            min-width: 160px;
+            text-align: center;
+            margin-left: 1rem;
         }
 
         .nav-menu .cta-button::before {
@@ -258,37 +293,23 @@
 
         .nav-menu .cta-button:hover {
             background: linear-gradient(135deg, #ff5722, #ff9800);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
             border-color: rgba(255,255,255,0.3);
         }
 
-        @keyframes pulseGlow {
+        /* Subtle pulse animation for CTA */
+        @keyframes subtlePulse {
             0%, 100% {
-                box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+                box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
             }
             50% {
-                box-shadow: 0 4px 25px rgba(255, 107, 53, 0.5), 0 0 30px rgba(255, 107, 53, 0.2);
+                box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
             }
         }
 
-        /* Add blinking dot for urgency */
-        .nav-menu .cta-button::after {
-            content: '';
-            position: absolute;
-            top: -3px;
-            right: -3px;
-            width: 12px;
-            height: 12px;
-            background: #52a373;
-            border-radius: 50%;
-            border: 2px solid white;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0.3; }
+        .nav-menu .cta-button {
+            animation: subtlePulse 3s ease-in-out infinite;
         }
 
         .mobile-menu-toggle {
@@ -998,6 +1019,19 @@
                 transition: 0.3s;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
                 gap: 1.5rem;
+            }
+
+            .nav-menu .cta-button {
+                margin-left: 0;
+                margin-top: 1rem;
+                padding: 1.2rem 2rem;
+                font-size: 1.1rem;
+                animation: none;
+            }
+
+            .nav-menu a[href^="tel"] {
+                margin-top: 0.5rem;
+                justify-self: center;
             }
 
             .nav-menu.active {
