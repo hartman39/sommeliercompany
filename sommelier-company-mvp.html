@@ -130,51 +130,79 @@
 
         /* Header & Navigation */
         header {
-            background: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
-            top: 0;
+            top: 65px;
             z-index: 1000;
             transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(114, 47, 55, 0.1);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
+            padding: 1.2rem 5%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 700;
             color: var(--primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.7rem;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+            color: var(--primary-dark);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 2.8rem;
             align-items: center;
         }
 
         .nav-menu a {
             text-decoration: none;
             color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s ease;
             font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
         .nav-menu a:hover {
             color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
         }
 
         .cta-button {
@@ -283,61 +311,97 @@
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23722f37" width="1920" height="1080"/></svg>');
             background-size: cover;
             background-position: center;
-            padding: 10rem 5% 6rem;
+            padding: 12rem 5% 7rem;
             color: white;
             text-align: center;
-            margin-top: 70px;
+            margin-top: 135px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                rgba(114, 47, 55, 0.9) 0%,
+                rgba(212, 175, 55, 0.7) 50%,
+                rgba(114, 47, 55, 0.9) 100%);
+            z-index: 1;
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 900px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.2;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
             opacity: 0.95;
-            font-weight: 300;
+            font-weight: 400;
+            line-height: 1.5;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .trust-indicators {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
+            gap: 4rem;
+            margin: 4rem 0;
             flex-wrap: wrap;
         }
 
         .trust-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
+            gap: 0.7rem;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .trust-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .trust-item .icon {
             color: var(--secondary);
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            font-weight: 700;
         }
 
         /* Instant Booking Widget */
         .booking-widget {
             background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            max-width: 800px;
-            margin: -3rem auto 4rem;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+            max-width: 850px;
+            margin: -4rem auto 5rem;
             position: relative;
             z-index: 10;
+            border: 1px solid rgba(114, 47, 55, 0.1);
         }
 
         .booking-form {
@@ -910,19 +974,30 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            header {
+                top: 50px;
+            }
+
+            .hero {
+                margin-top: 110px;
+                padding: 8rem 5% 5rem;
+            }
+
             .floating-cta {
                 display: block;
             }
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: 70px;
+                top: 110px;
                 flex-direction: column;
-                background: white;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
                 width: 100%;
                 padding: 2rem;
                 transition: 0.3s;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 1.5rem;
             }
 
             .nav-menu.active {
@@ -934,20 +1009,34 @@
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+                margin-bottom: 1.5rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
             }
 
             .booking-form {
                 grid-template-columns: 1fr;
             }
 
+            .booking-widget {
+                margin: -2rem auto 3rem;
+                padding: 2rem;
+                border-radius: 20px;
+            }
+
             .trust-indicators {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 1.5rem;
+                margin: 3rem 0;
+            }
+
+            .trust-item {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
             }
 
             .services-grid,
@@ -1010,14 +1099,22 @@
     </style>
 </head>
 <body>
-    <!-- Urgency Banner -->
-    <div style="background: linear-gradient(90deg, #ff6b35, #f7931e); color: white; padding: 0.75rem; text-align: center; font-weight: 600; position: fixed; top: 0; width: 100%; z-index: 9999; display: flex; justify-content: center; align-items: center; gap: 1rem;">
-        <span style="animation: pulse 2s infinite;">🔥 Limited December Availability</span>
-        <span>Book Your Holiday Event Now - Save 15% This Week Only!</span>
-        <a href="#bookingWidget" style="background: white; color: #ff6b35; padding: 0.6rem 1.25rem; border-radius: 25px; text-decoration: none; font-weight: 700; box-shadow: 0 3px 10px rgba(0,0,0,0.2); transition: all 0.3s; display: inline-block;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 10px rgba(0,0,0,0.2)'">Get Quote →</a>
+    <!-- Premium Announcement Bar -->
+    <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 0.9rem 5%; text-align: center; font-weight: 500; position: fixed; top: 0; width: 100%; z-index: 9999; box-shadow: 0 2px 20px rgba(114, 47, 55, 0.3);">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+            <span style="display: flex; align-items: center; gap: 0.5rem; font-size: 1rem;">
+                <span style="color: var(--secondary); font-weight: 600;">🍷</span>
+                <span>Limited December Availability</span>
+            </span>
+            <span style="font-size: 0.95rem; opacity: 0.9;">Book Your Holiday Event Now - Save 15% This Week Only!</span>
+            <a href="#bookingWidget" style="background: var(--secondary); color: var(--primary); padding: 0.7rem 1.5rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(212, 175, 55, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(212, 175, 55, 0.3)'">
+                Get Quote
+                <span style="font-size: 0.8rem;">→</span>
+            </a>
+        </div>
     </div>
     <!-- Header -->
-    <header id="header" style="margin-top: 50px;">
+    <header id="header" style="margin-top: 65px;">
         <nav>
             <a href="#" class="logo">
                 <span>🍷</span> The Sommelier Company
@@ -1061,13 +1158,16 @@
             </div>
 
             <!-- Hero CTA Buttons -->
-            <div style="margin-top: 2rem; animation: fadeInUp 1s ease 0.5s both;">
-                <a href="#bookingWidget" style="background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 1.2rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.3rem; display: inline-block; margin: 0.5rem; box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4); transform: scale(1); transition: all 0.3s; position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 1px;" onmouseover="this.style.transform='scale(1.1) translateY(-3px)'; this.style.boxShadow='0 12px 40px rgba(255, 107, 53, 0.5)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 30px rgba(255, 107, 53, 0.4)'">
-                    <span style="position: relative; z-index: 1;">🎆 Get Instant Quote</span>
-                    <span style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s;"></span>
+            <div style="margin-top: 3rem; animation: fadeInUp 1s ease 0.5s both; display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="#bookingWidget" style="background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 1.3rem 2.8rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4); transition: all 0.3s; position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 0.5px; min-width: 280px;" onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 12px 40px rgba(255, 107, 53, 0.5)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 30px rgba(255, 107, 53, 0.4)'">
+                    <span style="position: relative; z-index: 1; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.1rem;">🎆</span>
+                        <span>Get Instant Quote</span>
+                    </span>
                 </a>
-                <a href="tel:415-289-9760" style="background: transparent; border: 3px solid white; color: white; padding: 1.15rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block; margin: 0.5rem; transition: all 0.3s;" onmouseover="this.style.background='white'; this.style.color='#722f37'; this.style.transform='scale(1.05) translateY(-2px)'" onmouseout="this.style.background='transparent'; this.style.color='white'; this.style.transform='scale(1)'">
-                    📞 Call Now
+                <a href="tel:415-289-9760" style="background: transparent; border: 3px solid white; color: white; padding: 1.25rem 2.8rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; min-width: 280px; gap: 0.5rem;" onmouseover="this.style.background='white'; this.style.color='#722f37'; this.style.transform='translateY(-2px) scale(1.05)'" onmouseout="this.style.background='transparent'; this.style.color='white'; this.style.transform='translateY(0) scale(1)'">
+                    <span style="font-size: 1.3rem;">📞</span>
+                    <span>Call Now</span>
                 </a>
             </div>
 
