@@ -1197,19 +1197,19 @@
 
             <!-- Trip Planning Navigation -->
             <div class="travel-nav">
-                <button class="travel-tab active" onclick="showTravelSection('napa')">
+                <button class="travel-tab active" onclick="showTravelSection('napa', event)">
                     <span class="tab-icon">🇺🇸</span>
                     Napa Valley
                 </button>
-                <button class="travel-tab" onclick="showTravelSection('global')">
+                <button class="travel-tab" onclick="showTravelSection('global', event)">
                     <span class="tab-icon">🌍</span>
                     Global Destinations
                 </button>
-                <button class="travel-tab" onclick="showTravelSection('planning')">
+                <button class="travel-tab" onclick="showTravelSection('planning', event)">
                     <span class="tab-icon">📋</span>
                     Trip Planning
                 </button>
-                <button class="travel-tab" onclick="showTravelSection('seasons')">
+                <button class="travel-tab" onclick="showTravelSection('seasons', event)">
                     <span class="tab-icon">📅</span>
                     Best Times to Visit
                 </button>
@@ -1633,10 +1633,10 @@
 
                 <!-- Region Selector -->
                 <div class="region-selector">
-                    <button class="region-btn active" onclick="showRegion('europe')">Europe</button>
-                    <button class="region-btn" onclick="showRegion('americas')">Americas</button>
-                    <button class="region-btn" onclick="showRegion('oceania')">Oceania</button>
-                    <button class="region-btn" onclick="showRegion('africa')">Africa</button>
+                    <button class="region-btn active" onclick="showRegion('europe', event)">Europe</button>
+                    <button class="region-btn" onclick="showRegion('americas', event)">Americas</button>
+                    <button class="region-btn" onclick="showRegion('oceania', event)">Oceania</button>
+                    <button class="region-btn" onclick="showRegion('africa', event)">Africa</button>
                 </div>
 
                 <!-- Europe Region -->
@@ -1653,7 +1653,10 @@
                                     <p>Frank Gehry-designed City of Wine in Rioja Alavesa</p>
                                     <span class="location">📍 Elciego, Álava</span>
                                 </div>
-                                <a href="https://www.marquesderiscal.com/en" target="_blank" class="compact-link">Visit →</a>
+                                <div class="winery-actions-compact">
+                                    <a href="https://www.marquesderiscal.com/en" target="_blank" class="compact-link">Visit →</a>
+                                    <button class="add-trip-btn" onclick="addToItinerary('Marqués de Riscal')">+ Trip</button>
+                                </div>
                             </div>
                             <div class="compact-winery">
                                 <div class="winery-info">
@@ -1661,7 +1664,10 @@
                                     <p>Santiago Calatrava's wave-like architectural masterpiece</p>
                                     <span class="location">📍 Laguardia, Spain</span>
                                 </div>
-                                <a href="https://www.bodegasysios.com/en" target="_blank" class="compact-link">Visit →</a>
+                                <div class="winery-actions-compact">
+                                    <a href="https://www.bodegasysios.com/en" target="_blank" class="compact-link">Visit →</a>
+                                    <button class="add-trip-btn" onclick="addToItinerary('Bodegas Ysios')">+ Trip</button>
+                                </div>
                             </div>
                             <div class="compact-winery">
                                 <div class="winery-info">
@@ -1669,7 +1675,10 @@
                                     <p>12th-century abbey turned luxe eco-retreat</p>
                                     <span class="location">📍 Valladolid, Spain</span>
                                 </div>
-                                <a href="https://www.abadia-retuerta.com/en" target="_blank" class="compact-link">Visit →</a>
+                                <div class="winery-actions-compact">
+                                    <a href="https://www.abadia-retuerta.com/en" target="_blank" class="compact-link">Visit →</a>
+                                    <button class="add-trip-btn" onclick="addToItinerary('Abadía Retuerta')">+ Trip</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2555,11 +2564,11 @@
         }
 
         .region-content {
-            display: none;
+            display: none !important;
         }
 
         .region-content.active {
-            display: block;
+            display: block !important;
         }
 
         .country-section {
@@ -2593,6 +2602,29 @@
 
         .compact-winery:hover {
             background: #f0f0f0;
+        }
+
+        .winery-actions-compact {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .add-trip-btn {
+            padding: 0.4rem 0.8rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .add-trip-btn:hover {
+            background: var(--primary);
+            color: white;
         }
 
         .winery-info h6 {
@@ -2996,7 +3028,7 @@
         // Wine Travel JavaScript
         let tripItinerary = [];
 
-        function showTravelSection(section) {
+        function showTravelSection(section, event) {
             // Hide all sections
             document.querySelectorAll('.travel-section').forEach(s => {
                 s.classList.remove('active');
@@ -3011,13 +3043,18 @@
             document.getElementById(section + '-section').classList.add('active');
 
             // Mark tab as active
-            event.target.closest('.travel-tab').classList.add('active');
+            if (event && event.target) {
+                event.target.closest('.travel-tab').classList.add('active');
+            }
         }
 
-        function showRegion(region) {
+        function showRegion(region, event) {
+            console.log('Switching to region:', region); // Debug log
+
             // Hide all regions
             document.querySelectorAll('.region-content').forEach(r => {
                 r.classList.remove('active');
+                r.style.display = 'none'; // Force hide
             });
 
             // Remove active from all buttons
@@ -3026,10 +3063,19 @@
             });
 
             // Show selected region
-            document.getElementById(region + '-region').classList.add('active');
+            const targetRegion = document.getElementById(region + '-region');
+            if (targetRegion) {
+                targetRegion.classList.add('active');
+                targetRegion.style.display = 'block'; // Force show
+                console.log('Region found and activated:', region);
+            } else {
+                console.error('Region not found:', region + '-region');
+            }
 
             // Mark button as active
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
         }
 
         function addToItinerary(wineryName) {
