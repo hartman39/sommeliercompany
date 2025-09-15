@@ -1643,157 +1643,251 @@
                 <div id="europe-region" class="region-content active">
                     <h4>🇪🇺 European Wine Regions</h4>
 
+                    <!-- Pro Tips for Europe -->
+                    <div class="pro-tips-banner">
+                        <h4>🎯 Insider Tips for European Wine Regions</h4>
+                        <ul>
+                            <li>Best time to visit: September-October for harvest season</li>
+                            <li>Many European wineries require advance reservations</li>
+                            <li>Consider wine passes for regions like Bordeaux and Rioja</li>
+                            <li>Train travel between regions is often scenic and convenient</li>
+                            <li>Learn basic wine terms in local languages for better experiences</li>
+                        </ul>
+                    </div>
+
                     <!-- Spain -->
-                    <div class="country-section">
-                        <h5>🇪🇸 Spain - Rioja & Beyond</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Marqués de Riscal (#1 World's Best)</h6>
-                                    <p>Frank Gehry-designed City of Wine in Rioja Alavesa</p>
-                                    <span class="location">📍 Elciego, Álava</span>
-                                </div>
-                                <div class="winery-actions-compact">
-                                    <a href="https://www.marquesderiscal.com/en" target="_blank" class="compact-link">Visit →</a>
-                                    <button class="add-trip-btn" onclick="addToItinerary('Marqués de Riscal')">+ Trip</button>
-                                </div>
+                    <h5>🇪🇸 Spain - Rioja & Architectural Wonders</h5>
+                    <div class="wineries-grid">
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Marqués de Riscal</h5>
+                                <span class="premium-badge">#1 World's Best</span>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Bodegas Ysios (#4)</h6>
-                                    <p>Santiago Calatrava's wave-like architectural masterpiece</p>
-                                    <span class="location">📍 Laguardia, Spain</span>
-                                </div>
-                                <div class="winery-actions-compact">
-                                    <a href="https://www.bodegasysios.com/en" target="_blank" class="compact-link">Visit →</a>
-                                    <button class="add-trip-btn" onclick="addToItinerary('Bodegas Ysios')">+ Trip</button>
-                                </div>
+                            <p class="winery-tagline">Frank Gehry-designed City of Wine—original, fresh, elegant wines since 1858</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Calle Torrea, 1, 01340 Elciego, Álava, Spain</p>
+                                <p><strong>Specialty:</strong> Tempranillo & Verdejo</p>
+                                <p><strong>Tasting:</strong> €25-90 per person</p>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Abadía Retuerta (#8)</h6>
-                                    <p>12th-century abbey turned luxe eco-retreat</p>
-                                    <span class="location">📍 Valladolid, Spain</span>
-                                </div>
-                                <div class="winery-actions-compact">
-                                    <a href="https://www.abadia-retuerta.com/en" target="_blank" class="compact-link">Visit →</a>
-                                    <button class="add-trip-btn" onclick="addToItinerary('Abadía Retuerta')">+ Trip</button>
-                                </div>
+                            <div class="winery-actions">
+                                <a href="https://www.marquesderiscal.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Marqués de Riscal')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Bodegas Ysios</h5>
+                                <span class="architecture-badge">#4 World Ranking</span>
+                            </div>
+                            <p class="winery-tagline">Santiago Calatrava's wave-like masterpiece in the heart of Rioja Alavesa</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Carretera Laguardia-San Vicente, km 1.6, 01309 Laguardia</p>
+                                <p><strong>Specialty:</strong> Terroir-honest wines</p>
+                                <p><strong>Tasting:</strong> €20-50 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.bodegasysios.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Bodegas Ysios')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Abadía Retuerta</h5>
+                                <span class="historic-badge">#8 World Ranking</span>
+                            </div>
+                            <p class="winery-tagline">Where time stands still—biodynamic wines from a 12th-century abbey</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Ctra. S. Martín de Valdeiglesias, km 1, 47318 Sardon de Duero</p>
+                                <p><strong>Specialty:</strong> Biodynamic wines</p>
+                                <p><strong>Tasting:</strong> €30-75 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.abadia-retuerta.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Abadía Retuerta')">+ Add to Trip</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Germany -->
-                    <div class="country-section">
-                        <h5>🇩🇪 Germany - Riesling Paradise</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Schloss Johannisberg (#5)</h6>
-                                    <p>World's first Riesling winery—birthplace of Spätlese</p>
-                                    <span class="location">📍 Rheingau</span>
-                                </div>
-                                <a href="https://www.schloss-johannisberg.de/en" target="_blank" class="compact-link">Visit →</a>
+                    <h5>🇩🇪 Germany - Riesling Paradise</h5>
+                    <div class="wineries-grid">
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Schloss Johannisberg</h5>
+                                <span class="historic-badge">#5 World Ranking</span>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Dr. Loosen (#9)</h6>
-                                    <p>Ungrafted old vines crafting mineral-driven Mosel gems</p>
-                                    <span class="location">📍 Bernkastel-Kues</span>
-                                </div>
-                                <a href="https://www.drloosen.com/en" target="_blank" class="compact-link">Visit →</a>
+                            <p class="winery-tagline">World's first Riesling winery—birthplace of Spätlese with 1,200 years of noble rot magic</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 65366 Geisenheim-Johannisberg, Germany</p>
+                                <p><strong>Specialty:</strong> Historic Rieslings & Spätlese</p>
+                                <p><strong>Tasting:</strong> €15-60 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.schloss-johannisberg.de/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Schloss Johannisberg')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Weingut Dr. Loosen</h5>
+                                <span class="premium-badge">#9 World Ranking</span>
+                            </div>
+                            <p class="winery-tagline">A great wine is born in the mind—ungrafted old vines crafting racy, mineral-driven Mosel gems</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> St. Johannishof, 54470 Bernkastel-Kues, Germany</p>
+                                <p><strong>Specialty:</strong> Mineral-driven Mosel Rieslings</p>
+                                <p><strong>Tasting:</strong> €20-45 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.drloosen.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Dr. Loosen')">+ Add to Trip</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- France -->
-                    <div class="country-section">
-                        <h5>🇫🇷 France - Wine Heritage</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Maison Ruinart (#6)</h6>
-                                    <p>Oldest Champagne House (1729) with crayères caves</p>
-                                    <span class="location">📍 Reims, Champagne</span>
-                                </div>
-                                <a href="https://www.ruinart.com/en-us" target="_blank" class="compact-link">Visit →</a>
+                    <h5>🇫🇷 France - Wine Heritage & Luxury</h5>
+                    <div class="wineries-grid">
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Maison Ruinart</h5>
+                                <span class="sparkle-badge">#6 World Ranking</span>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Château Smith Haut Lafitte (#7)</h6>
-                                    <p>Biodynamic Bordeaux with shire horses</p>
-                                    <span class="location">📍 Martillac, Bordeaux</span>
-                                </div>
-                                <a href="https://www.smith-haut-lafitte.com/en" target="_blank" class="compact-link">Visit →</a>
+                            <p class="winery-tagline">Symbol of savoir-vivre since 1729—the oldest Champagne House with Chardonnay elegance in crayères caves</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 4 Rue des Crayères, 51100 Reims, France</p>
+                                <p><strong>Specialty:</strong> Chardonnay-driven Champagne</p>
+                                <p><strong>Tasting:</strong> €35-150 per person</p>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Champagne Bollinger (#12)</h6>
-                                    <p>James Bond's favorite—historic chalk cellars</p>
-                                    <span class="location">📍 Aÿ, Champagne</span>
-                                </div>
-                                <a href="https://www.bollinger.com/en" target="_blank" class="compact-link">Visit →</a>
+                            <div class="winery-actions">
+                                <a href="https://www.ruinart.com/en-us" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Maison Ruinart')">+ Add to Trip</button>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Château d'Yquem (#13)</h6>
-                                    <p>King of sweet wines—noble rot legends</p>
-                                    <span class="location">📍 Sauternes</span>
-                                </div>
-                                <a href="https://www.yquem.com/en" target="_blank" class="compact-link">Visit →</a>
+                        </div>
+
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Château Smith Haut Lafitte</h5>
+                                <span class="eco-badge">#7 World Ranking</span>
+                            </div>
+                            <p class="winery-tagline">Everything comes from the soil—biodynamic icons with shire horses and a stealth winery</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 33650 Martillac, Bordeaux, France</p>
+                                <p><strong>Specialty:</strong> Biodynamic Bordeaux blends</p>
+                                <p><strong>Tasting:</strong> €25-100 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.smith-haut-lafitte.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Château Smith Haut Lafitte')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Champagne Bollinger</h5>
+                                <span class="premium-badge">#12 James Bond</span>
+                            </div>
+                            <p class="winery-tagline">James Bond's favorite—Pinot Noir-dominant prestige with historic chalk cellars</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 16 Rue Jules Lobet, 51160 Aÿ, France</p>
+                                <p><strong>Specialty:</strong> Pinot Noir Champagne</p>
+                                <p><strong>Tasting:</strong> €40-120 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.bollinger.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Champagne Bollinger')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Château d'Yquem</h5>
+                                <span class="premium-badge">#13 Sweet King</span>
+                            </div>
+                            <p class="winery-tagline">King of sweet wines—noble rot Sémillon legends from a 16th-century estate</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 33210 Sauternes, France</p>
+                                <p><strong>Specialty:</strong> Noble rot Sauternes</p>
+                                <p><strong>Tasting:</strong> €50-200 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.yquem.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Château d\'Yquem')">+ Add to Trip</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Italy -->
-                    <div class="country-section">
-                        <h5>🇮🇹 Italy - La Dolce Vita</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Tenuta Cavalier Pepe (#14)</h6>
-                                    <p>Aglianico's noble soul in volcanic Irpinia</p>
-                                    <span class="location">📍 Campania</span>
-                                </div>
-                                <a href="https://www.cavalierpepe.it/en" target="_blank" class="compact-link">Visit →</a>
+                    <!-- Italy, Portugal & Greece -->
+                    <h5>🇮🇹 Italy, 🇵🇹 Portugal & 🇬🇷 Greece</h5>
+                    <div class="wineries-grid">
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Tenuta Cavalier Pepe</h5>
+                                <span class="historic-badge">#14 Italy</span>
+                            </div>
+                            <p class="winery-tagline">Aglianico's noble soul—family estate with ancient varietals in volcanic Irpinia</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Contrada Madonna, 83030 Atripalda (AV), Italy</p>
+                                <p><strong>Specialty:</strong> Aglianico & Greco di Tufo</p>
+                                <p><strong>Tasting:</strong> €20-50 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.cavalierpepe.it/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Tenuta Cavalier Pepe')">+ Add to Trip</button>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Portugal -->
-                    <div class="country-section">
-                        <h5>🇵🇹 Portugal - Douro Valley</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Quinta do Crasto (#15)</h6>
-                                    <p>Organic Ports and table wines from schist slopes</p>
-                                    <span class="location">📍 Douro Valley</span>
-                                </div>
-                                <a href="https://www.quintadocrasto.pt/en" target="_blank" class="compact-link">Visit →</a>
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Quinta do Crasto</h5>
+                                <span class="eco-badge">#15 Portugal</span>
+                            </div>
+                            <p class="winery-tagline">Douro's timeless guardian—organic Ports and table wines from schist slopes</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 5050-323 Gouvinhas, Portugal</p>
+                                <p><strong>Specialty:</strong> Organic Port & Douro reds</p>
+                                <p><strong>Tasting:</strong> €15-60 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.quintadocrasto.pt/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Quinta do Crasto')">+ Add to Trip</button>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Greece -->
-                    <div class="country-section">
-                        <h5>🇬🇷 Greece - Santorini</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Domaine Sigalas</h6>
-                                    <p>Biodynamic Assyrtiko from black lava soils</p>
-                                    <span class="location">📍 Oia, Santorini</span>
-                                </div>
-                                <a href="https://www.sigalas-wine.com" target="_blank" class="compact-link">Visit →</a>
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Domaine Sigalas</h5>
+                                <span class="eco-badge">Santorini Icon</span>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Santo Wines</h6>
-                                    <p>Largest organic producer with caldera views</p>
-                                    <span class="location">📍 Pyrgos, Santorini</span>
-                                </div>
-                                <a href="https://www.santowines.gr" target="_blank" class="compact-link">Visit →</a>
+                            <p class="winery-tagline">Island's Assyrtiko virtuoso—biodynamic whites from black lava soils</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Baxedes, Oia 847 02, Greece</p>
+                                <p><strong>Specialty:</strong> Volcanic Assyrtiko</p>
+                                <p><strong>Tasting:</strong> €20-45 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.sigalas-wine.com" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Domaine Sigalas')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Santo Wines</h5>
+                                <span class="experience-badge">Caldera Views</span>
+                            </div>
+                            <p class="winery-tagline">Cyclades' largest organic producer—sparkling Assyrtiko with Aegean breezes</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Pyrgos Kallistis 847 00, Greece</p>
+                                <p><strong>Specialty:</strong> Organic Assyrtiko</p>
+                                <p><strong>Tasting:</strong> €15-40 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.santowines.gr" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Santo Wines')">+ Add to Trip</button>
                             </div>
                         </div>
                     </div>
@@ -1803,70 +1897,102 @@
                 <div id="americas-region" class="region-content">
                     <h4>🌎 American Wine Regions</h4>
 
-                    <!-- Chile -->
-                    <div class="country-section">
-                        <h5>🇨🇱 Chile - Andean Heights</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>VIK (#2 World's Best)</h6>
-                                    <p>4,300ha reserve with Smiljan Radic's sculptural winery</p>
-                                    <span class="location">📍 Millahue Valley</span>
-                                </div>
-                                <a href="https://www.vikwine.com/en" target="_blank" class="compact-link">Visit →</a>
-                            </div>
-                        </div>
+                    <!-- Pro Tips for Americas -->
+                    <div class="pro-tips-banner">
+                        <h4>🎯 Insider Tips for American Wine Regions</h4>
+                        <ul>
+                            <li>Chile & Argentina: March-April harvest season in Southern Hemisphere</li>
+                            <li>Mendoza altitude requires hydration and sun protection</li>
+                            <li>Washington State: Summer offers 16+ hours of daylight</li>
+                            <li>Uruguay's coastal winds make for unique terroir</li>
+                            <li>Consider multi-country tours via Buenos Aires or Santiago</li>
+                        </ul>
                     </div>
 
-                    <!-- Argentina -->
-                    <div class="country-section">
-                        <h5>🇦🇷 Argentina - Malbec Country</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Durigutti Family (#10)</h6>
-                                    <p>Organic, family-crafted terroir expressions</p>
-                                    <span class="location">📍 Mendoza</span>
-                                </div>
-                                <a href="https://www.durigutti.com/en" target="_blank" class="compact-link">Visit →</a>
+                    <h5>South & North American Gems</h5>
+                    <div class="wineries-grid">
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>VIK</h5>
+                                <span class="premium-badge">#2 World's Best</span>
+                            </div>
+                            <p class="winery-tagline">The holistic way—world-class blends from a 4,300ha reserve with Smiljan Radic's sculptural winery</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Fundo Vik, Millahue s/n, San Vicente de Tagua Tagua, Chile</p>
+                                <p><strong>Specialty:</strong> Bordeaux-style blends</p>
+                                <p><strong>Tasting:</strong> $50-150 USD per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.vikwine.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('VIK Winery')">+ Add to Trip</button>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Uruguay -->
-                    <div class="country-section">
-                        <h5>🇺🇾 Uruguay - Coastal Cool</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Bodega Garzón (#11)</h6>
-                                    <p>Sustainable Tannat with Atlantic ocean views</p>
-                                    <span class="location">📍 Maldonado</span>
-                                </div>
-                                <a href="https://www.bodegagarzon.com" target="_blank" class="compact-link">Visit →</a>
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Durigutti Family</h5>
+                                <span class="family-badge">#10 World Ranking</span>
+                            </div>
+                            <p class="winery-tagline">Sharing our passion for wine—organic, family-crafted terroir expressions in historic finca</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Pje. de la Reta s/n, Las Compuertas, Mendoza, Argentina</p>
+                                <p><strong>Specialty:</strong> Organic Malbec</p>
+                                <p><strong>Tasting:</strong> $20-60 USD per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.durigutti.com/en" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Durigutti Family')">+ Add to Trip</button>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- USA - Other Regions -->
-                    <div class="country-section">
-                        <h5>🇺🇸 USA - Washington State</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Chateau Ste. Michelle</h6>
-                                    <p>Northwest's Riesling royalty</p>
-                                    <span class="location">📍 Woodinville, WA</span>
-                                </div>
-                                <a href="https://www.ste-michelle.com" target="_blank" class="compact-link">Visit →</a>
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Bodega Garzón</h5>
+                                <span class="eco-badge">#11 World Ranking</span>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Cayuse Vineyards</h6>
-                                    <p>Cult Syrah from volcanic soils</p>
-                                    <span class="location">📍 Walla Walla, WA</span>
-                                </div>
-                                <a href="https://www.cayusevineyards.com" target="_blank" class="compact-link">Visit →</a>
+                            <p class="winery-tagline">Uruguay's modern icon—Alejandro Bulgheroni's sustainable Tannat with Atlantic ocean views</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Camino de los Horneros, Pueblo Garzón, Uruguay</p>
+                                <p><strong>Specialty:</strong> Sustainable Tannat</p>
+                                <p><strong>Tasting:</strong> $25-75 USD per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.bodegagarzon.com" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Bodega Garzón')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Chateau Ste. Michelle</h5>
+                                <span class="historic-badge">Washington Icon</span>
+                            </div>
+                            <p class="winery-tagline">Northwest's largest—Riesling royalty with Riesling Rendezvous festivals</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 14111 NE 145th St, Woodinville, WA 98072</p>
+                                <p><strong>Specialty:</strong> Riesling & Bordeaux blends</p>
+                                <p><strong>Tasting:</strong> $15-40 USD per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.ste-michelle.com" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Chateau Ste. Michelle')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Cayuse Vineyards</h5>
+                                <span class="cult-badge">Cult Syrah</span>
+                            </div>
+                            <p class="winery-tagline">Cult Syrah from volcanic soils—small-batch magic in Walla Walla</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Walla Walla, WA 99362</p>
+                                <p><strong>Specialty:</strong> Biodynamic Syrah</p>
+                                <p><strong>Tasting:</strong> By appointment only</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.cayusevineyards.com" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Cayuse Vineyards')">+ Add to Trip</button>
                             </div>
                         </div>
                     </div>
@@ -1876,48 +2002,85 @@
                 <div id="oceania-region" class="region-content">
                     <h4>🌏 Oceania Wine Regions</h4>
 
-                    <!-- Australia -->
-                    <div class="country-section">
-                        <h5>🇦🇺 Australia - McLaren Vale</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>d'Arenberg Cube</h6>
-                                    <p>Multi-level cube with sensory tastings</p>
-                                    <span class="location">📍 McLaren Vale</span>
-                                </div>
-                                <a href="https://www.darenberg.com.au" target="_blank" class="compact-link">Visit →</a>
-                            </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Coriole</h6>
-                                    <p>Biodynamic Grenache with farm-to-table</p>
-                                    <span class="location">📍 McLaren Vale</span>
-                                </div>
-                                <a href="https://www.coriole.com" target="_blank" class="compact-link">Visit →</a>
-                            </div>
-                        </div>
+                    <!-- Pro Tips for Oceania -->
+                    <div class="pro-tips-banner">
+                        <h4>🎯 Insider Tips for Oceania Wine Regions</h4>
+                        <ul>
+                            <li>Visit during Southern Hemisphere harvest (February-April)</li>
+                            <li>McLaren Vale combines beach and wine experiences</li>
+                            <li>Marlborough offers stunning scenery with wine tours</li>
+                            <li>Book cellar door visits in advance during peak season</li>
+                            <li>Consider wine + adventure packages (hiking, cycling)</li>
+                        </ul>
                     </div>
 
-                    <!-- New Zealand -->
-                    <div class="country-section">
-                        <h5>🇳🇿 New Zealand - Marlborough</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Cloudy Bay</h6>
-                                    <p>Sauvignon Blanc pioneer with oyster pairings</p>
-                                    <span class="location">📍 Blenheim</span>
-                                </div>
-                                <a href="https://www.cloudybay.co.nz" target="_blank" class="compact-link">Visit →</a>
+                    <h5>Australia & New Zealand Treasures</h5>
+                    <div class="wineries-grid">
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>d'Arenberg Cube</h5>
+                                <span class="architecture-badge">Architectural Icon</span>
                             </div>
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Brancott Estate</h6>
-                                    <p>Marlborough's birthplace with Solstice hikes</p>
-                                    <span class="location">📍 Blenheim</span>
-                                </div>
-                                <a href="https://www.brancottestate.com" target="_blank" class="compact-link">Visit →</a>
+                            <p class="winery-tagline">Architectural whimsy—multi-level cube with sensory tastings and rooftop views</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Osborn Rd, McLaren Vale SA 5171, Australia</p>
+                                <p><strong>Specialty:</strong> Shiraz & Grenache blends</p>
+                                <p><strong>Tasting:</strong> AUD $15-50 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.darenberg.com.au" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('d\'Arenberg Cube')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Coriole</h5>
+                                <span class="eco-badge">Biodynamic</span>
+                            </div>
+                            <p class="winery-tagline">Biodynamic rebels—Grenache blends with farm-to-table lunches</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 22-24 Chaffeys Rd, McLaren Vale SA 5171, Australia</p>
+                                <p><strong>Specialty:</strong> Biodynamic Grenache & Sangiovese</p>
+                                <p><strong>Tasting:</strong> AUD $10-35 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.coriole.com" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Coriole')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Cloudy Bay</h5>
+                                <span class="premium-badge">Sauvignon Icon</span>
+                            </div>
+                            <p class="winery-tagline">Sauvignon pioneer—crisp, herbaceous icons with pelagus oyster pairings</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 230 Jacksons Rd, Blenheim 7270, New Zealand</p>
+                                <p><strong>Specialty:</strong> Sauvignon Blanc & Pinot Noir</p>
+                                <p><strong>Tasting:</strong> NZD $15-45 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.cloudybay.co.nz" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Cloudy Bay')">+ Add to Trip</button>
+                            </div>
+                        </div>
+
+                        <div class="winery-card">
+                            <div class="winery-header">
+                                <h5>Brancott Estate</h5>
+                                <span class="historic-badge">Marlborough Original</span>
+                            </div>
+                            <p class="winery-tagline">Marlborough's birthplace—estate tours with Solstice vineyard hikes</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> 1120 State Highway 1, Blenheim 7271, New Zealand</p>
+                                <p><strong>Specialty:</strong> Sauvignon Blanc pioneers</p>
+                                <p><strong>Tasting:</strong> NZD $12-35 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.brancottestate.com" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Brancott Estate')">+ Add to Trip</button>
                             </div>
                         </div>
                     </div>
@@ -1927,17 +2090,34 @@
                 <div id="africa-region" class="region-content">
                     <h4>🌍 African Wine Regions</h4>
 
-                    <!-- South Africa -->
-                    <div class="country-section">
-                        <h5>🇿🇦 South Africa - Hemel-en-Aarde</h5>
-                        <div class="compact-wineries">
-                            <div class="compact-winery">
-                                <div class="winery-info">
-                                    <h6>Creation (#3 World's Best)</h6>
-                                    <p>Chardonnay-Pinot stars with whale-watching</p>
-                                    <span class="location">📍 Hermanus</span>
-                                </div>
-                                <a href="https://www.creationwines.com" target="_blank" class="compact-link">Visit →</a>
+                    <!-- Pro Tips for Africa -->
+                    <div class="pro-tips-banner">
+                        <h4>🎯 Insider Tips for South African Wine Regions</h4>
+                        <ul>
+                            <li>Best time: March-May (harvest) or September-November (spring)</li>
+                            <li>Combine wine tours with whale watching (June-November)</li>
+                            <li>Hemel-en-Aarde offers cool-climate wines near the ocean</li>
+                            <li>Many estates offer picnics and art galleries</li>
+                            <li>Consider adding Cape Town and safari to your itinerary</li>
+                        </ul>
+                    </div>
+
+                    <h5>🇿🇦 South Africa - Cool Climate Excellence</h5>
+                    <div class="wineries-grid">
+                        <div class="winery-card premium">
+                            <div class="winery-header">
+                                <h5>Creation</h5>
+                                <span class="premium-badge">#3 World's Best</span>
+                            </div>
+                            <p class="winery-tagline">Innovation is a way of life—Chardonnay-Pinot stars with art trails and chocolate pairings</p>
+                            <div class="winery-details">
+                                <p><strong>Address:</strong> Hemel-en-Aarde Road, Hermanus, South Africa</p>
+                                <p><strong>Specialty:</strong> Cool-climate Chardonnay & Pinot Noir</p>
+                                <p><strong>Tasting:</strong> ZAR 100-300 per person</p>
+                            </div>
+                            <div class="winery-actions">
+                                <a href="https://www.creationwines.com" target="_blank" class="winery-link">Visit Website</a>
+                                <button class="add-itinerary" onclick="addToItinerary('Creation Wines')">+ Add to Trip</button>
                             </div>
                         </div>
                     </div>
