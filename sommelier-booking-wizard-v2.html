@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Wine Tasting Event - Instant Quote | The Sommelier Company</title>
+    <meta name="description" content="Get instant quotes for wine tastings. ⭐ 4.9/5 (527 reviews) • Certified sommeliers in 50+ cities • From $95/person • 100% satisfaction guarantee.">
+
+    <!-- Schema.org markup for better SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Wine Event Booking",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "The Sommelier Company"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "527"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": "95",
+            "highPrice": "250"
+        }
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #722f37;
+            --primary-dark: #5a242a;
+            --secondary: #d4af37;
+            --text-dark: #2c1810;
+            --text-light: #6b5d54;
+            --bg-light: #faf8f5;
+            --bg-white: #ffffff;
+            --success: #52a373;
+            --error: #dc3545;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #ffffff 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .wizard-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .wizard-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wizard-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent, rgba(255,255,255,0.1));
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .wizard-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            padding: 2.5rem 3rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(114, 47, 55, 0.1), transparent);
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+        }
+
+        .progress-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+
+        .progress-step.completed:not(:last-child)::after {
+            background: linear-gradient(90deg, var(--success) 0%, var(--success) 50%, #e0e0e0 50%);
+            background-size: 200% 100%;
+            animation: fillLine 0.5s ease forwards;
+        }
+
+        @keyframes fillLine {
+            from { background-position: 100% 0; }
+            to { background-position: 0 0; }
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            position: relative;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .progress-step.active .step-icon {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(114, 47, 55, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1.15); }
+            50% { transform: scale(1.25); }
+        }
+
+        .progress-step.completed .step-icon {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+            animation: checkmark 0.5s ease;
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        .progress-step.completed .step-icon::after {
+            content: '✓';
+            position: absolute;
+            font-size: 1.3rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .step-label {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            max-width: 100px;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--primary);
+            font-weight: 600;
+            transform: translateY(-2px);
+        }
+
+        .progress-step.completed .step-label {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .progress-step:hover:not(.completed):not(.active) .step-icon {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .progress-step:hover:not(.completed):not(.active) .step-label {
+            color: var(--text-dark);
+        }
+
+        /* Mobile Progress Bar */
+        @media (max-width: 768px) {
+            .progress-bar {
+                padding: 1.5rem 1rem;
+            }
+
+            .step-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .step-label {
+                font-size: 0.7rem;
+                max-width: 60px;
+            }
+
+            .progress-step.completed .step-icon::after {
+                font-size: 1rem;
+            }
+        }
+
+        .wizard-content {
+            padding: 3rem;
+        }
+
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group label .required {
+            color: var(--error);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(114, 47, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .option-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .option-card {
+            padding: 1.5rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .option-card.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-card-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .option-card-price {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .wine-preferences {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .wine-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .wine-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .add-ons {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .add-on-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .add-on-item:last-child {
+            border-bottom: none;
+        }
+
+        .add-on-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #ddd;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: var(--success);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .price-summary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        .quote-reveal {
+            text-align: center;
+            padding: 3rem;
+            background: var(--bg-light);
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .quote-reveal h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .quote-amount {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 2rem 0;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .quote-details {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .wizard-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary {
+            background: #e5e5e5;
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(114, 47, 55, 0.3);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-success:hover {
+            background: #469a68;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(82, 163, 115, 0.3);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .trust-badge span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-suggestions {
+            background: linear-gradient(135deg, #f5f5ff, #fff);
+            border: 2px solid var(--secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .suggestion-item {
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .suggestion-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .confirmation {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .confirmation-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 2rem;
+        }
+
+        .confirmation h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .wizard-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .option-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .wizard-buttons {
+                flex-direction: column;
+            }
+
+            .progress-step span {
+                font-size: 0.8rem;
+            }
+
+            .quote-amount {
+                font-size: 3rem;
+            }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .helper-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .privacy-notice {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+        }
+
+        .privacy-notice a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .privacy-notice a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="wizard-container">
+        <div class="wizard-header">
+            <div style="position: relative; z-index: 1;">
+                <div style="background: #ff6b35; color: white; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; font-weight: 600; animation: pulse 2s infinite;">
+                    🎉 Limited Time: Save 15% on December Bookings
+                </div>
+                <h1>🍷 Get Your Instant Wine Event Quote</h1>
+                <p>Takes less than 60 seconds • No obligation • Expert sommeliers nationwide</p>
+                <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1rem;">
+                    <span>⭐ 4.9/5 (527 Reviews)</span>
+                    <span>🏆 500+ Events</span>
+                    <span>📍 50+ Cities</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-steps">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-icon">1</div>
+                    <div class="step-label">Event Details</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-icon">2</div>
+                    <div class="step-label">Contact Info</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-icon">3</div>
+                    <div class="step-label">Your Quote</div>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-icon">4</div>
+                    <div class="step-label">Customize</div>
+                </div>
+                <div class="progress-step" data-step="5">
+                    <div class="step-icon">5</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wizard-content">
+            <!-- Step 1: Event Details -->
+            <div class="step-content active" data-step="1">
+                <h2>Tell us about your event</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">We'll create a personalized quote based on your needs</p>
+
+                <!-- Social Proof Bar -->
+                <div style="background: #f0f8ff; padding: 1rem; border-radius: 10px; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 1.5rem; animation: pulse 2s infinite;">🔥</span>
+                    <div>
+                        <strong style="color: var(--text-dark);">27 events booked today</strong>
+                        <div style="color: var(--text-light); font-size: 0.9rem;">December dates filling fast - only 3 Saturdays left!</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What type of event are you planning?</label>
+                    <div class="option-cards">
+                        <div class="option-card" data-type="corporate" onclick="selectEventType(this)">
+                            <div class="option-card-icon">🏢</div>
+                            <div class="option-card-title">Corporate</div>
+                            <div class="option-card-price">Team & Client Events</div>
+                        </div>
+                        <div class="option-card" data-type="private" onclick="selectEventType(this)">
+                            <div class="option-card-icon">🥂</div>
+                            <div class="option-card-title">Private Party</div>
+                            <div class="option-card-price">Home & Venues</div>
+                        </div>
+                        <div class="option-card" data-type="wedding" onclick="selectEventType(this)">
+                            <div class="option-card-icon">💒</div>
+                            <div class="option-card-title">Wedding</div>
+                            <div class="option-card-price">Receptions & Rehearsals</div>
+                        </div>
+                        <div class="option-card" data-type="virtual" onclick="selectEventType(this)">
+                            <div class="option-card-icon">💻</div>
+                            <div class="option-card-title">Virtual</div>
+                            <div class="option-card-price">Remote Teams</div>
+                        </div>
+                    </div>
+                    <span class="error-message" id="eventTypeError">Please select an event type</span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Event Date <span class="required">*</span></label>
+                        <input type="date" id="eventDate" required>
+                        <span class="helper-text">Flexible on dates? We'll work with you!</span>
+                        <span class="error-message" id="eventDateError">Please select a date</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guestCount">Number of Guests <span class="required">*</span></label>
+                        <input type="number" id="guestCount" min="10" max="500" placeholder="10-500" required>
+                        <span class="helper-text">Minimum 10 guests</span>
+                        <span class="error-message" id="guestCountError">Please enter number of guests (10-500)</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Event City or Zip Code <span class="required">*</span></label>
+                    <input type="text" id="location" placeholder="e.g., New York, NY or 10001" required>
+                    <span class="helper-text">We serve all major US cities</span>
+                    <span class="error-message" id="locationError">Please enter location</span>
+                </div>
+
+                <div class="trust-badge">
+                    <span>🔒 SSL Secured</span>
+                    <span>⭐ 4.9/5 from 527 reviews</span>
+                    <span>📍 Available in 50+ cities</span>
+                </div>
+
+                <!-- Urgency Message -->
+                <div style="background: linear-gradient(135deg, #fff4e6, #ffe8cc); border: 2px solid #ff6b35; padding: 1rem; border-radius: 10px; margin-top: 2rem; text-align: center;">
+                    <strong style="color: #ff6b35;">⏰ This quote expires in: <span class="countdown">23h 59m</span></strong>
+                    <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">Lock in today's pricing before rates increase</div>
+                </div>
+            </div>
+
+            <!-- Step 2: Contact Information (NEW - Before Quote) -->
+            <div class="step-content" data-step="2">
+                <h2>Almost there! Who should we send the quote to?</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">Get your personalized quote instantly</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" required>
+                        <span class="error-message" id="firstNameError">Please enter your first name</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" required>
+                        <span class="error-message" id="lastNameError">Please enter your last name</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" placeholder="you@company.com" required>
+                    <span class="helper-text">We'll send your quote details here</span>
+                    <span class="error-message" id="emailError">Please enter a valid email</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" placeholder="(555) 123-4567" required>
+                    <span class="helper-text">For quick questions about your event</span>
+                    <span class="error-message" id="phoneError">Please enter your phone number</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company/Organization (Optional)</label>
+                    <input type="text" id="company" placeholder="Your company name">
+                    <span class="helper-text">Helps us customize corporate packages</span>
+                </div>
+
+                <div class="privacy-notice">
+                    <p>🔒 <strong>Your Privacy Matters:</strong> We'll only use your information to send your quote and follow up about your event. No spam, ever. <a href="#">Privacy Policy</a></p>
+                    <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+                        <input type="checkbox" id="marketing" style="width: 20px; height: 20px;" checked>
+                        <span>Send me exclusive wine event tips and special offers (optional)</span>
+                    </label>
+                </div>
+
+                <!-- Trust Logos -->
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e5e5e5; text-align: center;">
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">Trusted by leading companies:</p>
+                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; opacity: 0.6;">
+                        <span style="font-weight: 600;">Microsoft</span>
+                        <span style="font-weight: 600;">Goldman Sachs</span>
+                        <span style="font-weight: 600;">Google</span>
+                        <span style="font-weight: 600;">Amazon</span>
+                        <span style="font-weight: 600;">Tesla</span>
+                    </div>
+                </div>
+
+                <div class="trust-badge">
+                    <span>✅ Instant quote</span>
+                    <span>📞 No sales pressure</span>
+                    <span>🎯 100% personalized</span>
+                </div>
+            </div>
+
+            <!-- Step 3: Quote Reveal (NEW - Exciting reveal after contact info) -->
+            <div class="step-content" data-step="3">
+                <div class="quote-reveal">
+                    <h2>Your Personalized Quote is Ready!</h2>
+                    <p style="color: var(--text-light); font-size: 1.2rem;">Based on your event details:</p>
+
+                    <div class="quote-amount" id="quoteAmount" style="position: relative;">$0
+                        <div style="position: absolute; top: -30px; right: -30px; background: #ff6b35; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 1rem; font-weight: 600; transform: rotate(15deg);">
+                            Save 15%!
+                        </div>
+                    </div>
+
+                    <p style="color: var(--text-light); font-size: 1.1rem;">Total estimate for <span id="quoteSummary">your event</span></p>
+
+                    <div class="quote-details">
+                        <h3 style="margin-bottom: 1.5rem;">What's Included:</h3>
+                        <div class="detail-row">
+                            <span>✅ Expert Sommelier (2 hours)</span>
+                            <span id="sommelierPrice">Included</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>✅ Premium Wine Selection (5-6 wines)</span>
+                            <span id="winePrice">Included</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>✅ Professional Glassware</span>
+                            <span>Included</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>✅ Educational Materials</span>
+                            <span>Included</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>✅ Setup & Cleanup</span>
+                            <span>Included</span>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <button class="btn btn-success" onclick="acceptQuote()">
+                            ✅ This Looks Great!
+                        </button>
+                        <button class="btn btn-primary" onclick="customizeQuote()">
+                            🎨 Customize My Package
+                        </button>
+                    </div>
+
+                    <p style="margin-top: 2rem; color: var(--text-light);">
+                        💡 <strong>Pro Tip:</strong> Add food pairings and premium wines to create an unforgettable experience
+                    </p>
+
+                    <!-- Scarcity Message -->
+                    <div style="background: #fff0f0; border: 2px solid #ff6b35; padding: 1rem; border-radius: 10px; margin-top: 2rem; text-align: center;">
+                        <strong style="color: #ff6b35;">⚠️ Only 2 sommeliers available for your date</strong>
+                        <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">3 other people are viewing this date right now</div>
+                    </div>
+                </div>
+
+                <div class="ai-suggestions">
+                    <span class="ai-badge">✨ Popular with similar events</span>
+                    <div class="suggestion-item" onclick="addSuggestion('food')">
+                        <strong>+ Artisanal Food Pairing</strong> - Cheese, charcuterie, and chocolates (+$35/person)
+                    </div>
+                    <div class="suggestion-item" onclick="addSuggestion('premium')">
+                        <strong>+ Premium Wine Upgrade</strong> - Include reserve and limited edition wines (+$25/person)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Customization (Optional) -->
+            <div class="step-content" data-step="4">
+                <h2>Customize your experience</h2>
+
+                <div class="form-group">
+                    <label>Wine Selection Tier</label>
+                    <div class="option-cards">
+                        <div class="option-card selected" data-tier="classic" onclick="selectWineTier(this)">
+                            <div class="option-card-icon">🍇</div>
+                            <div class="option-card-title">Classic</div>
+                            <div class="option-card-price">Included</div>
+                        </div>
+                        <div class="option-card" data-tier="premium" onclick="selectWineTier(this)">
+                            <div class="option-card-icon">🏆</div>
+                            <div class="option-card-title">Premium</div>
+                            <div class="option-card-price">+$25/person</div>
+                        </div>
+                        <div class="option-card" data-tier="luxury" onclick="selectWineTier(this)">
+                            <div class="option-card-icon">💎</div>
+                            <div class="option-card-title">Luxury</div>
+                            <div class="option-card-price">+$50/person</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-ons">
+                    <h3>Enhance Your Event</h3>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Gourmet Food Pairing</strong>
+                            <p>Artisanal cheese, charcuterie, and chocolates</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$35/person</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'food', 35)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Wine Gift Bags</strong>
+                            <p>Premium bottle for each guest to take home</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$45/person</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'gifts', 45)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Professional Photography</strong>
+                            <p>Capture your event with a pro photographer</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$500 flat</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'photo', 500, true)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Extended Duration</strong>
+                            <p>Add an extra hour to your event</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$250 flat</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'extended', 250, true)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-summary" id="priceSummary">
+                    <h3>Updated Quote</h3>
+                    <div class="price-item">
+                        <span>Base Package</span>
+                        <span id="basePrice">$0</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Wine Tier Upgrade</span>
+                        <span id="tierPrice">$0</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Add-ons</span>
+                        <span id="addonsPrice">$0</span>
+                    </div>
+                    <div class="price-total">
+                        <span>Total Estimate</span>
+                        <span id="totalPrice">$0</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests or Questions (Optional)</label>
+                    <textarea id="specialRequests" rows="4" placeholder="Any dietary restrictions, wine preferences, or special requests?"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 5: Confirmation -->
+            <div class="step-content" data-step="5">
+                <div class="confirmation">
+                    <div class="confirmation-icon">🎉</div>
+                    <h2>Perfect! Your Quote Has Been Saved</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem;">
+                        We've emailed your personalized quote to <strong id="confirmEmail">your email</strong>
+                    </p>
+
+                    <div class="quote-details">
+                        <h3>Your Event Details</h3>
+                        <div class="detail-row">
+                            <span>Event Type:</span>
+                            <strong id="confirmType">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Date:</span>
+                            <strong id="confirmDate">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Guests:</span>
+                            <strong id="confirmGuests">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Location:</span>
+                            <strong id="confirmLocation">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Total Quote:</span>
+                            <strong id="confirmTotal" style="color: var(--secondary); font-size: 1.3rem;">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Quote ID:</span>
+                            <strong id="confirmNumber">-</strong>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-light); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h3 style="margin-bottom: 1rem;">What Happens Next?</h3>
+                        <div style="text-align: left; line-height: 2;">
+                            <p>✅ <strong>Within 1 hour:</strong> You'll receive a detailed quote email</p>
+                            <p>📞 <strong>Within 24 hours:</strong> A sommelier specialist will call to answer questions</p>
+                            <p>📅 <strong>Flexible booking:</strong> Hold your date with just a 25% deposit</p>
+                            <p>🎯 <strong>100% customizable:</strong> We can adjust anything to perfect your event</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="tel:1-888-WINE-PRO" class="btn btn-success">
+                            📞 Call Now: 1-888-WINE-PRO
+                        </a>
+                        <button class="btn btn-primary" onclick="scheduleCall()">
+                            📅 Schedule a Call
+                        </button>
+                    </div>
+
+                    <p style="margin-top: 2rem; color: var(--text-light);">
+                        Questions? Email us at <a href="mailto:events@sommeliercompany.com" style="color: var(--primary);">events@sommeliercompany.com</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="wizard-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+                    ← Previous
+                </button>
+                <button class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
+                    Continue →
+                </button>
+                <button class="btn btn-success" id="getQuoteBtn" onclick="revealQuote()" style="display: none;">
+                    Show My Quote <span class="loading" id="loadingSpinner" style="display: none;"></span>
+                </button>
+                <button class="btn btn-success" id="submitBtn" onclick="submitBooking()" style="display: none;">
+                    Confirm Booking →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Analytics tracking
+        function trackEvent(category, action, label, value) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label,
+                    'value': value
+                });
+            }
+            console.log('Event tracked:', {category, action, label, value});
+        }
+
+        // Initialize
+        let currentStep = 1;
+        const totalSteps = 5;
+        let bookingData = {
+            eventType: '',
+            eventDate: '',
+            guestCount: 0,
+            location: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            company: '',
+            marketing: false,
+            wineTier: 'classic',
+            addOns: {},
+            basePrice: 0,
+            tierUpgrade: 0,
+            addOnsTotal: 0,
+            totalPrice: 0,
+            specialRequests: ''
+        };
+
+        // Set minimum date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('eventDate').min = tomorrow.toISOString().split('T')[0];
+
+        // Event Type Selection
+        function selectEventType(card) {
+            document.querySelectorAll('.option-card[data-type]').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            bookingData.eventType = card.dataset.type;
+
+            // Set base price per person
+            const prices = {
+                'corporate': 150,
+                'private': 125,
+                'wedding': 175,
+                'virtual': 95
+            };
+            bookingData.basePrice = prices[bookingData.eventType];
+        }
+
+        // Wine Tier Selection
+        function selectWineTier(card) {
+            document.querySelectorAll('.option-card[data-tier]').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            bookingData.wineTier = card.dataset.tier;
+
+            const tierPrices = {
+                'classic': 0,
+                'premium': 25,
+                'luxury': 50
+            };
+            bookingData.tierUpgrade = tierPrices[bookingData.wineTier];
+            updatePricing();
+        }
+
+        // Add-on Toggle
+        function toggleAddOn(toggle, name, price, isFlat = false) {
+            toggle.classList.toggle('active');
+
+            if (toggle.classList.contains('active')) {
+                bookingData.addOns[name] = { price, isFlat };
+            } else {
+                delete bookingData.addOns[name];
+            }
+
+            updatePricing();
+        }
+
+        // Update Pricing
+        function updatePricing() {
+            const guests = bookingData.guestCount;
+
+            if (guests > 0 && bookingData.basePrice > 0) {
+                const base = bookingData.basePrice * guests;
+                const tier = bookingData.tierUpgrade * guests;
+
+                let addOnsTotal = 0;
+                Object.values(bookingData.addOns).forEach(addon => {
+                    if (addon.isFlat) {
+                        addOnsTotal += addon.price;
+                    } else {
+                        addOnsTotal += addon.price * guests;
+                    }
+                });
+
+                bookingData.addOnsTotal = addOnsTotal;
+                bookingData.totalPrice = base + tier + addOnsTotal;
+
+                // Update display
+                if (document.getElementById('basePrice')) {
+                    document.getElementById('basePrice').textContent = `$${base.toLocaleString()}`;
+                    document.getElementById('tierPrice').textContent = `$${tier.toLocaleString()}`;
+                    document.getElementById('addonsPrice').textContent = `$${addOnsTotal.toLocaleString()}`;
+                    document.getElementById('totalPrice').textContent = `$${bookingData.totalPrice.toLocaleString()}`;
+                }
+            }
+        }
+
+        // Validation
+        function validateStep(step) {
+            let isValid = true;
+
+            if (step === 1) {
+                // Clear previous errors
+                document.querySelectorAll('.error-message').forEach(err => err.classList.remove('show'));
+
+                // Validate event type
+                if (!bookingData.eventType) {
+                    document.getElementById('eventTypeError').classList.add('show');
+                    isValid = false;
+                }
+
+                // Validate date
+                const eventDate = document.getElementById('eventDate').value;
+                if (!eventDate) {
+                    document.getElementById('eventDateError').classList.add('show');
+                    isValid = false;
+                } else {
+                    bookingData.eventDate = eventDate;
+                }
+
+                // Validate guest count
+                const guestCount = document.getElementById('guestCount').value;
+                if (!guestCount || guestCount < 10 || guestCount > 500) {
+                    document.getElementById('guestCountError').classList.add('show');
+                    isValid = false;
+                } else {
+                    bookingData.guestCount = parseInt(guestCount);
+                }
+
+                // Validate location
+                const location = document.getElementById('location').value;
+                if (!location) {
+                    document.getElementById('locationError').classList.add('show');
+                    isValid = false;
+                } else {
+                    bookingData.location = location;
+                }
+            }
+
+            if (step === 2) {
+                // Clear previous errors
+                document.querySelectorAll('.error-message').forEach(err => err.classList.remove('show'));
+
+                // Validate first name
+                const firstName = document.getElementById('firstName').value.trim();
+                if (!firstName) {
+                    document.getElementById('firstNameError').classList.add('show');
+                    isValid = false;
+                } else {
+                    bookingData.firstName = firstName;
+                }
+
+                // Validate last name
+                const lastName = document.getElementById('lastName').value.trim();
+                if (!lastName) {
+                    document.getElementById('lastNameError').classList.add('show');
+                    isValid = false;
+                } else {
+                    bookingData.lastName = lastName;
+                }
+
+                // Validate email
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    document.getElementById('emailError').classList.add('show');
+                    isValid = false;
+                } else {
+                    bookingData.email = email;
+                }
+
+                // Validate phone
+                const phone = document.getElementById('phone').value.trim();
+                const phoneRegex = /[\d\s\-\(\)]+/;
+                if (!phone || phone.length < 10) {
+                    document.getElementById('phoneError').classList.add('show');
+                    isValid = false;
+                } else {
+                    bookingData.phone = phone;
+                }
+
+                // Optional fields
+                bookingData.company = document.getElementById('company').value;
+                bookingData.marketing = document.getElementById('marketing').checked;
+            }
+
+            return isValid;
+        }
+
+        // Step Navigation
+        function changeStep(direction) {
+            // Validate current step before moving forward
+            if (direction > 0 && !validateStep(currentStep)) {
+                return;
+            }
+
+            // Calculate pricing before showing quote
+            if (currentStep === 2 && direction > 0) {
+                updatePricing();
+            }
+
+            // Update step
+            currentStep += direction;
+
+            // Boundary checks
+            if (currentStep < 1) currentStep = 1;
+            if (currentStep > totalSteps) currentStep = totalSteps;
+
+            // Update UI
+            updateStepDisplay();
+        }
+
+        function updateStepDisplay() {
+            // Update content visibility
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.add('active');
+
+            // Update progress bar with new design
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                const stepNum = index + 1;
+                const stepIcon = step.querySelector('.step-icon');
+
+                step.classList.remove('active', 'completed');
+
+                if (stepNum === currentStep) {
+                    step.classList.add('active');
+                    if (!stepIcon.innerHTML.includes('✓')) {
+                        stepIcon.textContent = stepNum;
+                    }
+                } else if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                    // Keep the checkmark for completed steps
+                    stepIcon.textContent = '';
+                } else {
+                    // Future steps show their number
+                    if (!stepIcon.innerHTML.includes('✓')) {
+                        stepIcon.textContent = stepNum;
+                    }
+                }
+            });
+
+            // Update buttons
+            document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
+            document.getElementById('nextBtn').style.display = currentStep >= 3 ? 'none' : 'flex';
+            document.getElementById('getQuoteBtn').style.display = currentStep === 2 ? 'flex' : 'none';
+            document.getElementById('submitBtn').style.display = currentStep === 4 ? 'flex' : 'none';
+
+            // Show quote details when on step 3
+            if (currentStep === 3) {
+                showQuoteDetails();
+            }
+
+            // Populate confirmation when on step 5
+            if (currentStep === 5) {
+                populateConfirmation();
+            }
+        }
+
+        // Reveal Quote (Step 2 -> 3)
+        async function revealQuote() {
+            if (!validateStep(2)) {
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loadingSpinner').style.display = 'inline-block';
+            document.getElementById('getQuoteBtn').disabled = true;
+
+            // Simulate calculation
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Hide loading
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('getQuoteBtn').disabled = false;
+
+            // Move to quote reveal
+            currentStep = 3;
+            updateStepDisplay();
+        }
+
+        // Show Quote Details
+        function showQuoteDetails() {
+            updatePricing();
+
+            const eventTypes = {
+                'corporate': 'Corporate Event',
+                'private': 'Private Party',
+                'wedding': 'Wedding Reception',
+                'virtual': 'Virtual Tasting'
+            };
+
+            // Update quote amount and summary
+            document.getElementById('quoteAmount').textContent = `$${bookingData.totalPrice.toLocaleString()}`;
+            document.getElementById('quoteSummary').textContent =
+                `${bookingData.guestCount} guests at your ${eventTypes[bookingData.eventType]}`;
+        }
+
+        // Quick actions from quote page
+        function acceptQuote() {
+            currentStep = 5;
+            updateStepDisplay();
+        }
+
+        function customizeQuote() {
+            currentStep = 4;
+            updateStepDisplay();
+        }
+
+        function addSuggestion(type) {
+            if (type === 'food') {
+                // Activate food pairing
+                const foodToggle = document.querySelector('[onclick*="food"]');
+                if (foodToggle && !foodToggle.classList.contains('active')) {
+                    foodToggle.click();
+                }
+            } else if (type === 'premium') {
+                // Select premium tier
+                document.querySelector('[data-tier="premium"]').click();
+            }
+
+            // Move to customization
+            currentStep = 4;
+            updateStepDisplay();
+        }
+
+        // Submit Booking
+        async function submitBooking() {
+            // Collect any special requests
+            bookingData.specialRequests = document.getElementById('specialRequests')?.value || '';
+
+            // Show loading
+            document.getElementById('submitBtn').innerHTML = 'Processing... <span class="loading"></span>';
+            document.getElementById('submitBtn').disabled = true;
+
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Move to confirmation
+            currentStep = 5;
+            updateStepDisplay();
+        }
+
+        // Populate Confirmation
+        function populateConfirmation() {
+            const eventTypes = {
+                'corporate': 'Corporate Event',
+                'private': 'Private Party',
+                'wedding': 'Wedding Reception',
+                'virtual': 'Virtual Tasting'
+            };
+
+            document.getElementById('confirmEmail').textContent = bookingData.email;
+            document.getElementById('confirmType').textContent = eventTypes[bookingData.eventType];
+            document.getElementById('confirmDate').textContent = new Date(bookingData.eventDate).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('confirmGuests').textContent = bookingData.guestCount;
+            document.getElementById('confirmLocation').textContent = bookingData.location;
+            document.getElementById('confirmTotal').textContent = `$${bookingData.totalPrice.toLocaleString()}`;
+
+            // Generate confirmation number
+            const confirmNumber = 'SQ-' + Date.now().toString().slice(-8);
+            document.getElementById('confirmNumber').textContent = confirmNumber;
+            bookingData.confirmationNumber = confirmNumber;
+
+            // Send data to backend (in production)
+            console.log('Quote submission:', bookingData);
+        }
+
+        // Schedule call function
+        function scheduleCall() {
+            alert('Opening calendar scheduler...\nIn production, this would open Calendly or similar booking tool.');
+        }
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+            } else if (value.length >= 3) {
+                value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+            }
+            e.target.value = value;
+        });
+
+        // Add click handlers to progress steps
+        document.querySelectorAll('.progress-step').forEach((step, index) => {
+            step.addEventListener('click', () => {
+                const targetStep = index + 1;
+
+                // Only allow clicking on completed steps or the next step
+                if (targetStep < currentStep) {
+                    currentStep = targetStep;
+                    updateStepDisplay();
+                } else if (targetStep === currentStep + 1) {
+                    // Validate before moving forward
+                    if (validateStep(currentStep)) {
+                        currentStep = targetStep;
+                        updateStepDisplay();
+                    }
+                }
+            });
+        });
+
+        // Initialize display
+        updateStepDisplay();
+
+        // Load data from previous page if available
+        const previousData = sessionStorage.getItem('bookingData');
+        if (previousData) {
+            const data = JSON.parse(previousData);
+            if (data.eventType) document.getElementById('eventType').value = data.eventType;
+            if (data.eventDate) document.getElementById('eventDate').value = data.eventDate;
+            if (data.guestCount) document.getElementById('guestCount').value = data.guestCount;
+            if (data.location) document.getElementById('location').value = data.location;
+
+            // Auto-select event type card
+            const card = document.querySelector(`[data-type="${data.eventType}"]`);
+            if (card) selectEventType(card);
+        }
+
+        // Apply discount if available
+        const discount = sessionStorage.getItem('discount');
+        if (discount) {
+            bookingData.discountPercent = parseInt(discount);
+            // Show discount badge
+            const badges = document.querySelectorAll('.savings-badge');
+            badges.forEach(badge => {
+                badge.textContent = `🎉 ${discount}% Discount Applied!`;
+            });
+        }
+
+        // Add countdown timer
+        function updateCountdown() {
+            const countdowns = document.querySelectorAll('.countdown');
+            const now = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+
+            const diff = tomorrow - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            countdowns.forEach(el => {
+                el.textContent = `${hours}h ${minutes}m`;
+            });
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+        // Track form field interactions
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('focus', () => {
+                trackEvent('Form', 'Field Focus', field.id || field.name);
+            });
+        });
+
+        // Exit intent
+        let exitShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitShown && currentStep > 1) {
+                exitShown = true;
+                if (confirm('Wait! Your quote is ready. Complete your booking now and save 15%. Continue?')) {
+                    trackEvent('Retention', 'Exit Intent', 'Stayed');
+                } else {
+                    trackEvent('Retention', 'Exit Intent', 'Left');
+                }
+            }
+        });
+
+        // Page visibility tracking
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                trackEvent('Engagement', 'Tab', 'Hidden');
+            } else {
+                trackEvent('Engagement', 'Tab', 'Visible');
+            }
+        });
+    </script>
+</body>
+</html>

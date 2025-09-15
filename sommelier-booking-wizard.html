@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Wine Event - Sommelier Company</title>
+    <meta name="description" content="Book your premium wine tasting event with expert sommeliers. Get instant pricing and availability.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #722f37;
+            --primary-dark: #5a242a;
+            --secondary: #d4af37;
+            --text-dark: #2c1810;
+            --text-light: #6b5d54;
+            --bg-light: #faf8f5;
+            --bg-white: #ffffff;
+            --success: #52a373;
+            --error: #dc3545;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #ffffff 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .wizard-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .wizard-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .wizard-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem;
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-step::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 3px solid #ddd;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .progress-step.active::before {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .progress-step.completed::before {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .progress-step span {
+            display: block;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .progress-step.active span,
+        .progress-step.completed span {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ddd;
+            z-index: -2;
+        }
+
+        .progress-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--success);
+            transition: width 0.5s ease;
+        }
+
+        .wizard-content {
+            padding: 3rem;
+        }
+
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(114, 47, 55, 0.1);
+        }
+
+        .option-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .option-card {
+            padding: 1.5rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .option-card.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-card-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .option-card-price {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .wine-preferences {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .wine-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .wine-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .add-ons {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .add-on-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .add-on-item:last-child {
+            border-bottom: none;
+        }
+
+        .add-on-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #ddd;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: var(--success);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .price-summary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        .wizard-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary {
+            background: #e5e5e5;
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(114, 47, 55, 0.3);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-success:hover {
+            background: #469a68;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(82, 163, 115, 0.3);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .confirmation {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .confirmation-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 2rem;
+        }
+
+        .confirmation h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .confirmation-details {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .ai-suggestions {
+            background: linear-gradient(135deg, #f5f5ff, #fff);
+            border: 2px solid var(--secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .suggestion-item {
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .suggestion-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .wizard-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .option-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .wizard-buttons {
+                flex-direction: column;
+            }
+
+            .progress-step span {
+                font-size: 0.8rem;
+            }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="wizard-container">
+        <div class="wizard-header">
+            <h1>🍷 Book Your Premium Wine Event</h1>
+            <p>Let's create the perfect experience for your guests</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-line">
+                <div class="progress-line-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-step active" data-step="1">
+                <span>Event Details</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <span>Wine Selection</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <span>Enhancements</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <span>Contact Info</span>
+            </div>
+            <div class="progress-step" data-step="5">
+                <span>Confirmation</span>
+            </div>
+        </div>
+
+        <div class="wizard-content">
+            <!-- Step 1: Event Details -->
+            <div class="step-content active" data-step="1">
+                <h2>Tell us about your event</h2>
+
+                <div class="form-group">
+                    <label>Event Type</label>
+                    <div class="option-cards">
+                        <div class="option-card" data-type="corporate" onclick="selectEventType(this)">
+                            <div class="option-card-icon">🏢</div>
+                            <div class="option-card-title">Corporate</div>
+                            <div class="option-card-price">From $150/person</div>
+                        </div>
+                        <div class="option-card" data-type="private" onclick="selectEventType(this)">
+                            <div class="option-card-icon">🥂</div>
+                            <div class="option-card-title">Private Party</div>
+                            <div class="option-card-price">From $125/person</div>
+                        </div>
+                        <div class="option-card" data-type="wedding" onclick="selectEventType(this)">
+                            <div class="option-card-icon">💒</div>
+                            <div class="option-card-title">Wedding</div>
+                            <div class="option-card-price">From $175/person</div>
+                        </div>
+                        <div class="option-card" data-type="virtual" onclick="selectEventType(this)">
+                            <div class="option-card-icon">💻</div>
+                            <div class="option-card-title">Virtual</div>
+                            <div class="option-card-price">From $95/person</div>
+                        </div>
+                    </div>
+                    <span class="error-message" id="eventTypeError">Please select an event type</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDate">Event Date</label>
+                    <input type="date" id="eventDate" min="" required>
+                    <span class="error-message" id="eventDateError">Please select a date</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventTime">Preferred Time</label>
+                    <select id="eventTime" required>
+                        <option value="">Select time</option>
+                        <option value="morning">Morning (10am-12pm)</option>
+                        <option value="afternoon">Afternoon (2pm-5pm)</option>
+                        <option value="evening">Evening (6pm-9pm)</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guestCount">Number of Guests</label>
+                    <input type="number" id="guestCount" min="10" max="500" placeholder="10-500 guests" required>
+                    <span class="error-message" id="guestCountError">Please enter number of guests (10-500)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Event Location</label>
+                    <input type="text" id="location" placeholder="City, State or Zip Code" required>
+                    <span class="error-message" id="locationError">Please enter location</span>
+                </div>
+
+                <div class="ai-suggestions">
+                    <span class="ai-badge">✨ AI Recommendation</span>
+                    <p>Based on your event details, we suggest:</p>
+                    <div class="suggestion-item" onclick="applyAiSuggestion('premium')">
+                        <strong>Premium Package</strong> - Perfect for corporate events with discerning guests
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Wine Selection -->
+            <div class="step-content" data-step="2">
+                <h2>Customize your wine selection</h2>
+
+                <div class="form-group">
+                    <label>Wine Tier</label>
+                    <div class="option-cards">
+                        <div class="option-card" data-tier="classic" onclick="selectWineTier(this)">
+                            <div class="option-card-icon">🍇</div>
+                            <div class="option-card-title">Classic</div>
+                            <div class="option-card-price">Standard selection</div>
+                        </div>
+                        <div class="option-card" data-tier="premium" onclick="selectWineTier(this)">
+                            <div class="option-card-icon">🏆</div>
+                            <div class="option-card-title">Premium</div>
+                            <div class="option-card-price">+$25/person</div>
+                        </div>
+                        <div class="option-card" data-tier="luxury" onclick="selectWineTier(this)">
+                            <div class="option-card-icon">💎</div>
+                            <div class="option-card-title">Luxury</div>
+                            <div class="option-card-price">+$50/person</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Wine Preferences (select all that apply)</label>
+                    <div class="wine-preferences">
+                        <div class="wine-option">
+                            <input type="checkbox" id="red" value="red">
+                            <label for="red">Red Wines</label>
+                        </div>
+                        <div class="wine-option">
+                            <input type="checkbox" id="white" value="white">
+                            <label for="white">White Wines</label>
+                        </div>
+                        <div class="wine-option">
+                            <input type="checkbox" id="sparkling" value="sparkling">
+                            <label for="sparkling">Sparkling</label>
+                        </div>
+                        <div class="wine-option">
+                            <input type="checkbox" id="rose" value="rose">
+                            <label for="rose">Rosé</label>
+                        </div>
+                        <div class="wine-option">
+                            <input type="checkbox" id="dessert" value="dessert">
+                            <label for="dessert">Dessert Wines</label>
+                        </div>
+                        <div class="wine-option">
+                            <input type="checkbox" id="organic" value="organic">
+                            <label for="organic">Organic/Natural</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="wineNotes">Special Requests or Dietary Restrictions</label>
+                    <textarea id="wineNotes" rows="4" placeholder="e.g., Non-alcoholic options needed, specific regions preferred..."></textarea>
+                </div>
+
+                <div class="ai-suggestions">
+                    <span class="ai-badge">✨ AI Pairing Suggestion</span>
+                    <p>For corporate evening events, we recommend:</p>
+                    <div class="suggestion-item">
+                        <strong>Executive Selection</strong> - 2 premium reds, 2 whites, 1 sparkling for reception
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Enhancements -->
+            <div class="step-content" data-step="3">
+                <h2>Enhance your experience</h2>
+
+                <div class="add-ons">
+                    <h3>Available Add-ons</h3>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Food Pairing</strong>
+                            <p>Artisanal cheese and charcuterie selection</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$35/person</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'food', 35)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Printed Tasting Notes</strong>
+                            <p>Professional tasting cards for each guest</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$5/person</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'notes', 5)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Wine Gift Bags</strong>
+                            <p>Premium wine bottle for each guest to take home</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$45/person</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'gifts', 45)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Photography</strong>
+                            <p>Professional event photographer (2 hours)</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$500 flat</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'photo', 500, true)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add-on-item">
+                        <div>
+                            <strong>Extended Duration</strong>
+                            <p>Add an extra hour to your event</p>
+                        </div>
+                        <div class="add-on-toggle">
+                            <span>+$250 flat</span>
+                            <div class="toggle-switch" onclick="toggleAddOn(this, 'extended', 250, true)">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-summary" id="priceSummary">
+                    <h3>Price Estimate</h3>
+                    <div class="price-item">
+                        <span>Base Package</span>
+                        <span id="basePrice">$0</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Wine Tier Upgrade</span>
+                        <span id="tierPrice">$0</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Add-ons</span>
+                        <span id="addonsPrice">$0</span>
+                    </div>
+                    <div class="price-total">
+                        <span>Total Estimate</span>
+                        <span id="totalPrice">$0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Contact Information -->
+            <div class="step-content" data-step="4">
+                <h2>Your contact information</h2>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+                    <span class="error-message" id="nameError">Please enter your name</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                    <span class="error-message" id="emailError">Please enter a valid email</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="(555) 123-4567" required>
+                    <span class="error-message" id="phoneError">Please enter your phone number</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company/Organization (Optional)</label>
+                    <input type="text" id="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="howHeard">How did you hear about us?</label>
+                    <select id="howHeard">
+                        <option value="">Select an option</option>
+                        <option value="google">Google Search</option>
+                        <option value="social">Social Media</option>
+                        <option value="referral">Friend/Colleague</option>
+                        <option value="event">Previous Event</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Information (Optional)</label>
+                    <textarea id="message" rows="4" placeholder="Any special requests or questions?"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 5: Confirmation -->
+            <div class="step-content" data-step="5">
+                <div class="confirmation">
+                    <div class="confirmation-icon">✅</div>
+                    <h2>Booking Request Submitted!</h2>
+                    <p>Thank you for choosing Sommelier Company. We'll contact you within 24 hours.</p>
+
+                    <div class="confirmation-details">
+                        <h3>Event Summary</h3>
+                        <div class="detail-row">
+                            <span>Event Type:</span>
+                            <strong id="confirmType">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Date:</span>
+                            <strong id="confirmDate">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Guests:</span>
+                            <strong id="confirmGuests">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Location:</span>
+                            <strong id="confirmLocation">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Estimated Total:</span>
+                            <strong id="confirmTotal">-</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Confirmation #:</span>
+                            <strong id="confirmNumber">-</strong>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 2rem;">
+                        <strong>Next Steps:</strong><br>
+                        1. Check your email for confirmation details<br>
+                        2. Our sommelier team will call you within 24 hours<br>
+                        3. We'll finalize all details and send an invoice
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="wizard-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+                    ← Previous
+                </button>
+                <button class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
+                    Next Step →
+                </button>
+                <button class="btn btn-success" id="submitBtn" onclick="submitBooking()" style="display: none;">
+                    Submit Booking <span class="loading" id="loadingSpinner" style="display: none;"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize
+        let currentStep = 1;
+        const totalSteps = 5;
+        let bookingData = {
+            eventType: '',
+            eventDate: '',
+            eventTime: '',
+            guestCount: 0,
+            location: '',
+            wineTier: 'classic',
+            winePreferences: [],
+            addOns: {},
+            basePrice: 0,
+            tierUpgrade: 0,
+            addOnsTotal: 0,
+            totalPrice: 0
+        };
+
+        // Set minimum date to today
+        document.getElementById('eventDate').min = new Date().toISOString().split('T')[0];
+
+        // Event Type Selection
+        function selectEventType(card) {
+            document.querySelectorAll('.option-card[data-type]').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            bookingData.eventType = card.dataset.type;
+
+            // Set base price per person
+            const prices = {
+                'corporate': 150,
+                'private': 125,
+                'wedding': 175,
+                'virtual': 95
+            };
+            bookingData.basePrice = prices[bookingData.eventType];
+            updatePricing();
+        }
+
+        // Wine Tier Selection
+        function selectWineTier(card) {
+            document.querySelectorAll('.option-card[data-tier]').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            bookingData.wineTier = card.dataset.tier;
+
+            // Set tier upgrade price
+            const tierPrices = {
+                'classic': 0,
+                'premium': 25,
+                'luxury': 50
+            };
+            bookingData.tierUpgrade = tierPrices[bookingData.wineTier];
+            updatePricing();
+        }
+
+        // Add-on Toggle
+        function toggleAddOn(toggle, name, price, isFlat = false) {
+            toggle.classList.toggle('active');
+
+            if (toggle.classList.contains('active')) {
+                bookingData.addOns[name] = { price, isFlat };
+            } else {
+                delete bookingData.addOns[name];
+            }
+
+            updatePricing();
+        }
+
+        // Update Pricing
+        function updatePricing() {
+            const guests = parseInt(document.getElementById('guestCount').value) || 0;
+
+            if (guests > 0 && bookingData.basePrice > 0) {
+                const base = bookingData.basePrice * guests;
+                const tier = bookingData.tierUpgrade * guests;
+
+                let addOnsTotal = 0;
+                Object.values(bookingData.addOns).forEach(addon => {
+                    if (addon.isFlat) {
+                        addOnsTotal += addon.price;
+                    } else {
+                        addOnsTotal += addon.price * guests;
+                    }
+                });
+
+                bookingData.addOnsTotal = addOnsTotal;
+                bookingData.totalPrice = base + tier + addOnsTotal;
+
+                // Update display
+                document.getElementById('basePrice').textContent = `$${base.toLocaleString()}`;
+                document.getElementById('tierPrice').textContent = `$${tier.toLocaleString()}`;
+                document.getElementById('addonsPrice').textContent = `$${addOnsTotal.toLocaleString()}`;
+                document.getElementById('totalPrice').textContent = `$${bookingData.totalPrice.toLocaleString()}`;
+            }
+        }
+
+        // Validation
+        function validateStep(step) {
+            let isValid = true;
+
+            if (step === 1) {
+                // Validate event details
+                if (!bookingData.eventType) {
+                    document.getElementById('eventTypeError').classList.add('show');
+                    isValid = false;
+                } else {
+                    document.getElementById('eventTypeError').classList.remove('show');
+                }
+
+                const eventDate = document.getElementById('eventDate').value;
+                if (!eventDate) {
+                    document.getElementById('eventDateError').classList.add('show');
+                    isValid = false;
+                } else {
+                    document.getElementById('eventDateError').classList.remove('show');
+                    bookingData.eventDate = eventDate;
+                }
+
+                const guestCount = document.getElementById('guestCount').value;
+                if (!guestCount || guestCount < 10 || guestCount > 500) {
+                    document.getElementById('guestCountError').classList.add('show');
+                    isValid = false;
+                } else {
+                    document.getElementById('guestCountError').classList.remove('show');
+                    bookingData.guestCount = guestCount;
+                }
+
+                const location = document.getElementById('location').value;
+                if (!location) {
+                    document.getElementById('locationError').classList.add('show');
+                    isValid = false;
+                } else {
+                    document.getElementById('locationError').classList.remove('show');
+                    bookingData.location = location;
+                }
+
+                bookingData.eventTime = document.getElementById('eventTime').value;
+                updatePricing();
+            }
+
+            if (step === 2) {
+                // Collect wine preferences
+                bookingData.winePreferences = [];
+                document.querySelectorAll('.wine-option input:checked').forEach(checkbox => {
+                    bookingData.winePreferences.push(checkbox.value);
+                });
+                bookingData.wineNotes = document.getElementById('wineNotes').value;
+            }
+
+            if (step === 4) {
+                // Validate contact info
+                const fullName = document.getElementById('fullName').value;
+                if (!fullName) {
+                    document.getElementById('nameError').classList.add('show');
+                    isValid = false;
+                } else {
+                    document.getElementById('nameError').classList.remove('show');
+                    bookingData.fullName = fullName;
+                }
+
+                const email = document.getElementById('email').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    document.getElementById('emailError').classList.add('show');
+                    isValid = false;
+                } else {
+                    document.getElementById('emailError').classList.remove('show');
+                    bookingData.email = email;
+                }
+
+                const phone = document.getElementById('phone').value;
+                if (!phone) {
+                    document.getElementById('phoneError').classList.add('show');
+                    isValid = false;
+                } else {
+                    document.getElementById('phoneError').classList.remove('show');
+                    bookingData.phone = phone;
+                }
+
+                bookingData.company = document.getElementById('company').value;
+                bookingData.howHeard = document.getElementById('howHeard').value;
+                bookingData.message = document.getElementById('message').value;
+            }
+
+            return isValid;
+        }
+
+        // Step Navigation
+        function changeStep(direction) {
+            // Validate current step before moving forward
+            if (direction > 0 && !validateStep(currentStep)) {
+                return;
+            }
+
+            // Update step
+            currentStep += direction;
+
+            // Boundary checks
+            if (currentStep < 1) currentStep = 1;
+            if (currentStep > totalSteps) currentStep = totalSteps;
+
+            // Update UI
+            updateStepDisplay();
+
+            // Update confirmation details when reaching last step
+            if (currentStep === 5) {
+                populateConfirmation();
+            }
+        }
+
+        function updateStepDisplay() {
+            // Update content visibility
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.add('active');
+
+            // Update progress bar
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                } else if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+
+            // Update progress fill
+            const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progressFill').style.width = `${progressPercent}%`;
+
+            // Update buttons
+            document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
+            document.getElementById('nextBtn').style.display = currentStep === totalSteps ? 'none' : 'flex';
+            document.getElementById('submitBtn').style.display = currentStep === 4 ? 'flex' : 'none';
+
+            // Update button text
+            if (currentStep === 4) {
+                document.getElementById('nextBtn').style.display = 'none';
+            }
+        }
+
+        // Submit Booking
+        async function submitBooking() {
+            if (!validateStep(4)) {
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loadingSpinner').style.display = 'inline-block';
+            document.getElementById('submitBtn').disabled = true;
+
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Move to confirmation
+            currentStep = 5;
+            updateStepDisplay();
+
+            // Hide loading
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        // Populate Confirmation
+        function populateConfirmation() {
+            const eventTypes = {
+                'corporate': 'Corporate Event',
+                'private': 'Private Party',
+                'wedding': 'Wedding',
+                'virtual': 'Virtual Tasting'
+            };
+
+            document.getElementById('confirmType').textContent = eventTypes[bookingData.eventType];
+            document.getElementById('confirmDate').textContent = new Date(bookingData.eventDate).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('confirmGuests').textContent = bookingData.guestCount;
+            document.getElementById('confirmLocation').textContent = bookingData.location;
+            document.getElementById('confirmTotal').textContent = `$${bookingData.totalPrice.toLocaleString()}`;
+
+            // Generate confirmation number
+            const confirmNumber = 'SC' + Date.now().toString().slice(-8);
+            document.getElementById('confirmNumber').textContent = confirmNumber;
+            bookingData.confirmationNumber = confirmNumber;
+        }
+
+        // AI Suggestions
+        function applyAiSuggestion(type) {
+            if (type === 'premium') {
+                // Auto-select premium tier and popular add-ons
+                document.querySelector('.option-card[data-tier="premium"]').click();
+                document.querySelectorAll('.toggle-switch')[0].click(); // Food pairing
+                document.querySelectorAll('.toggle-switch')[1].click(); // Tasting notes
+            }
+        }
+
+        // Guest count change listener
+        document.getElementById('guestCount').addEventListener('input', updatePricing);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && currentStep < totalSteps) {
+                if (currentStep === 4) {
+                    submitBooking();
+                } else {
+                    changeStep(1);
+                }
+            }
+        });
+
+        // Initialize display
+        updateStepDisplay();
+    </script>
+</body>
+</html>

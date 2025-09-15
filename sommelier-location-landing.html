@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Tasting Events in [City] - The Sommelier Company</title>
+    <meta name="description" content="Book premium wine tasting events in [City]. Expert sommeliers, corporate events, private parties. Instant quotes and availability.">
+
+    <!-- Dynamic Schema.org markup for local SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "The Sommelier Company - [City]",
+        "description": "Premium wine tasting events and sommelier services in [City]",
+        "@id": "https://www.sommeliercompany.com/locations/[city-slug]",
+        "url": "https://www.sommeliercompany.com/locations/[city-slug]",
+        "telephone": "1-888-WINE-PRO",
+        "priceRange": "$$$",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "[City]",
+            "addressRegion": "[State]",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "[latitude]",
+            "longitude": "[longitude]"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "[local-review-count]"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "09:00",
+            "closes": "21:00"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #722f37;
+            --primary-dark: #5a242a;
+            --secondary: #d4af37;
+            --text-dark: #2c1810;
+            --text-light: #6b5d54;
+            --bg-light: #faf8f5;
+            --bg-white: #ffffff;
+            --success: #52a373;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Location Hero */
+        .location-hero {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.95), rgba(212, 175, 55, 0.95)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23722f37" width="1920" height="1080"/></svg>');
+            padding: 8rem 5% 5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .location-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .location-hero .city-name {
+            color: var(--secondary);
+        }
+
+        .location-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Local Stats */
+        .local-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Local Services */
+        .local-services {
+            padding: 5rem 5%;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-locations {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Popular Venues */
+        .popular-venues {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .venues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .venue-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.8)),
+                        var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .venue-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .venue-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .venue-type {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .venue-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .venue-capacity {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Local Reviews */
+        .local-reviews {
+            padding: 5rem 5%;
+            background: var(--bg-light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .reviewer-details h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .reviewer-location {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .review-rating {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin: 1rem 0;
+        }
+
+        .review-event {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .faq-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 5rem 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* City Selector */
+        .city-selector {
+            background: var(--bg-light);
+            padding: 3rem 5%;
+        }
+
+        .city-selector h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .cities-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .city-link {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border-radius: 25px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .city-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .city-link.current {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .location-hero h1 {
+                font-size: 2rem;
+            }
+
+            .location-hero p {
+                font-size: 1.1rem;
+            }
+
+            .local-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .venues-grid,
+            .reviews-grid,
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dynamic City Data Script -->
+    <script>
+        // This would be populated from your backend/CMS
+        const cityData = {
+            'new-york': {
+                name: 'New York',
+                state: 'NY',
+                events: 127,
+                sommeliers: 15,
+                rating: 4.9,
+                reviews: 89,
+                coordinates: { lat: 40.7128, lng: -74.0060 },
+                popularVenues: [
+                    { type: 'Corporate', name: 'Manhattan Tower', capacity: '50-200' },
+                    { type: 'Hotel', name: 'The Plaza', capacity: '100-500' },
+                    { type: 'Restaurant', name: 'Le Bernardin', capacity: '20-80' },
+                    { type: 'Gallery', name: 'MoMA', capacity: '100-300' }
+                ],
+                testimonials: [
+                    { name: 'Sarah Chen', company: 'Goldman Sachs', text: 'Outstanding service for our quarterly client event. The sommelier was incredibly knowledgeable.', event: 'Corporate Tasting' },
+                    { name: 'Michael Ross', company: 'Private Client', text: 'Perfect for our anniversary party. Every detail was handled professionally.', event: 'Private Party' }
+                ]
+            },
+            'san-francisco': {
+                name: 'San Francisco',
+                state: 'CA',
+                events: 98,
+                sommeliers: 12,
+                rating: 4.8,
+                reviews: 67,
+                coordinates: { lat: 37.7749, lng: -122.4194 },
+                popularVenues: [
+                    { type: 'Tech Campus', name: 'Salesforce Tower', capacity: '50-300' },
+                    { type: 'Winery', name: 'Urban Winery SF', capacity: '30-150' },
+                    { type: 'Hotel', name: 'St. Regis', capacity: '50-200' },
+                    { type: 'Museum', name: 'SFMOMA', capacity: '100-400' }
+                ]
+            },
+            'chicago': {
+                name: 'Chicago',
+                state: 'IL',
+                events: 84,
+                sommeliers: 10,
+                rating: 4.9,
+                reviews: 52,
+                coordinates: { lat: 41.8781, lng: -87.6298 }
+            }
+        };
+
+        // Get city from URL parameter (in production, this would be from the actual URL path)
+        const urlParams = new URLSearchParams(window.location.search);
+        const citySlug = urlParams.get('city') || 'new-york';
+        const city = cityData[citySlug] || cityData['new-york'];
+
+        // Update all dynamic content
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update title and meta tags
+            document.title = `Wine Tasting Events in ${city.name} - The Sommelier Company`;
+            document.querySelector('meta[name="description"]').content =
+                `Book premium wine tasting events in ${city.name}. Expert sommeliers, corporate events, private parties. ${city.events}+ successful events. Instant quotes.`;
+
+            // Update schema.org data
+            const schemaScript = document.querySelector('script[type="application/ld+json"]');
+            if (schemaScript) {
+                const schema = JSON.parse(schemaScript.textContent);
+                schema.name = `The Sommelier Company - ${city.name}`;
+                schema.address.addressLocality = city.name;
+                schema.address.addressRegion = city.state;
+                schema.geo.latitude = city.coordinates?.lat || 0;
+                schema.geo.longitude = city.coordinates?.lng || 0;
+                schema.aggregateRating.reviewCount = city.reviews;
+                schemaScript.textContent = JSON.stringify(schema, null, 2);
+            }
+
+            // Update hero content
+            document.querySelector('.city-name').textContent = city.name;
+            document.querySelectorAll('[data-city]').forEach(el => {
+                el.textContent = city.name;
+            });
+
+            // Update stats
+            document.querySelector('[data-events-count]').textContent = city.events + '+';
+            document.querySelector('[data-sommeliers-count]').textContent = city.sommeliers;
+            document.querySelector('[data-rating]').textContent = city.rating;
+
+            // Populate venues if available
+            if (city.popularVenues) {
+                const venuesGrid = document.querySelector('.venues-grid');
+                venuesGrid.innerHTML = city.popularVenues.map(venue => `
+                    <div class="venue-card">
+                        <div class="venue-info">
+                            <div class="venue-type">${venue.type}</div>
+                            <div class="venue-name">${venue.name}</div>
+                            <div class="venue-capacity">${venue.capacity} guests</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Populate testimonials if available
+            if (city.testimonials) {
+                const reviewsGrid = document.querySelector('.reviews-grid');
+                reviewsGrid.innerHTML = city.testimonials.map(review => `
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">${review.name.split(' ').map(n => n[0]).join('')}</div>
+                                <div class="reviewer-details">
+                                    <h4>${review.name}</h4>
+                                    <div class="reviewer-location">${review.company}, ${city.name}</div>
+                                </div>
+                            </div>
+                            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <p class="review-text">"${review.text}"</p>
+                        <div class="review-event">Event: ${review.event}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Mark current city in selector
+            document.querySelectorAll('.city-link').forEach(link => {
+                if (link.dataset.city === citySlug) {
+                    link.classList.add('current');
+                }
+            });
+        });
+    </script>
+
+    <!-- Location Hero -->
+    <section class="location-hero">
+        <h1>Premium Wine Events in <span class="city-name">New York</span></h1>
+        <p>Expert sommeliers delivering unforgettable wine experiences across <span data-city>New York</span> and surrounding areas</p>
+
+        <div class="hero-cta">
+            <a href="sommelier-booking-wizard.html" class="cta-button">Book Your Event</a>
+            <a href="tel:1-888-WINE-PRO" class="cta-button secondary">📞 Call 1-888-WINE-PRO</a>
+        </div>
+
+        <div class="local-stats">
+            <div class="stat-item">
+                <div class="stat-number" data-events-count>127+</div>
+                <div class="stat-label">Events in <span data-city>New York</span></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-sommeliers-count>15</div>
+                <div class="stat-label">Local Sommeliers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-rating>4.9</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Services -->
+    <section class="local-services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Wine Services in <span data-city>New York</span></h2>
+                <p>Tailored experiences for every occasion and venue</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Corporate Events</h3>
+                    <p>Impress clients and reward teams with sophisticated tastings at your office or preferred venue</p>
+                    <div class="service-locations">Popular in: Financial District, Midtown</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>In-Home Tastings</h3>
+                    <p>Bring the wine country experience to your <span data-city>New York</span> residence with a private sommelier</p>
+                    <div class="service-locations">Available: All boroughs</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎉</div>
+                    <h3>Special Events</h3>
+                    <p>Weddings, anniversaries, and celebrations enhanced with curated wine experiences</p>
+                    <div class="service-locations">Venues throughout <span data-city>New York</span></div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>Wine Education</h3>
+                    <p>Interactive workshops and certification courses for wine enthusiasts and professionals</p>
+                    <div class="service-locations">Multiple locations</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏨</div>
+                    <h3>Hotel & Restaurant</h3>
+                    <p>Partner with top <span data-city>New York</span> venues for exclusive wine programs</p>
+                    <div class="service-locations">Preferred venue partners</div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Virtual Tastings</h3>
+                    <p>Connect remote teams with wines shipped directly to participants across the country</p>
+                    <div class="service-locations">Ships nationwide</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Venues -->
+    <section class="popular-venues">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular <span data-city>New York</span> Venues</h2>
+                <p>We work with the finest locations across the city</p>
+            </div>
+
+            <div class="venues-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Reviews -->
+    <section class="local-reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>What <span data-city>New York</span> Clients Say</h2>
+                <p>Real experiences from local events</p>
+            </div>
+
+            <div class="reviews-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about wine events in <span data-city>New York</span></p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How far in advance should I book in <span data-city>New York</span>?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We recommend booking 2-4 weeks in advance for <span data-city>New York</span> events, especially during peak seasons. However, we can often accommodate last-minute requests with 48-72 hours notice.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What areas of <span data-city>New York</span> do you serve?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We serve all five boroughs and surrounding areas including Westchester, Long Island, and Northern New Jersey. Travel fees may apply for locations beyond 25 miles.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's included in the base price?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our base price includes: expert sommelier, wine selection (5-6 wines), glassware, educational materials, and 2-hour event duration. Food pairings and additional services available.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can you work with our caterer or venue?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! We regularly coordinate with <span data-city>New York</span>'s top caterers and venues. We'll handle all wine service details and work seamlessly with your other vendors.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What makes your <span data-city>New York</span> sommeliers special?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our <span data-city>New York</span> team includes certified sommeliers with experience at Michelin-starred restaurants, extensive knowledge of global wines, and exceptional presentation skills.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer corporate packages?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We offer quarterly and annual corporate packages with preferred pricing, priority booking, and customized programs for regular team building and client entertainment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Book Your <span data-city>New York</span> Wine Event?</h2>
+        <p>Join hundreds of satisfied clients who've elevated their events with our expert sommeliers</p>
+        <div class="hero-cta">
+            <a href="sommelier-booking-wizard.html" class="cta-button">Get Instant Quote</a>
+            <a href="sommelier-company-mvp.html#contact" class="cta-button secondary">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- City Selector -->
+    <section class="city-selector">
+        <h3>Explore Our Other Locations</h3>
+        <div class="cities-grid">
+            <a href="?city=new-york" class="city-link" data-city="new-york">New York</a>
+            <a href="?city=los-angeles" class="city-link" data-city="los-angeles">Los Angeles</a>
+            <a href="?city=chicago" class="city-link" data-city="chicago">Chicago</a>
+            <a href="?city=san-francisco" class="city-link" data-city="san-francisco">San Francisco</a>
+            <a href="?city=boston" class="city-link" data-city="boston">Boston</a>
+            <a href="?city=washington-dc" class="city-link" data-city="washington-dc">Washington DC</a>
+            <a href="?city=miami" class="city-link" data-city="miami">Miami</a>
+            <a href="?city=seattle" class="city-link" data-city="seattle">Seattle</a>
+            <a href="?city=atlanta" class="city-link" data-city="atlanta">Atlanta</a>
+            <a href="?city=dallas" class="city-link" data-city="dallas">Dallas</a>
+            <a href="?city=houston" class="city-link" data-city="houston">Houston</a>
+            <a href="?city=phoenix" class="city-link" data-city="phoenix">Phoenix</a>
+            <a href="?city=philadelphia" class="city-link" data-city="philadelphia">Philadelphia</a>
+            <a href="?city=denver" class="city-link" data-city="denver">Denver</a>
+            <a href="?city=austin" class="city-link" data-city="austin">Austin</a>
+        </div>
+    </section>
+</body>
+</html>

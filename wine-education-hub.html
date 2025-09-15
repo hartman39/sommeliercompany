@@ -1,0 +1,3677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Wine Education Hub - Wine Pairing Guide, Tasting Notes & Expert Tips</title>
+    <meta name="description" content="🎆 FREE: 6 Wine PDFs, AI Pairing Tool, Expert Guides. Learn wine basics, food pairing, tasting techniques from certified sommeliers. 10,000+ monthly readers.">
+
+    <!-- Enhanced SEO for educational wine searches -->
+    <meta name="keywords" content="wine pairing chart, wine tasting notes template, wine guide for beginners, food and wine pairing guide, wine education free, how to taste wine, wine regions map, wine serving temperature chart, wine and cheese pairing, red wine vs white wine">
+    <link rel="canonical" href="https://www.sommeliercompany.com/learn">
+    <meta property="og:title" content="Free Wine Education Resources - The Sommelier Company">
+    <meta property="og:description" content="Download free wine guides, use our AI pairing tool, and learn from certified sommeliers.">
+    <meta property="og:image" content="https://www.sommeliercompany.com/images/wine-education.jpg">
+    <meta property="og:url" content="https://www.sommeliercompany.com/learn">
+
+    <!-- Enhanced Schema markup for educational content -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "The Sommelier Company Wine Education",
+        "description": "Professional wine education and resources",
+        "url": "https://www.sommeliercompany.com/learn",
+        "sameAs": [
+            "https://www.instagram.com/sommeliercompany",
+            "https://www.youtube.com/sommeliercompany"
+        ],
+        "teaches": {
+            "@type": "Course",
+            "name": "Wine Appreciation and Tasting",
+            "description": "Comprehensive wine education from basics to advanced",
+            "provider": {
+                "@type": "Organization",
+                "name": "The Sommelier Company"
+            },
+            "hasCourseInstance": {
+                "@type": "CourseInstance",
+                "courseMode": "online",
+                "courseWorkload": "PT30M"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "527"
+        }
+    }
+    </script>
+
+    <!-- Article/HowTo Schema for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Taste Wine Like a Sommelier",
+        "description": "Learn professional wine tasting techniques",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Look",
+                "text": "Examine the wine's color and clarity"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Swirl",
+                "text": "Swirl the wine to release aromas"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Smell",
+                "text": "Identify the wine's aromatic profile"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Taste",
+                "text": "Evaluate flavor, body, and finish"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <!-- jsPDF Library for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* Sticky CTA Bar */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+        }
+
+        .sticky-cta.hidden {
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        /* Download counter */
+        .download-counter {
+            background: white;
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #722f37;
+            --primary-dark: #5a242a;
+            --secondary: #d4af37;
+            --tertiary: #8b4513;
+            --text-dark: #2c1810;
+            --text-light: #6b5d54;
+            --bg-light: #faf8f5;
+            --bg-white: #ffffff;
+            --success: #52a373;
+            --accent: #c9302c;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-white);
+        }
+
+        /* Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(114, 47, 55, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent, rgba(255,255,255,0.1));
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1.25rem 2rem;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        .search-bar button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Quick Tools Section */
+        .quick-tools {
+            padding: 4rem 5%;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: var(--secondary);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .tool-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Wine Pairing Tool */
+        .pairing-tool {
+            background: linear-gradient(135deg, #fff 50%, var(--bg-light) 50%);
+            padding: 4rem 5%;
+        }
+
+        .pairing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .pairing-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .selector-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .food-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .food-tag {
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-light);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .food-tag:hover {
+            border-color: var(--primary);
+        }
+
+        .food-tag.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        .pairing-results {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .pairing-results.show {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wine-recommendation {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .wine-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .wine-score {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Education Content Grid */
+        .education-content {
+            padding: 4rem 5%;
+        }
+
+        .content-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .category-tab:hover,
+        .category-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .article-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .article-content {
+            padding: 2rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .article-tag {
+            background: var(--bg-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+        }
+
+        .article-content h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .article-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Article Modal */
+        .article-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .article-modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 3rem;
+        }
+
+        .article-full-content {
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .article-full-content h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .article-full-content h3 {
+            color: var(--text-dark);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .article-full-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-full-content ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-full-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .wine-tip {
+            background: var(--bg-light);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .wine-tip h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive Wine Map */
+        .wine-regions {
+            padding: 4rem 5%;
+            background: var(--bg-light);
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .region-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .region-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .region-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .region-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .region-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .region-details h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .wine-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .wine-list li {
+            padding: 0.75rem;
+            background: var(--bg-light);
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wine-type {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .wine-grape {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Wine Quiz */
+        .wine-quiz {
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .quiz-question h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1.25rem;
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e5e5e5;
+        }
+
+        .progress-dot.active {
+            background: var(--primary);
+        }
+
+        /* Download Section */
+        .downloads {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .downloads h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+
+        .download-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .download-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .download-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .download-card p {
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            background: white;
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Newsletter Signup */
+        .newsletter {
+            padding: 4rem 5%;
+            background: var(--bg-light);
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .newsletter p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .pairing-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .region-info {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="sommelier-company-mvp.html" class="logo">🍷 The Sommelier Company</a>
+            <ul class="nav-menu">
+                <li><a href="#learn">Learn</a></li>
+                <li><a href="#pairing">Pairing Tool</a></li>
+                <li><a href="#regions">Wine Regions</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="sommelier-booking-wizard-v2.html" class="cta-button">Book Event</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Master Wine Like a Sommelier</h1>
+        <p>🎆 10,000+ monthly learners • 6 free PDF guides • AI-powered pairing tool</p>
+        <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+            <span style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.9);">
+                <span style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">📚</span>
+                <span>25,000+ Downloads</span>
+            </span>
+            <span style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.9);">
+                <span style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">⭐</span>
+                <span>4.9/5 Rating</span>
+            </span>
+            <span style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.9);">
+                <span style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">🌍</span>
+                <span>Used in 30+ Countries</span>
+            </span>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search: 'Cabernet pairing', 'Bordeaux guide', 'Wine basics'...">
+            <button>Search</button>
+        </div>
+    </section>
+
+    <!-- Quick Tools -->
+    <section class="quick-tools">
+        <div class="container">
+            <div class="section-header">
+                <h2>Interactive Wine Tools</h2>
+                <p>Professional resources used by our sommeliers - now available to you</p>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-card" onclick="scrollToPairing()">
+                    <div class="tool-icon">🍽️</div>
+                    <h3>Food Pairing Finder</h3>
+                    <p>Get instant wine recommendations for any dish or cuisine</p>
+                </div>
+
+                <div class="tool-card" onclick="scrollToQuiz()">
+                    <div class="tool-icon">🎓</div>
+                    <h3>Wine Knowledge Quiz</h3>
+                    <p>Test your expertise and get personalized learning recommendations</p>
+                </div>
+
+                <div class="tool-card" onclick="scrollToRegions()">
+                    <div class="tool-icon">🗺️</div>
+                    <h3>Region Explorer</h3>
+                    <p>Interactive guide to wine regions worldwide</p>
+                </div>
+
+                <div class="tool-card" onclick="scrollToDownloads()">
+                    <div class="tool-icon">📚</div>
+                    <h3>Tasting Templates</h3>
+                    <p>Professional tasting sheets and party planning guides</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Pairing Tool -->
+    <section class="pairing-tool" id="pairing">
+        <div class="pairing-container">
+            <div class="section-header">
+                <h2>AI-Powered Wine Pairing Tool</h2>
+                <p>Select your dish and get sommelier-approved wine matches</p>
+            </div>
+
+            <div class="pairing-selector">
+                <div class="selector-section">
+                    <h3>🍽️ Choose Your Food</h3>
+                    <div class="food-categories">
+                        <div class="food-tag" onclick="selectFood(this, 'steak')">Red Meat</div>
+                        <div class="food-tag" onclick="selectFood(this, 'chicken')">Poultry</div>
+                        <div class="food-tag" onclick="selectFood(this, 'seafood')">Seafood</div>
+                        <div class="food-tag" onclick="selectFood(this, 'pasta')">Pasta</div>
+                        <div class="food-tag" onclick="selectFood(this, 'cheese')">Cheese</div>
+                        <div class="food-tag" onclick="selectFood(this, 'vegetarian')">Vegetarian</div>
+                        <div class="food-tag" onclick="selectFood(this, 'spicy')">Spicy Food</div>
+                        <div class="food-tag" onclick="selectFood(this, 'dessert')">Dessert</div>
+                    </div>
+                </div>
+
+                <div class="selector-section">
+                    <h3>🎯 Occasion</h3>
+                    <div class="food-categories">
+                        <div class="food-tag" onclick="selectOccasion(this, 'casual')">Casual Dinner</div>
+                        <div class="food-tag" onclick="selectOccasion(this, 'formal')">Formal Event</div>
+                        <div class="food-tag" onclick="selectOccasion(this, 'romantic')">Date Night</div>
+                        <div class="food-tag" onclick="selectOccasion(this, 'party')">Party</div>
+                        <div class="food-tag" onclick="selectOccasion(this, 'business')">Business Dinner</div>
+                        <div class="food-tag" onclick="selectOccasion(this, 'celebration')">Celebration</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pairing-results" id="pairingResults">
+                <h3>🍷 Perfect Wine Matches</h3>
+                <div class="wine-recommendation">
+                    <div class="wine-icon" style="font-size: 3rem;">🍷</div>
+                    <div class="wine-details">
+                        <h4>Cabernet Sauvignon</h4>
+                        <p>Full-bodied red with bold tannins, perfect for grilled meats</p>
+                        <div class="wine-score">
+                            <span>Match Score:</span>
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wine-recommendation">
+                    <div class="wine-icon" style="font-size: 3rem;">🍷</div>
+                    <div class="wine-details">
+                        <h4>Malbec</h4>
+                        <p>Medium to full-bodied with plum and blackberry notes</p>
+                        <div class="wine-score">
+                            <span>Match Score:</span>
+                            <span>⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Content -->
+    <section class="education-content" id="learn">
+        <div class="container">
+            <div class="section-header">
+                <h2>Wine Education Library</h2>
+                <p>Curated content from our certified sommeliers</p>
+            </div>
+
+            <div class="content-categories">
+                <div class="category-tab active" onclick="filterContent('all')">All</div>
+                <div class="category-tab" onclick="filterContent('basics')">Basics</div>
+                <div class="category-tab" onclick="filterContent('tasting')">Tasting</div>
+                <div class="category-tab" onclick="filterContent('regions')">Regions</div>
+                <div class="category-tab" onclick="filterContent('pairing')">Pairing</div>
+                <div class="category-tab" onclick="filterContent('advanced')">Advanced</div>
+            </div>
+
+            <div class="articles-grid" id="articlesGrid">
+                <!-- Articles will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Modal -->
+    <div class="article-modal" id="articleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeArticle()">×</button>
+                <h1 id="modalTitle"></h1>
+                <div id="modalMeta" style="margin-top: 1rem; opacity: 0.9;"></div>
+            </div>
+            <div class="modal-body">
+                <div class="article-full-content" id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wine Regions Explorer -->
+    <section class="wine-regions" id="regions">
+        <div class="container">
+        </div>
+    </section>
+
+    <!-- Wine Regions Explorer -->
+    <section class="wine-regions" id="regions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore Wine Regions</h2>
+                <p>Journey through the world's most celebrated wine regions</p>
+            </div>
+
+            <div class="map-container">
+                <div class="region-selector">
+                    <button class="region-btn active" onclick="showRegion('france')">France</button>
+                    <button class="region-btn" onclick="showRegion('italy')">Italy</button>
+                    <button class="region-btn" onclick="showRegion('spain')">Spain</button>
+                    <button class="region-btn" onclick="showRegion('usa')">USA</button>
+                    <button class="region-btn" onclick="showRegion('argentina')">Argentina</button>
+                    <button class="region-btn" onclick="showRegion('australia')">Australia</button>
+                </div>
+
+                <div class="region-info" id="regionInfo">
+                    <div class="region-details">
+                        <h3>🇫🇷 France - The Classic Wine Country</h3>
+                        <p>Home to the world's most prestigious wine regions, France sets the standard for quality winemaking. From Bordeaux's noble reds to Champagne's celebrated sparklers.</p>
+
+                        <h4 style="margin-top: 1.5rem;">Key Regions:</h4>
+                        <ul class="wine-list">
+                            <li>
+                                <span class="wine-type">Bordeaux</span>
+                                <span class="wine-grape">Cabernet Sauvignon, Merlot</span>
+                            </li>
+                            <li>
+                                <span class="wine-type">Burgundy</span>
+                                <span class="wine-grape">Pinot Noir, Chardonnay</span>
+                            </li>
+                            <li>
+                                <span class="wine-type">Champagne</span>
+                                <span class="wine-grape">Sparkling wines</span>
+                            </li>
+                            <li>
+                                <span class="wine-type">Rhône Valley</span>
+                                <span class="wine-grape">Syrah, Grenache</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="region-highlights">
+                        <h4>🌟 Must-Try Wines</h4>
+                        <ul class="wine-list">
+                            <li>
+                                <span class="wine-type">Château Margaux</span>
+                                <span class="wine-grape">Bordeaux Red</span>
+                            </li>
+                            <li>
+                                <span class="wine-type">Chablis Premier Cru</span>
+                                <span class="wine-grape">Burgundy White</span>
+                            </li>
+                            <li>
+                                <span class="wine-type">Châteauneuf-du-Pape</span>
+                                <span class="wine-grape">Rhône Red</span>
+                            </li>
+                            <li>
+                                <span class="wine-type">Sancerre</span>
+                                <span class="wine-grape">Loire Sauvignon Blanc</span>
+                            </li>
+                        </ul>
+
+                        <div style="margin-top: 2rem;">
+                            <a href="#" class="cta-button" onclick="downloadRegionGuide('France'); return false;">Download France Wine Guide PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Quiz -->
+    <section class="wine-quiz" id="quiz">
+        <div class="container">
+            <div class="section-header">
+                <h2>Test Your Wine Knowledge</h2>
+                <p>Take our sommelier-designed quiz and get personalized recommendations</p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <span class="progress-dot active"></span>
+                    <span class="progress-dot"></span>
+                    <span class="progress-dot"></span>
+                    <span class="progress-dot"></span>
+                    <span class="progress-dot"></span>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>What's the ideal serving temperature for a full-bodied red wine?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(this)">
+                            <strong>A.</strong> 45-50°F (7-10°C)
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(this)">
+                            <strong>B.</strong> 50-55°F (10-13°C)
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(this)">
+                            <strong>C.</strong> 60-65°F (15-18°C)
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(this)">
+                            <strong>D.</strong> 70-75°F (21-24°C)
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="cta-button" onclick="nextQuestion()">Next Question →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Resources -->
+    <section class="downloads" id="downloads">
+        <h2>Free Downloadable Resources</h2>
+        <p>Professional tools and guides used by our sommeliers</p>
+
+        <div class="download-grid">
+            <div class="download-card">
+                <div class="download-icon">📝</div>
+                <h3>Tasting Notes Template</h3>
+                <p>Professional wine tasting sheet with scoring guide</p>
+                <a href="#" class="download-btn">Download PDF</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">📊</div>
+                <h3>Wine & Food Pairing Chart</h3>
+                <p>Quick reference guide for perfect pairings</p>
+                <a href="#" class="download-btn">Download PDF</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">🎉</div>
+                <h3>Party Planning Guide</h3>
+                <p>Calculate quantities and select wines for events</p>
+                <a href="#" class="download-btn">Download PDF</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">🌡️</div>
+                <h3>Wine Storage Guide</h3>
+                <p>Proper storage temperatures and cellar tips</p>
+                <a href="#" class="download-btn">Download PDF</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">📚</div>
+                <h3>Varietal Guide</h3>
+                <p>Complete guide to 50+ grape varieties</p>
+                <a href="#" class="download-btn">Download PDF</a>
+            </div>
+
+            <div class="download-card">
+                <div class="download-icon">🗓️</div>
+                <h3>Seasonal Wine Calendar</h3>
+                <p>Best wines for every season and holiday</p>
+                <a href="#" class="download-btn">Download PDF</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>🍷 Weekly Wine Wisdom</h2>
+            <p>Get exclusive content, seasonal recommendations, and special offers delivered to your inbox</p>
+
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                Join 10,000+ wine enthusiasts. Unsubscribe anytime.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 The Sommelier Company. Elevating wine experiences nationwide.</p>
+        <p style="margin-top: 1rem;">
+            <a href="sommelier-company-mvp.html" style="color: var(--secondary); text-decoration: none;">Ready to book an event? Get started →</a>
+        </p>
+    </footer>
+
+    <script>
+        // Food Pairing Tool
+        let selectedFood = null;
+        let selectedOccasion = null;
+
+        function selectFood(element, food) {
+            document.querySelectorAll('.food-categories .food-tag').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedFood = food;
+            checkAndShowPairing();
+        }
+
+        function selectOccasion(element, occasion) {
+            document.querySelectorAll('.selector-section:last-child .food-tag').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedOccasion = occasion;
+            checkAndShowPairing();
+        }
+
+        function checkAndShowPairing() {
+            if (selectedFood || selectedOccasion) {
+                document.getElementById('pairingResults').classList.add('show');
+
+                // Update recommendations based on selection
+                const recommendations = getPairingRecommendations(selectedFood, selectedOccasion);
+                updatePairingDisplay(recommendations);
+            }
+        }
+
+        function getPairingRecommendations(food, occasion) {
+            // Comprehensive wine pairing database
+            const pairings = {
+                'steak': [
+                    { wine: 'Cabernet Sauvignon', description: 'Full-bodied red with bold tannins, perfect for grilled meats', score: 5 },
+                    { wine: 'Malbec', description: 'Medium to full-bodied with plum and blackberry notes', score: 4 },
+                    { wine: 'Syrah/Shiraz', description: 'Peppery and bold, excellent with seasoned steaks', score: 4 }
+                ],
+                'chicken': [
+                    { wine: 'Chardonnay', description: 'Rich white wine perfect for roasted or creamy chicken dishes', score: 5 },
+                    { wine: 'Pinot Noir', description: 'Light red that won\'t overpower delicate poultry', score: 4 },
+                    { wine: 'Viognier', description: 'Aromatic white with stone fruit notes', score: 4 }
+                ],
+                'seafood': [
+                    { wine: 'Sauvignon Blanc', description: 'Crisp and citrusy, perfect for shellfish and light fish', score: 5 },
+                    { wine: 'Albariño', description: 'Spanish white with bright acidity and mineral notes', score: 5 },
+                    { wine: 'Vermentino', description: 'Mediterranean white with herbal and citrus notes', score: 4 }
+                ],
+                'pasta': [
+                    { wine: 'Chianti Classico', description: 'Italian red perfect for tomato-based sauces', score: 5 },
+                    { wine: 'Pinot Grigio', description: 'Light white for cream or seafood pastas', score: 4 },
+                    { wine: 'Barbera', description: 'High-acid Italian red great with rich sauces', score: 4 }
+                ],
+                'cheese': [
+                    { wine: 'Port', description: 'Sweet fortified wine perfect with blue cheese', score: 5 },
+                    { wine: 'Riesling', description: 'Sweet or dry white that pairs with many cheeses', score: 4 },
+                    { wine: 'Gewürztraminer', description: 'Aromatic white excellent with strong cheeses', score: 4 }
+                ],
+                'vegetarian': [
+                    { wine: 'Grüner Veltliner', description: 'Austrian white with herbaceous notes', score: 5 },
+                    { wine: 'Côtes du Rhône', description: 'Versatile red for hearty vegetable dishes', score: 4 },
+                    { wine: 'Rosé', description: 'Perfect middle ground for diverse vegetarian dishes', score: 4 }
+                ],
+                'spicy': [
+                    { wine: 'Riesling', description: 'Off-dry sweetness balances spicy heat', score: 5 },
+                    { wine: 'Gewürztraminer', description: 'Aromatic and slightly sweet to cool spice', score: 5 },
+                    { wine: 'Grenache', description: 'Fruity red that complements spicy flavors', score: 4 }
+                ],
+                'dessert': [
+                    { wine: 'Moscato d\'Asti', description: 'Light, sweet, and slightly sparkling', score: 5 },
+                    { wine: 'Ice Wine', description: 'Intensely sweet dessert wine', score: 5 },
+                    { wine: 'Sauternes', description: 'French noble rot wine with honey notes', score: 4 }
+                ]
+            };
+
+            // Modify based on occasion
+            let recommendations = pairings[food] || [
+                { wine: 'Pinot Noir', description: 'Versatile red for many dishes', score: 3 },
+                { wine: 'Chardonnay', description: 'Classic white wine choice', score: 3 }
+            ];
+
+            // Adjust recommendations based on occasion
+            if (occasion === 'formal' || occasion === 'business') {
+                // Add premium options for formal events
+                recommendations = recommendations.map(rec => ({
+                    ...rec,
+                    description: rec.description + ' - Consider premium/reserve selections'
+                }));
+            } else if (occasion === 'casual' || occasion === 'party') {
+                // Suggest more affordable, crowd-pleasing options
+                recommendations = recommendations.map(rec => ({
+                    ...rec,
+                    description: rec.description + ' - Great value options available'
+                }));
+            }
+
+            return recommendations;
+        }
+
+        function updatePairingDisplay(recommendations) {
+            const resultsContainer = document.getElementById('pairingResults');
+
+            // Build HTML for recommendations
+            let html = '<h3>🍷 Perfect Wine Matches</h3>';
+
+            recommendations.forEach(rec => {
+                const stars = '⭐'.repeat(rec.score);
+                html += `
+                    <div class="wine-recommendation">
+                        <div class="wine-icon" style="font-size: 3rem;">🍷</div>
+                        <div class="wine-details">
+                            <h4>${rec.wine}</h4>
+                            <p>${rec.description}</p>
+                            <div class="wine-score">
+                                <span>Match Score:</span>
+                                <span>${stars}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Add booking CTA
+            html += `
+                <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(212, 175, 55, 0.1)); border-radius: 15px; text-align: center;">
+                    <p style="margin-bottom: 1rem; color: var(--text-dark); font-weight: 600;">Want to experience these pairings with a professional sommelier?</p>
+                    <a href="sommelier-booking-wizard-v2.html" class="cta-button">Book a Tasting Event</a>
+                </div>
+            `;
+
+            resultsContainer.innerHTML = html;
+        }
+
+        // Article Data with Full Content
+        const articles = [
+            {
+                id: 1,
+                category: 'basics',
+                icon: '📖',
+                title: 'Wine Tasting 101: The 5 S\'s Method',
+                excerpt: 'Learn the professional technique for evaluating wine: See, Swirl, Sniff, Sip, and Savor. Master the art of wine tasting like a sommelier.',
+                readTime: '5 min',
+                content: `
+                    <h2>Master the Art of Wine Tasting</h2>
+                    <p>Wine tasting is both an art and a science. Professional sommeliers use a systematic approach called the "5 S's" to evaluate wine consistently and thoroughly. This method will transform how you experience wine, helping you identify subtle flavors, assess quality, and articulate your preferences with confidence.</p>
+
+                    <h3>1. See - Visual Examination</h3>
+                    <p>Hold your glass against a white background and tilt it at a 45-degree angle. Look for:</p>
+                    <ul>
+                        <li><strong>Color intensity:</strong> Deeper colors often indicate fuller body and riper grapes</li>
+                        <li><strong>Clarity:</strong> Modern wines should be crystal clear; cloudiness may indicate a fault</li>
+                        <li><strong>Viscosity:</strong> "Legs" or "tears" on the glass indicate alcohol and sugar content</li>
+                        <li><strong>Age indicators:</strong> Red wines fade from purple to brick; whites darken from pale to amber</li>
+                    </ul>
+
+                    <div class="wine-tip">
+                        <h4>🍷 Pro Tip</h4>
+                        <p>The rim variation (difference between the center and edge color) tells you about age. Young wines have uniform color; aged wines show gradation.</p>
+                    </div>
+
+                    <h3>2. Swirl - Releasing Aromas</h3>
+                    <p>Swirling serves two critical purposes: it releases volatile compounds and increases oxygen exposure. Place your glass on a table and move it in small circles, or hold the stem and rotate your wrist. Start gently - you're aerating, not making a whirlpool!</p>
+
+                    <h3>3. Sniff - Aromatic Analysis</h3>
+                    <p>This is where wine reveals its character. Take several short sniffs rather than one long inhalation. Look for three layers:</p>
+                    <ul>
+                        <li><strong>Primary aromas:</strong> From the grape variety (fruit, floral, herbal)</li>
+                        <li><strong>Secondary aromas:</strong> From fermentation (yeast, bread, butter)</li>
+                        <li><strong>Tertiary aromas:</strong> From aging (vanilla, tobacco, leather, nuts)</li>
+                    </ul>
+
+                    <h3>4. Sip - Taste Evaluation</h3>
+                    <p>Take a small sip and let it coat your entire mouth. Professional tasters often "chew" the wine or draw air through it (that slurping sound you hear at tastings). Evaluate:</p>
+                    <ul>
+                        <li><strong>Sweetness:</strong> Detected on the tip of your tongue</li>
+                        <li><strong>Acidity:</strong> Makes your mouth water, felt on the sides</li>
+                        <li><strong>Tannins:</strong> Create dryness, felt on gums and cheeks</li>
+                        <li><strong>Body:</strong> The wine's weight and texture</li>
+                        <li><strong>Alcohol:</strong> Creates warmth in your throat</li>
+                    </ul>
+
+                    <h3>5. Savor - The Finish</h3>
+                    <p>After swallowing (or spitting), notice how long flavors linger. A long, pleasant finish indicates quality. Count the seconds - great wines can have finishes lasting 30+ seconds. Also note if new flavors emerge or if the wine evolves.</p>
+
+                    <div class="wine-tip">
+                        <h4>🎯 Practice Exercise</h4>
+                        <p>Try the same wine at different temperatures. You'll be amazed how temperature affects aroma intensity and flavor perception. This is why serving temperature matters so much!</p>
+                    </div>
+
+                    <h2>Common Tasting Terms Decoded</h2>
+                    <ul>
+                        <li><strong>Balanced:</strong> All elements in harmony</li>
+                        <li><strong>Complex:</strong> Multiple layers of flavor</li>
+                        <li><strong>Crisp:</strong> High, refreshing acidity</li>
+                        <li><strong>Full-bodied:</strong> Rich, weighty texture</li>
+                        <li><strong>Tannic:</strong> Astringent, drying sensation</li>
+                        <li><strong>Minerally:</strong> Wet stone or chalk notes</li>
+                    </ul>
+
+                    <p>Remember, wine tasting is subjective. What matters most is developing your palate and vocabulary to identify what you enjoy. Practice regularly, take notes, and don't be intimidated - even master sommeliers are always learning!</p>
+                `
+            },
+            {
+                id: 2,
+                category: 'service',
+                icon: '🌡️',
+                title: 'Perfect Wine Serving Temperatures',
+                excerpt: 'Temperature dramatically affects wine taste. Learn the optimal serving temperatures for every wine style, from crisp whites to bold reds.',
+                readTime: '7 min',
+                content: `
+                    <h2>Why Temperature Matters</h2>
+                    <p>Serving wine at the proper temperature is one of the simplest yet most impactful ways to enhance your wine experience. Temperature affects aroma release, flavor perception, and the balance of wine components. Too cold, and you'll mute flavors; too warm, and alcohol dominates.</p>
+
+                    <h3>The Science Behind Temperature</h3>
+                    <p>Temperature influences how volatile compounds evaporate from wine. Warmer temperatures increase volatility, releasing more aromas but also more alcohol vapors. Cooler temperatures suppress both, which is why we chill wines with delicate aromas to preserve them.</p>
+
+                    <h2>Temperature Guide by Wine Style</h2>
+
+                    <h3>Sparkling Wines (38-45°F / 3-7°C)</h3>
+                    <ul>
+                        <li><strong>Champagne & Traditional Method:</strong> 43-46°F - Preserves bubbles and crispness</li>
+                        <li><strong>Prosecco & Moscato:</strong> 38-42°F - Enhances sweetness balance</li>
+                        <li><strong>Vintage Champagne:</strong> 46-50°F - Allows complexity to show</li>
+                    </ul>
+
+                    <h3>White Wines (45-55°F / 7-13°C)</h3>
+                    <ul>
+                        <li><strong>Light whites (Pinot Grigio, Albariño):</strong> 45-50°F</li>
+                        <li><strong>Aromatic whites (Riesling, Gewürztraminer):</strong> 43-47°F</li>
+                        <li><strong>Full-bodied whites (Chardonnay, Viognier):</strong> 50-55°F</li>
+                        <li><strong>Orange/Skin-contact wines:</strong> 55-60°F</li>
+                    </ul>
+
+                    <div class="wine-tip">
+                        <h4>❄️ Quick Chill Hack</h4>
+                        <p>Need to chill wine fast? Submerge the bottle in a mixture of ice, water, and salt for 15 minutes. The salt lowers the freezing point, cooling wine twice as fast as ice alone.</p>
+                    </div>
+
+                    <h3>Rosé Wines (50-55°F / 10-13°C)</h3>
+                    <p>Serve lighter Provence-style rosés cooler (50°F) and fuller-bodied rosés slightly warmer (55°F) to showcase their red wine characteristics.</p>
+
+                    <h3>Red Wines (55-65°F / 13-18°C)</h3>
+                    <ul>
+                        <li><strong>Light reds (Beaujolais, Valpolicella):</strong> 55-60°F</li>
+                        <li><strong>Medium reds (Merlot, Chianti):</strong> 60-65°F</li>
+                        <li><strong>Full-bodied reds (Cabernet, Syrah):</strong> 63-65°F</li>
+                        <li><strong>Vintage/aged reds:</strong> 63-65°F</li>
+                    </ul>
+
+                    <h3>Dessert & Fortified Wines</h3>
+                    <ul>
+                        <li><strong>Port & Madeira:</strong> 60-65°F - Room temperature enhances complexity</li>
+                        <li><strong>Sauternes & Ice Wine:</strong> 43-45°F - Balances intense sweetness</li>
+                        <li><strong>Sherry:</strong> Fino/Manzanilla at 45°F, Oloroso at 55°F</li>
+                    </ul>
+
+                    <h2>The "Room Temperature" Myth</h2>
+                    <p>The advice to serve red wine at "room temperature" originated in European castles where rooms were 60-65°F. Modern homes at 70-72°F are too warm! Always err on the side of too cool - wine warms quickly in the glass.</p>
+
+                    <h2>Professional Temperature Tips</h2>
+                    <ul>
+                        <li><strong>20/20 Rule:</strong> Take whites out of the fridge 20 minutes before serving; put reds in 20 minutes before</li>
+                        <li><strong>Use a thermometer:</strong> Instant-read wine thermometers cost under $20</li>
+                        <li><strong>Maintain temperature:</strong> Use an ice bucket for whites, decant reds to control warming</li>
+                        <li><strong>Glass matters:</strong> Thin-rimmed glasses warm faster than thick ones</li>
+                    </ul>
+
+                    <div class="wine-tip">
+                        <h4>🌡️ Storage vs Serving</h4>
+                        <p>Store all wines at 55°F (13°C) if possible. This is different from serving temperature! Pull wines from storage and adjust temperature before serving.</p>
+                    </div>
+
+                    <p>Remember: these are guidelines, not rules. Personal preference matters, and some wines break conventions beautifully. Experiment to find your ideal serving temperatures!</p>
+                `
+            },
+            {
+                id: 3,
+                category: 'pairing',
+                icon: '🥩',
+                title: 'The Ultimate Steak & Wine Pairing Guide',
+                excerpt: 'From ribeye to filet mignon, discover which wines complement each cut. Includes sauce pairings and cooking method considerations.',
+                readTime: '10 min',
+                content: `
+                    <h2>The Art of Steak & Wine Pairing</h2>
+                    <p>Steak and wine form one of gastronomy's most celebrated partnerships. But not all pairings are created equal. The cut, preparation, seasoning, and sauces all influence which wine will create harmony on your palate. This guide breaks down the science and art of perfect steak pairings.</p>
+
+                    <h3>Understanding the Fundamentals</h3>
+                    <p>Successful pairings balance these elements:</p>
+                    <ul>
+                        <li><strong>Weight matching:</strong> Heavy steaks need full-bodied wines</li>
+                        <li><strong>Fat cutting:</strong> Tannins in red wine cut through marbling</li>
+                        <li><strong>Flavor intensity:</strong> Bold flavors require bold wines</li>
+                        <li><strong>Preparation method:</strong> Grilling adds char that needs specific wines</li>
+                    </ul>
+
+                    <h2>Pairing by Cut</h2>
+
+                    <h3>Filet Mignon / Tenderloin</h3>
+                    <p><strong>Character:</strong> Lean, tender, mild flavor</p>
+                    <p><strong>Best wines:</strong> Elegant reds that won't overpower</p>
+                    <ul>
+                        <li>Pinot Noir from Burgundy or Oregon</li>
+                        <li>Aged Rioja Reserva</li>
+                        <li>Right Bank Bordeaux (Merlot-based)</li>
+                        <li>Chianti Classico Riserva</li>
+                    </ul>
+
+                    <h3>Ribeye</h3>
+                    <p><strong>Character:</strong> Rich marbling, intense beef flavor</p>
+                    <p><strong>Best wines:</strong> Bold, tannic reds to match the fat</p>
+                    <ul>
+                        <li>Napa Valley Cabernet Sauvignon</li>
+                        <li>Australian Shiraz</li>
+                        <li>Malbec from Mendoza</li>
+                        <li>Super Tuscan blends</li>
+                    </ul>
+
+                    <div class="wine-tip">
+                        <h4>🥩 Marbling Matters</h4>
+                        <p>The more marbled the steak, the more tannins you need in your wine. Fat coats your mouth; tannins cleanse it, creating the perfect bite-sip rhythm.</p>
+                    </div>
+
+                    <h3>New York Strip</h3>
+                    <p><strong>Character:</strong> Balanced fat and lean, robust flavor</p>
+                    <p><strong>Best wines:</strong> Structured reds with good fruit</p>
+                    <ul>
+                        <li>Left Bank Bordeaux</li>
+                        <li>Brunello di Montalcino</li>
+                        <li>Washington State Cabernet</li>
+                        <li>Ribera del Duero</li>
+                    </ul>
+
+                    <h3>Porterhouse/T-Bone</h3>
+                    <p><strong>Character:</strong> Two steaks in one (strip + tenderloin)</p>
+                    <p><strong>Best wines:</strong> Versatile, medium to full-bodied</p>
+                    <ul>
+                        <li>Châteauneuf-du-Pape</li>
+                        <li>Barolo or Barbaresco</li>
+                        <li>Priorat</li>
+                        <li>Premium Côtes du Rhône</li>
+                    </ul>
+
+                    <h2>Cooking Method Considerations</h2>
+
+                    <h3>Grilled</h3>
+                    <p>Charred flavors pair beautifully with:</p>
+                    <ul>
+                        <li>Syrah/Shiraz (echoes smoky notes)</li>
+                        <li>Zinfandel (matches sweetness from char)</li>
+                        <li>Tempranillo (complementary earthiness)</li>
+                    </ul>
+
+                    <h3>Pan-Seared</h3>
+                    <p>Caramelized crust works with:</p>
+                    <ul>
+                        <li>Cabernet Franc (herbal notes complement)</li>
+                        <li>Sangiovese (bright acidity cuts richness)</li>
+                    </ul>
+
+                    <h3>Sous Vide</h3>
+                    <p>Pure meat flavor shines with:</p>
+                    <ul>
+                        <li>Premium Pinot Noir</li>
+                        <li>Aged Bordeaux</li>
+                        <li>Burgundy</li>
+                    </ul>
+
+                    <h2>Sauce Pairings</h2>
+
+                    <h3>Béarnaise</h3>
+                    <p>Rich, buttery, tarragon-scented sauce needs wines with good acidity:</p>
+                    <ul>
+                        <li>Northern Rhône Syrah</li>
+                        <li>Bordeaux blends</li>
+                    </ul>
+
+                    <h3>Peppercorn</h3>
+                    <p>Spicy, creamy sauce pairs with:</p>
+                    <ul>
+                        <li>Syrah (pepper notes echo)</li>
+                        <li>Zinfandel</li>
+                        <li>Côtes du Rhône</li>
+                    </ul>
+
+                    <h3>Red Wine Reduction</h3>
+                    <p>Match the wine in the sauce or go complementary:</p>
+                    <ul>
+                        <li>Same wine used in sauce</li>
+                        <li>Similar regional wine</li>
+                    </ul>
+
+                    <h3>Chimichurri</h3>
+                    <p>Herbaceous, acidic sauce needs:</p>
+                    <ul>
+                        <li>Malbec (classic pairing)</li>
+                        <li>Carménère</li>
+                        <li>Tempranillo</li>
+                    </ul>
+
+                    <div class="wine-tip">
+                        <h4>🍷 Temperature Tip</h4>
+                        <p>Serve your wine slightly cooler (60-63°F) with steak. The hot meat will warm the wine in your mouth, and the slight chill prevents alcohol from dominating.</p>
+                    </div>
+
+                    <h2>Advanced Pairing Tips</h2>
+                    <ul>
+                        <li><strong>Dry-aged steak:</strong> Needs older wines or those with earthy notes (aged Rioja, Barolo)</li>
+                        <li><strong>Wagyu/Kobe:</strong> The extreme fat content requires maximum tannins (young Napa Cab, Barossa Shiraz)</li>
+                        <li><strong>Blue cheese topping:</strong> Sweet wines like Port or late-harvest Zinfandel create magic</li>
+                        <li><strong>Herb crust:</strong> Look for wines with herbal notes (Cabernet Franc, Carménère)</li>
+                    </ul>
+
+                    <p>The perfect steak and wine pairing elevates both elements. Don't be afraid to experiment - your palate is unique, and discovering your personal preferences is part of the journey!</p>
+                `
+            },
+            {
+                id: 4,
+                category: 'regions',
+                icon: '🇫🇷',
+                title: 'Bordeaux Decoded: Left Bank vs Right Bank',
+                excerpt: 'Understand the key differences between Bordeaux\'s famous banks, their signature grapes, and what makes each region unique.',
+                readTime: '12 min',
+                content: `
+                    <h2>The Tale of Two Banks</h2>
+                    <p>Bordeaux, the world's most famous wine region, is divided by the Gironde estuary and its tributaries into two distinct winemaking philosophies. The Left Bank and Right Bank produce vastly different styles despite being mere miles apart. Understanding these differences unlocks the complexity of Bordeaux wines.</p>
+
+                    <h3>Geography & Terroir</h3>
+                    <p>The Gironde estuary splits Bordeaux, with the Garonne River defining the Left Bank and the Dordogne River defining the Right Bank. This geography creates distinct microclimates and soil types that fundamentally influence the wines.</p>
+
+                    <h2>Left Bank: Power & Prestige</h2>
+
+                    <h3>Key Regions</h3>
+                    <ul>
+                        <li><strong>Médoc:</strong> Home to Margaux, Pauillac, St-Estèphe, St-Julien</li>
+                        <li><strong>Graves:</strong> Including Pessac-Léognan</li>
+                        <li><strong>Haut-Médoc:</strong> Diverse appellations between major communes</li>
+                    </ul>
+
+                    <h3>Terroir</h3>
+                    <p><strong>Soil:</strong> Deep gravel beds (graves) deposited by ancient rivers</p>
+                    <p><strong>Climate:</strong> Maritime influence from the Atlantic, protected by pine forests</p>
+                    <p><strong>Drainage:</strong> Excellent, forcing vines to dig deep for water</p>
+
+                    <h3>Grape Varieties</h3>
+                    <ul>
+                        <li><strong>Cabernet Sauvignon (dominant):</strong> 60-70% of most blends</li>
+                        <li><strong>Merlot:</strong> Adds roundness and approachability</li>
+                        <li><strong>Cabernet Franc:</strong> Aromatic complexity</li>
+                        <li><strong>Petit Verdot:</strong> Spice and color (small amounts)</li>
+                        <li><strong>Malbec:</strong> Rarely used today</li>
+                    </ul>
+
+                    <h3>Wine Style</h3>
+                    <p>Left Bank wines are:</p>
+                    <ul>
+                        <li>Structured and tannic in youth</li>
+                        <li>Built for long aging (20-50+ years for top wines)</li>
+                        <li>Cassis and graphite-driven</li>
+                        <li>Austere and intellectual</li>
+                        <li>Higher alcohol (13-14%)</li>
+                    </ul>
+
+                    <div class="wine-tip">
+                        <h4>🏰 The 1855 Classification</h4>
+                        <p>The Left Bank's 1855 Classification still defines prestige today. Only Médoc châteaux (plus Haut-Brion from Graves) were classified into five growths, from Premier Cru to Cinquième Cru.</p>
+                    </div>
+
+                    <h2>Right Bank: Elegance & Emotion</h2>
+
+                    <h3>Key Regions</h3>
+                    <ul>
+                        <li><strong>Pomerol:</strong> Small, prestigious, no classification system</li>
+                        <li><strong>Saint-Émilion:</strong> Largest quality region, regularly reclassified</li>
+                        <li><strong>Fronsac & Canon-Fronsac:</strong> Value alternatives</li>
+                        <li><strong>Castillon & Francs:</strong> Emerging appellations</li>
+                    </ul>
+
+                    <h3>Terroir</h3>
+                    <p><strong>Soil:</strong> Clay and limestone (argilo-calcaire), with some gravel</p>
+                    <p><strong>Climate:</strong> More continental, less maritime influence</p>
+                    <p><strong>Topography:</strong> Rolling hills and plateaus</p>
+
+                    <h3>Grape Varieties</h3>
+                    <ul>
+                        <li><strong>Merlot (dominant):</strong> 70-100% of blends</li>
+                        <li><strong>Cabernet Franc:</strong> Important secondary grape (Cheval Blanc is 50%+)</li>
+                        <li><strong>Cabernet Sauvignon:</strong> Minor role, struggles to ripen</li>
+                    </ul>
+
+                    <h3>Wine Style</h3>
+                    <p>Right Bank wines are:</p>
+                    <ul>
+                        <li>Softer, rounder, more approachable young</li>
+                        <li>Plum and chocolate-driven</li>
+                        <li>Sensual and hedonistic</li>
+                        <li>Earlier maturing (10-30 years)</li>
+                        <li>Slightly lower alcohol (12.5-13.5%)</li>
+                    </ul>
+
+                    <h2>Key Differences Summary</h2>
+
+                    <table style="width: 100%; margin: 2rem 0;">
+                        <tr>
+                            <th style="text-align: left; padding: 0.5rem;">Aspect</th>
+                            <th style="text-align: left; padding: 0.5rem;">Left Bank</th>
+                            <th style="text-align: left; padding: 0.5rem;">Right Bank</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;">Dominant Grape</td>
+                            <td style="padding: 0.5rem;">Cabernet Sauvignon</td>
+                            <td style="padding: 0.5rem;">Merlot</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;">Soil</td>
+                            <td style="padding: 0.5rem;">Gravel</td>
+                            <td style="padding: 0.5rem;">Clay & Limestone</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;">Style</td>
+                            <td style="padding: 0.5rem;">Structured, Tannic</td>
+                            <td style="padding: 0.5rem;">Soft, Fruity</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;">Aging Potential</td>
+                            <td style="padding: 0.5rem;">20-50+ years</td>
+                            <td style="padding: 0.5rem;">10-30 years</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;">Price Range</td>
+                            <td style="padding: 0.5rem;">$30-$5,000+</td>
+                            <td style="padding: 0.5rem;">$40-$10,000+</td>
+                        </tr>
+                    </table>
+
+                    <h2>Iconic Producers</h2>
+
+                    <h3>Left Bank Legends</h3>
+                    <ul>
+                        <li><strong>Pauillac:</strong> Lafite, Latour, Mouton, Pichon Baron</li>
+                        <li><strong>Margaux:</strong> Château Margaux, Palmer</li>
+                        <li><strong>St-Julien:</strong> Léoville Las Cases, Ducru-Beaucaillou</li>
+                        <li><strong>Pessac-Léognan:</strong> Haut-Brion, La Mission Haut-Brion</li>
+                    </ul>
+
+                    <h3>Right Bank Icons</h3>
+                    <ul>
+                        <li><strong>Pomerol:</strong> Pétrus, Le Pin, Lafleur</li>
+                        <li><strong>Saint-Émilion:</strong> Cheval Blanc, Ausone, Angélus, Pavie</li>
+                    </ul>
+
+                    <div class="wine-tip">
+                        <h4>💡 Investment Tip</h4>
+                        <p>Left Bank wines, especially classified growths, have more established secondary markets. Right Bank cult wines (Pétrus, Le Pin) command highest prices but lower volumes.</p>
+                    </div>
+
+                    <h2>When to Choose Each Bank</h2>
+
+                    <h3>Choose Left Bank When:</h3>
+                    <ul>
+                        <li>You love structured, age-worthy wines</li>
+                        <li>Pairing with grilled meats or aged cheeses</li>
+                        <li>Building a cellar for long-term aging</li>
+                        <li>You appreciate restraint and elegance</li>
+                    </ul>
+
+                    <h3>Choose Right Bank When:</h3>
+                    <ul>
+                        <li>You prefer softer, fruitier wines</li>
+                        <li>Drinking wines younger (5-10 years)</li>
+                        <li>Pairing with roasted or braised dishes</li>
+                        <li>You enjoy immediate pleasure wines</li>
+                    </ul>
+
+                    <p>Both banks produce world-class wines. The choice between them is personal preference, not quality. Many collectors enjoy both styles, choosing based on occasion, food pairing, and mood. The magic of Bordeaux lies in this diversity!</p>
+                `
+            },
+            {
+                id: 5,
+                category: 'entertaining',
+                icon: '🎉',
+                title: 'Hosting a Wine Tasting Party: Complete Guide',
+                excerpt: 'Everything you need to host a memorable wine tasting at home. Includes themes, setup tips, and tasting sheet templates.',
+                readTime: '8 min',
+                content: `
+                    <h2>Create an Unforgettable Wine Experience</h2>
+                    <p>Hosting a wine tasting party combines education, entertainment, and social connection. Whether you're a seasoned collector or enthusiastic beginner, this guide will help you create a memorable event that your guests will rave about.</p>
+
+                    <h3>Planning Your Tasting</h3>
+
+                    <h4>Guest List & Invitations</h4>
+                    <ul>
+                        <li><strong>Ideal size:</strong> 6-12 guests (manageable and intimate)</li>
+                        <li><strong>Mix experience levels:</strong> Beginners and experts create dynamic discussion</li>
+                        <li><strong>Send invitations 2-3 weeks ahead:</strong> Include theme and any preparation</li>
+                        <li><strong>Request RSVPs:</strong> Essential for wine quantities</li>
+                    </ul>
+
+                    <h4>Budget Planning</h4>
+                    <ul>
+                        <li><strong>Wines:</strong> $15-30 per bottle for casual; $30-60 for special occasions</li>
+                        <li><strong>Rule of thumb:</strong> 1 bottle serves 5-6 tasting portions</li>
+                        <li><strong>Food:</strong> $10-15 per person for accompaniments</li>
+                        <li><strong>Supplies:</strong> $20-30 for one-time purchases</li>
+                    </ul>
+
+                    <h2>Tasting Themes That Wow</h2>
+
+                    <h3>Horizontal Tasting</h3>
+                    <p>Same wine type from the same vintage, different producers</p>
+                    <p><strong>Example:</strong> 2019 Napa Cabernets from 5 different wineries</p>
+                    <p><strong>Learning focus:</strong> Terroir and winemaking style differences</p>
+
+                    <h3>Vertical Tasting</h3>
+                    <p>Same wine from the same producer, different vintages</p>
+                    <p><strong>Example:</strong> Château XYZ 2015, 2017, 2019, 2021</p>
+                    <p><strong>Learning focus:</strong> Vintage variation and aging potential</p>
+
+                    <h3>Old World vs New World</h3>
+                    <p>Compare traditional and modern styles</p>
+                    <p><strong>Example:</strong> Burgundy Pinot vs Oregon Pinot vs New Zealand Pinot</p>
+                    <p><strong>Learning focus:</strong> Regional styles and philosophies</p>
+
+                    <h3>Blind Tasting Challenge</h3>
+                    <p>Wines served in numbered bags, identities revealed after scoring</p>
+                    <p><strong>Fun factor:</strong> Removes bias, creates surprise</p>
+                    <p><strong>Pro tip:</strong> Include one "ringer" (much cheaper or expensive wine)</p>
+
+                    <div class="wine-tip">
+                        <h4>🎯 Theme Ideas</h4>
+                        <p>Around the World in 6 Wines • Battle of the Blends • Natural vs Conventional • Women Winemakers • Under $20 Gems • Bubbles from Everywhere</p>
+                    </div>
+
+                    <h2>Setup & Supplies</h2>
+
+                    <h3>Essential Equipment</h3>
+                    <ul>
+                        <li><strong>Glasses:</strong> 2-3 per person (rinse between flights)</li>
+                        <li><strong>Water pitchers:</strong> Still and sparkling</li>
+                        <li><strong>Dump buckets:</strong> 1 per 4 people</li>
+                        <li><strong>Napkins:</strong> Dark colored to hide stains</li>
+                        <li><strong>Tasting sheets:</strong> For notes and scoring</li>
+                        <li><strong>Pens:</strong> Avoid pencils (graphite affects taste)</li>
+                    </ul>
+
+                    <h3>Table Setup</h3>
+                    <ul>
+                        <li><strong>White tablecloth:</strong> Shows wine color accurately</li>
+                        <li><strong>Good lighting:</strong> Natural or warm white</li>
+                        <li><strong>Number cards:</strong> For blind tastings</li>
+                        <li><strong>Wine key:</strong> Have backup corkscrews</li>
+                        <li><strong>Decanter:</strong> For older reds or aeration</li>
+                    </ul>
+
+                    <h2>Food Pairings</h2>
+
+                    <h3>Palate Cleansers</h3>
+                    <ul>
+                        <li>Plain water crackers</li>
+                        <li>Sliced baguette</li>
+                        <li>Mild cheese (young manchego)</li>
+                    </ul>
+
+                    <h3>Progressive Pairings</h3>
+                    <p>Match food to each wine:</p>
+                    <ul>
+                        <li><strong>Sparkling:</strong> Oysters, potato chips</li>
+                        <li><strong>White:</strong> Goat cheese, almonds</li>
+                        <li><strong>Red:</strong> Aged cheddar, charcuterie</li>
+                        <li><strong>Dessert:</strong> Dark chocolate, blue cheese</li>
+                    </ul>
+
+                    <h2>Tasting Order & Flow</h2>
+
+                    <h3>Classic Progression</h3>
+                    <ol>
+                        <li>Sparkling wines (wake up palate)</li>
+                        <li>Light whites</li>
+                        <li>Full-bodied whites</li>
+                        <li>Light reds</li>
+                        <li>Full-bodied reds</li>
+                        <li>Sweet/fortified wines</li>
+                    </ol>
+
+                    <h3>Timing</h3>
+                    <ul>
+                        <li><strong>15-20 minutes per wine:</strong> Pour, discuss, taste, share notes</li>
+                        <li><strong>Total event:</strong> 2-3 hours for 6 wines</li>
+                        <li><strong>Break halfway:</strong> Serve substantial snacks</li>
+                    </ul>
+
+                    <h2>Leading the Tasting</h2>
+
+                    <h3>For Each Wine:</h3>
+                    <ol>
+                        <li><strong>Pour:</strong> 2-3 oz per person</li>
+                        <li><strong>Introduce:</strong> Share basic info (or keep blind)</li>
+                        <li><strong>Guide observation:</strong> Color, clarity, viscosity</li>
+                        <li><strong>Smell together:</strong> Share aroma notes</li>
+                        <li><strong>Taste:</strong> Discuss flavors, texture, finish</li>
+                        <li><strong>Score/rank:</strong> Use simple 1-5 scale</li>
+                        <li><strong>Reveal (if blind):</strong> Price and details</li>
+                    </ol>
+
+                    <div class="wine-tip">
+                        <h4>📝 Tasting Sheet Template</h4>
+                        <p>Wine #___ | Color:___ | Aroma:___ | Flavor:___ | Finish:___ | Score:___/5 | Notes:___ | Guess (if blind):___ | Would buy? Y/N at $___</p>
+                    </div>
+
+                    <h2>Fun Activities & Games</h2>
+
+                    <h3>Aroma Kit Challenge</h3>
+                    <p>Pass around coffee, leather, tobacco, fruits - identify in wines</p>
+
+                    <h3>Price is Right</h3>
+                    <p>Guess each wine's retail price, closest wins</p>
+
+                    <h3>Wine Trivia</h3>
+                    <p>Prepare fun facts about each wine or region</p>
+
+                    <h3>Food Pairing Competition</h3>
+                    <p>Each guest brings a pairing for one wine, vote for best</p>
+
+                    <h2>Mistakes to Avoid</h2>
+                    <ul>
+                        <li><strong>Too many wines:</strong> 6-8 maximum to avoid palate fatigue</li>
+                        <li><strong>Strong scents:</strong> Ban perfume, scented candles</li>
+                        <li><strong>Serving too much:</strong> It's tasting, not drinking</li>
+                        <li><strong>Wine snobbery:</strong> Keep it fun and inclusive</li>
+                        <li><strong>Poor temperature:</strong> Chill whites 30 min before guests arrive</li>
+                    </ul>
+
+                    <h2>Ending on a High Note</h2>
+                    <ul>
+                        <li><strong>Group ranking:</strong> Collectively rank all wines</li>
+                        <li><strong>Share favorites:</strong> Each guest announces their top pick</li>
+                        <li><strong>Send notes:</strong> Email tasting notes and wine list after</li>
+                        <li><strong>Plan next tasting:</strong> Strike while enthusiasm is high</li>
+                    </ul>
+
+                    <p>Remember: the best wine tasting is one where everyone learns something, tries something new, and leaves with great memories. Focus on fun over formality, and your passion will make the event special!</p>
+                `
+            },
+            {
+                id: 6,
+                category: 'value',
+                icon: '💰',
+                title: 'Best Wines Under $25: Sommelier Picks',
+                excerpt: 'Our sommeliers reveal their favorite affordable wines that drink like bottles twice the price. Updated monthly.',
+                readTime: '6 min',
+                content: `
+                    <h2>Exceptional Value Wines That Overdeliver</h2>
+                    <p>Great wine doesn't have to break the bank. Our sommeliers taste hundreds of wines monthly to find bottles that offer exceptional quality at everyday prices. These selections prove that with knowledge, you can drink remarkably well for under $25.</p>
+
+                    <h2>Red Wine Standouts</h2>
+
+                    <h3>Bogle Phantom ($18-20)</h3>
+                    <p><strong>Style:</strong> California Red Blend</p>
+                    <p><strong>Why we love it:</strong> This Zinfandel-based blend drinks like a $40+ wine with incredible depth and complexity. Notes of blackberry jam, vanilla, and baking spices with a velvety finish.</p>
+                    <p><strong>Pair with:</strong> BBQ ribs, aged cheddar, dark chocolate</p>
+
+                    <h3>Château Pey La Tour Reserve ($15-17)</h3>
+                    <p><strong>Style:</strong> Bordeaux Supérieur</p>
+                    <p><strong>Why we love it:</strong> Real Bordeaux from a great producer at Tuesday night prices. Classic Left Bank style with cassis, graphite, and fine tannins.</p>
+                    <p><strong>Pair with:</strong> Steak frites, lamb chops, mushroom dishes</p>
+
+                    <h3>La Crema Pinot Noir ($16-20)</h3>
+                    <p><strong>Style:</strong> Sonoma Coast Pinot Noir</p>
+                    <p><strong>Why we love it:</strong> Consistently excellent cool-climate Pinot with cherry, earth, and spice notes. Drinks like Burgundy at 1/3 the price.</p>
+                    <p><strong>Pair with:</strong> Salmon, duck, mushroom risotto</p>
+
+                    <div class="wine-tip">
+                        <h4>💡 Value Hunting Tip</h4>
+                        <p>Look for wines from "shoulder" regions - areas next to famous appellations. Côtes du Rhône Villages (next to Châteauneuf), Langhe Nebbiolo (baby Barolo), and Bourgogne Rouge (village Burgundy alternative) offer similar styles at fraction of the price.</p>
+                    </div>
+
+                    <h3>Monte Antico Toscana ($10-12)</h3>
+                    <p><strong>Style:</strong> Tuscan Red Blend</p>
+                    <p><strong>Why we love it:</strong> "Baby Super Tuscan" with Sangiovese, Merlot, and Cabernet. Incredible QPR (quality-price ratio) with cherry, leather, and herb notes.</p>
+                    <p><strong>Pair with:</strong> Pizza, pasta with red sauce, grilled vegetables</p>
+
+                    <h3>Marqués de Cáceres Crianza ($12-15)</h3>
+                    <p><strong>Style:</strong> Rioja Crianza</p>
+                    <p><strong>Why we love it:</strong> Traditional Rioja with 18 months oak aging at entry-level price. Strawberry, vanilla, and dill notes with silky tannins.</p>
+                    <p><strong>Pair with:</strong> Tapas, roasted chicken, paella</p>
+
+                    <h2>White Wine Gems</h2>
+
+                    <h3>Pine Ridge Chenin Blanc + Viognier ($11-13)</h3>
+                    <p><strong>Style:</strong> California White Blend</p>
+                    <p><strong>Why we love it:</strong> Unique blend that's aromatic, refreshing, and food-friendly. Peach, honeysuckle, and citrus with crisp finish.</p>
+                    <p><strong>Pair with:</strong> Thai food, sushi, summer salads</p>
+
+                    <h3>Trimbach Riesling ($18-22)</h3>
+                    <p><strong>Style:</strong> Alsace Riesling</p>
+                    <p><strong>Why we love it:</strong> Benchmark dry Riesling from legendary producer. Laser-focused with lime, petrol, and mineral notes. Age-worthy too.</p>
+                    <p><strong>Pair with:</strong> Spicy Asian cuisine, seafood, cheese boards</p>
+
+                    <h3>Albariño Martin Códax ($13-15)</h3>
+                    <p><strong>Style:</strong> Rías Baixas Albariño</p>
+                    <p><strong>Why we love it:</strong> Spain's answer to great white wine - crisp, aromatic, and perfect for seafood. Citrus, white flowers, and sea spray notes.</p>
+                    <p><strong>Pair with:</strong> Oysters, ceviche, grilled fish</p>
+
+                    <h3>Dr. Loosen "Dr. L" Riesling ($10-12)</h3>
+                    <p><strong>Style:</strong> Mosel Riesling</p>
+                    <p><strong>Why we love it:</strong> Off-dry German Riesling that's dangerously drinkable. Low alcohol (8.5%), high refreshment factor.</p>
+                    <p><strong>Pair with:</strong> Spicy foods, brunch, or drink alone</p>
+
+                    <h2>Sparkling Surprises</h2>
+
+                    <h3>Gruet Brut ($14-17)</h3>
+                    <p><strong>Style:</strong> New Mexico Sparkling Wine</p>
+                    <p><strong>Why we love it:</strong> Traditional method sparkling from unexpected source. Crisp, clean, with green apple and brioche notes. Beats many $30+ Cavas.</p>
+                    <p><strong>Pair with:</strong> Fried chicken, popcorn, celebrations</p>
+
+                    <h3>Juve y Camps Cava Brut ($12-15)</h3>
+                    <p><strong>Style:</strong> Spanish Cava</p>
+                    <p><strong>Why we love it:</strong> Family-owned, organic, exceptional quality. Fine bubbles with citrus and almond notes.</p>
+                    <p><strong>Pair with:</strong> Tapas, seafood paella, aperitif</p>
+
+                    <h2>Rosé Winners</h2>
+
+                    <h3>Château d'Esclans "Whispering Angel" ($18-22)</h3>
+                    <p><strong>Style:</strong> Provence Rosé</p>
+                    <p><strong>Why we love it:</strong> The rosé that launched a thousand pink wines. Pale, elegant, with strawberry and citrus notes. Worth the slight premium.</p>
+                    <p><strong>Pair with:</strong> Salads, grilled fish, poolside</p>
+
+                    <h3>Bieler Père et Fils "Sabine" ($10-12)</h3>
+                    <p><strong>Style:</strong> Provence Rosé</p>
+                    <p><strong>Why we love it:</strong> From the same winemaker as Whispering Angel at half the price. Crisp, mineral, perfect summer wine.</p>
+                    <p><strong>Pair with:</strong> Mediterranean cuisine, light appetizers</p>
+
+                    <div class="wine-tip">
+                        <h4>🛒 Shopping Strategy</h4>
+                        <p>Buy by the case during sales. Most retailers offer 10-20% case discounts. Stock up on versatile wines like Côtes du Rhône, Albariño, and good Rosé that pair with many foods.</p>
+                    </div>
+
+                    <h2>Secret Weapons: Lesser-Known Regions</h2>
+
+                    <h3>Portugal (Non-Port)</h3>
+                    <ul>
+                        <li><strong>Monte Velho ($8-10):</strong> Red and white options, incredible value</li>
+                        <li><strong>Quinta do Crasto Douro ($15-18):</strong> Port grapes in dry style</li>
+                    </ul>
+
+                    <h3>Sicily</h3>
+                    <ul>
+                        <li><strong>Planeta La Segreta ($12-14):</strong> Modern style red and white</li>
+                        <li><strong>Donnafugata "Anthilia" ($14-16):</strong> Unique white blend</li>
+                    </ul>
+
+                    <h3>Argentina Beyond Malbec</h3>
+                    <ul>
+                        <li><strong>Crios Torrontés ($10-12):</strong> Aromatic white, very food-friendly</li>
+                        <li><strong>Las Moras Bonarda ($8-10):</strong> Juicy, fun alternative red</li>
+                    </ul>
+
+                    <h2>When to Splurge Within Budget</h2>
+                    <p>Save the $20-25 wines for:</p>
+                    <ul>
+                        <li>Dinner parties where wine is the focus</li>
+                        <li>Special meals you've prepared with care</li>
+                        <li>Gifts (everyone appreciates good wine)</li>
+                        <li>Building your palate (taste better to appreciate good)</li>
+                    </ul>
+
+                    <h2>Money-Saving Tips</h2>
+                    <ul>
+                        <li><strong>Shop sales cycles:</strong> September/October and January/February see best prices</li>
+                        <li><strong>Join store email lists:</strong> First notice of sales and allocations</li>
+                        <li><strong>Explore store brands:</strong> Costco's Kirkland, Trader Joe's Reserve often exceptional</li>
+                        <li><strong>Buy direct from wineries:</strong> Join clubs for best prices on quality wines</li>
+                        <li><strong>Don't overlook box wines:</strong> Black Box, Bota Box offer great wine at $5-6/bottle equivalent</li>
+                    </ul>
+
+                    <p>Great wine at great prices requires curiosity more than cash. These recommendations prove you can build an impressive cellar and serve memorable wines without overspending. Cheers to drinking well on any budget!</p>
+                `
+            }
+        ];
+
+        // Initialize articles on page load
+        let currentFilter = 'all';
+
+        function loadArticles(filter = 'all') {
+            const grid = document.getElementById('articlesGrid');
+            const filteredArticles = filter === 'all'
+                ? articles
+                : articles.filter(article => article.category === filter);
+
+            grid.innerHTML = filteredArticles.map(article => `
+                <article class="article-card" onclick="openArticle(${article.id})">
+                    <div class="article-image">${article.icon}</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-tag">${article.category.charAt(0).toUpperCase() + article.category.slice(1)}</span>
+                            <span>${article.readTime} read</span>
+                        </div>
+                        <h3>${article.title}</h3>
+                        <p>${article.excerpt}</p>
+                        <span class="read-more">Read More →</span>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function filterContent(category) {
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Load filtered articles
+            currentFilter = category;
+            loadArticles(category);
+        }
+
+        function openArticle(articleId) {
+            const article = articles.find(a => a.id === articleId);
+            if (!article) return;
+
+            // Populate modal
+            document.getElementById('modalTitle').textContent = article.title;
+            document.getElementById('modalMeta').innerHTML = `
+                <span style="margin-right: 1rem;">${article.icon}</span>
+                <span>${article.category.charAt(0).toUpperCase() + article.category.slice(1)} • ${article.readTime} read</span>
+            `;
+            document.getElementById('modalContent').innerHTML = article.content;
+
+            // Show modal
+            document.getElementById('articleModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle() {
+            document.getElementById('articleModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeArticle();
+            }
+        });
+
+        // Close modal on background click
+        document.getElementById('articleModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('articleModal')) {
+                closeArticle();
+            }
+        });
+
+        // Load articles on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadArticles();
+        });
+
+        // Region Explorer
+        function showRegion(region) {
+            document.querySelectorAll('.region-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Complete region data
+            const regionData = {
+                'france': {
+                    name: 'France',
+                    flag: '🇫🇷',
+                    description: 'Home to the world\'s most prestigious wine regions, France sets the standard for quality winemaking. From Bordeaux\'s noble reds to Champagne\'s celebrated sparklers.',
+                    regions: [
+                        { name: 'Bordeaux', grapes: 'Cabernet Sauvignon, Merlot' },
+                        { name: 'Burgundy', grapes: 'Pinot Noir, Chardonnay' },
+                        { name: 'Champagne', grapes: 'Sparkling wines' },
+                        { name: 'Rhône Valley', grapes: 'Syrah, Grenache' }
+                    ],
+                    wines: [
+                        { name: 'Château Margaux', type: 'Bordeaux Red' },
+                        { name: 'Chablis Premier Cru', type: 'Burgundy White' },
+                        { name: 'Châteauneuf-du-Pape', type: 'Rhône Red' },
+                        { name: 'Sancerre', type: 'Loire Sauvignon Blanc' }
+                    ]
+                },
+                'italy': {
+                    name: 'Italy',
+                    flag: '🇮🇹',
+                    description: 'Ancient winemaking traditions meet modern innovation. Italy produces more wine than any other country, with over 500 indigenous grape varieties.',
+                    regions: [
+                        { name: 'Tuscany', grapes: 'Sangiovese, Cabernet Sauvignon' },
+                        { name: 'Piedmont', grapes: 'Nebbiolo, Barbera, Dolcetto' },
+                        { name: 'Veneto', grapes: 'Corvina, Glera (Prosecco)' },
+                        { name: 'Sicily', grapes: 'Nero d\'Avola, Grillo' }
+                    ],
+                    wines: [
+                        { name: 'Barolo', type: 'Piedmont Nebbiolo' },
+                        { name: 'Brunello di Montalcino', type: 'Tuscany Sangiovese' },
+                        { name: 'Amarone della Valpolicella', type: 'Veneto Red' },
+                        { name: 'Etna Rosso', type: 'Sicily Volcanic Wine' }
+                    ]
+                },
+                'spain': {
+                    name: 'Spain',
+                    flag: '🇪🇸',
+                    description: 'The world\'s third-largest wine producer, Spain offers incredible diversity from crisp Albariños to powerful Tempranillos, often at exceptional value.',
+                    regions: [
+                        { name: 'Rioja', grapes: 'Tempranillo, Garnacha' },
+                        { name: 'Ribera del Duero', grapes: 'Tempranillo (Tinto Fino)' },
+                        { name: 'Priorat', grapes: 'Garnacha, Cariñena' },
+                        { name: 'Rías Baixas', grapes: 'Albariño' }
+                    ],
+                    wines: [
+                        { name: 'Gran Reserva Rioja', type: 'Aged Tempranillo' },
+                        { name: 'Vega Sicilia', type: 'Ribera del Duero Icon' },
+                        { name: 'Albariño', type: 'Rías Baixas White' },
+                        { name: 'Cava', type: 'Traditional Method Sparkling' }
+                    ]
+                },
+                'usa': {
+                    name: 'United States',
+                    flag: '🇺🇸',
+                    description: 'New World innovation meets Old World tradition. California leads production, but exciting wines emerge from Oregon, Washington, and New York.',
+                    regions: [
+                        { name: 'Napa Valley', grapes: 'Cabernet Sauvignon, Chardonnay' },
+                        { name: 'Sonoma County', grapes: 'Pinot Noir, Zinfandel' },
+                        { name: 'Willamette Valley', grapes: 'Pinot Noir, Pinot Gris' },
+                        { name: 'Finger Lakes', grapes: 'Riesling, Gewürztraminer' }
+                    ],
+                    wines: [
+                        { name: 'Opus One', type: 'Napa Valley Bordeaux Blend' },
+                        { name: 'Russian River Pinot Noir', type: 'Sonoma Cool Climate' },
+                        { name: 'Willamette Valley Pinot', type: 'Oregon Burgundian Style' },
+                        { name: 'Finger Lakes Riesling', type: 'New York White' }
+                    ]
+                },
+                'argentina': {
+                    name: 'Argentina',
+                    flag: '🇦🇷',
+                    description: 'High-altitude vineyards in the Andes foothills produce powerful Malbecs and aromatic Torrontés. The world\'s fifth-largest wine producer.',
+                    regions: [
+                        { name: 'Mendoza', grapes: 'Malbec, Cabernet Sauvignon' },
+                        { name: 'Salta', grapes: 'Torrontés, Malbec' },
+                        { name: 'Patagonia', grapes: 'Pinot Noir, Merlot' },
+                        { name: 'San Juan', grapes: 'Syrah, Bonarda' }
+                    ],
+                    wines: [
+                        { name: 'Catena Zapata Malbec', type: 'Mendoza Icon' },
+                        { name: 'Colomé Torrontés', type: 'Salta Aromatic White' },
+                        { name: 'Bodega Noemia', type: 'Patagonia Malbec' },
+                        { name: 'Achaval Ferrer', type: 'Single Vineyard Malbec' }
+                    ]
+                },
+                'australia': {
+                    name: 'Australia',
+                    flag: '🇦🇺',
+                    description: 'From bold Barossa Shiraz to elegant Clare Valley Rieslings, Australia combines tradition with cutting-edge winemaking technology.',
+                    regions: [
+                        { name: 'Barossa Valley', grapes: 'Shiraz, Grenache' },
+                        { name: 'Margaret River', grapes: 'Cabernet Sauvignon, Chardonnay' },
+                        { name: 'Clare Valley', grapes: 'Riesling, Shiraz' },
+                        { name: 'Tasmania', grapes: 'Pinot Noir, Sparkling' }
+                    ],
+                    wines: [
+                        { name: 'Penfolds Grange', type: 'Barossa Shiraz Icon' },
+                        { name: 'Leeuwin Estate Art Series', type: 'Margaret River Chardonnay' },
+                        { name: 'Grosset Polish Hill', type: 'Clare Valley Riesling' },
+                        { name: 'House of Arras', type: 'Tasmanian Sparkling' }
+                    ]
+                }
+            };
+
+            // Get selected region data
+            const data = regionData[region];
+            if (!data) return;
+
+            // Update the display
+            const regionInfo = document.getElementById('regionInfo');
+            regionInfo.innerHTML = `
+                <div class="region-details">
+                    <h3>${data.flag} ${data.name} - Wine Heritage</h3>
+                    <p>${data.description}</p>
+
+                    <h4 style="margin-top: 1.5rem;">Key Regions:</h4>
+                    <ul class="wine-list">
+                        ${data.regions.map(r => `
+                            <li>
+                                <span class="wine-type">${r.name}</span>
+                                <span class="wine-grape">${r.grapes}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+
+                <div class="region-highlights">
+                    <h4>🌟 Must-Try Wines</h4>
+                    <ul class="wine-list">
+                        ${data.wines.map(w => `
+                            <li>
+                                <span class="wine-type">${w.name}</span>
+                                <span class="wine-grape">${w.type}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+
+                    <div style="margin-top: 2rem;">
+                        <a href="#" class="cta-button" onclick="downloadRegionGuide('${data.name}'); return false;">Download ${data.name} Wine Guide PDF</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Quiz Functions
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        let selectedAnswers = [];
+
+        const quizQuestions = [
+            {
+                question: "What's the ideal serving temperature for a full-bodied red wine?",
+                options: [
+                    { text: "45-50°F (7-10°C)", correct: false },
+                    { text: "50-55°F (10-13°C)", correct: false },
+                    { text: "60-65°F (15-18°C)", correct: true },
+                    { text: "70-75°F (21-24°C)", correct: false }
+                ],
+                explanation: "Full-bodied reds are best served at 60-65°F - cooler than room temperature but warmer than lighter wines."
+            },
+            {
+                question: "Which grape variety is the primary component in Champagne?",
+                options: [
+                    { text: "Sauvignon Blanc", correct: false },
+                    { text: "Chardonnay, Pinot Noir, Pinot Meunier", correct: true },
+                    { text: "Riesling", correct: false },
+                    { text: "Chenin Blanc", correct: false }
+                ],
+                explanation: "Champagne is traditionally made from Chardonnay, Pinot Noir, and Pinot Meunier grapes."
+            },
+            {
+                question: "What does 'tannins' in wine refer to?",
+                options: [
+                    { text: "Sugar content", correct: false },
+                    { text: "Alcohol level", correct: false },
+                    { text: "Compounds that create dryness and structure", correct: true },
+                    { text: "Fruit flavors", correct: false }
+                ],
+                explanation: "Tannins are polyphenolic compounds that create the dry, puckering sensation in red wines."
+            },
+            {
+                question: "Which wine region is famous for Malbec?",
+                options: [
+                    { text: "Bordeaux, France", correct: false },
+                    { text: "Mendoza, Argentina", correct: true },
+                    { text: "Tuscany, Italy", correct: false },
+                    { text: "Rioja, Spain", correct: false }
+                ],
+                explanation: "While Malbec originated in France, Mendoza, Argentina has become its most famous region."
+            },
+            {
+                question: "What is the correct order for wine tasting?",
+                options: [
+                    { text: "Smell, Taste, Look, Finish", correct: false },
+                    { text: "Look, Smell, Taste, Finish", correct: true },
+                    { text: "Taste, Smell, Look, Finish", correct: false },
+                    { text: "Look, Taste, Smell, Finish", correct: false }
+                ],
+                explanation: "The proper order is: Look (color/clarity), Smell (aroma), Taste (flavor), and Finish (aftertaste)."
+            }
+        ];
+
+        function selectAnswer(element) {
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+
+            // Store the selected answer
+            const answerIndex = Array.from(element.parentNode.children).indexOf(element);
+            selectedAnswers[currentQuizQuestion] = answerIndex;
+        }
+
+        function nextQuestion() {
+            // Check if an answer was selected
+            const selectedOption = document.querySelector('.quiz-option.selected');
+            if (!selectedOption) {
+                alert('Please select an answer before continuing.');
+                return;
+            }
+
+            // Check if answer is correct
+            const answerIndex = selectedAnswers[currentQuizQuestion];
+            if (quizQuestions[currentQuizQuestion].options[answerIndex].correct) {
+                quizScore++;
+            }
+
+            // Progress to next question
+            currentQuizQuestion++;
+
+            if (currentQuizQuestion < quizQuestions.length) {
+                // Load next question
+                loadQuizQuestion(currentQuizQuestion);
+            } else {
+                // Show quiz results
+                showQuizResults();
+            }
+        }
+
+        function loadQuizQuestion(questionIndex) {
+            const question = quizQuestions[questionIndex];
+            const quizContainer = document.querySelector('.quiz-question');
+
+            // Update progress dots
+            document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index <= questionIndex) {
+                    dot.classList.add('active');
+                }
+            });
+
+            // Update question content
+            quizContainer.innerHTML = `
+                <h3>Question ${questionIndex + 1} of ${quizQuestions.length}</h3>
+                <h3 style="margin-top: 1rem;">${question.question}</h3>
+                <div class="quiz-options">
+                    ${question.options.map((option, index) => `
+                        <div class="quiz-option" onclick="selectAnswer(this)">
+                            <strong>${String.fromCharCode(65 + index)}.</strong> ${option.text}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            // Update button text for last question
+            const nextBtn = document.querySelector('.quiz-container button');
+            if (questionIndex === quizQuestions.length - 1) {
+                nextBtn.innerHTML = 'See Results →';
+            } else {
+                nextBtn.innerHTML = 'Next Question →';
+            }
+        }
+
+        function showQuizResults() {
+            const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+            let level = '';
+            let recommendation = '';
+
+            if (percentage >= 80) {
+                level = 'Wine Expert';
+                recommendation = 'You have excellent wine knowledge! Consider joining our advanced tasting events.';
+            } else if (percentage >= 60) {
+                level = 'Wine Enthusiast';
+                recommendation = 'Great foundation! Our wine education events would help you reach expert level.';
+            } else if (percentage >= 40) {
+                level = 'Wine Learner';
+                recommendation = 'You\'re on your way! Our beginner-friendly tastings would be perfect for you.';
+            } else {
+                level = 'Wine Novice';
+                recommendation = 'Everyone starts somewhere! Our introduction to wine events are designed just for you.';
+            }
+
+            const quizContainer = document.querySelector('.quiz-container');
+            quizContainer.innerHTML = `
+                <div style="text-align: center;">
+                    <h2 style="color: var(--primary); margin-bottom: 1rem;">Quiz Complete!</h2>
+                    <div style="font-size: 4rem; margin: 2rem 0;">${percentage >= 80 ? '🏆' : percentage >= 60 ? '🥈' : percentage >= 40 ? '🥉' : '🍷'}</div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Your Score: ${quizScore}/${quizQuestions.length}</h3>
+                    <div style="background: var(--secondary); color: white; padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 2rem;">
+                        <strong>${level}</strong>
+                    </div>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">${recommendation}</p>
+
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                        <h4 style="margin-bottom: 1.5rem;">Review Your Answers:</h4>
+                        ${quizQuestions.map((q, i) => `
+                            <div style="text-align: left; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e5e5e5;">
+                                <p style="font-weight: 600; margin-bottom: 0.5rem;">${i + 1}. ${q.question}</p>
+                                <p style="color: ${q.options[selectedAnswers[i]]?.correct ? 'var(--success)' : 'var(--error)'};">
+                                    Your answer: ${q.options[selectedAnswers[i]]?.text || 'Not answered'}
+                                </p>
+                                ${!q.options[selectedAnswers[i]]?.correct ? `
+                                    <p style="color: var(--success); font-size: 0.9rem; margin-top: 0.5rem;">
+                                        Correct answer: ${q.options.find(o => o.correct).text}
+                                    </p>
+                                ` : ''}
+                                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem; font-style: italic;">
+                                    ${q.explanation}
+                                </p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="cta-button" onclick="retakeQuiz()">Retake Quiz</button>
+                        <a href="sommelier-booking-wizard-v2.html" class="cta-button">Book a Wine Event</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function retakeQuiz() {
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            selectedAnswers = [];
+
+            // Rebuild quiz container
+            const container = document.querySelector('.wine-quiz .container');
+            container.innerHTML = `
+                <div class="section-header">
+                    <h2>Test Your Wine Knowledge</h2>
+                    <p>Take our sommelier-designed quiz and get personalized recommendations</p>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="quiz-progress">
+                        ${quizQuestions.map((_, i) => `<span class="progress-dot ${i === 0 ? 'active' : ''}"></span>`).join('')}
+                    </div>
+
+                    <div class="quiz-question"></div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="cta-button" onclick="nextQuestion()">Next Question →</button>
+                    </div>
+                </div>
+            `;
+
+            loadQuizQuestion(0);
+        }
+
+        // Initialize quiz on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuizQuestion(0);
+        });
+
+        // Scroll Functions
+        function scrollToPairing() {
+            document.getElementById('pairing').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToQuiz() {
+            document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToRegions() {
+            document.getElementById('regions').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToDownloads() {
+            document.getElementById('downloads').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Newsletter Form
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing! Check your email for a welcome gift.');
+            e.target.reset();
+        });
+
+        // Search functionality
+        document.querySelector('.search-bar button').addEventListener('click', () => {
+            const query = document.querySelector('.search-bar input').value;
+            console.log('Searching for:', query);
+            // In production, this would perform actual search
+        });
+
+        // Downloadable Resources Functionality
+        function generatePDFContent(type) {
+            const resources = {
+                'tasting-notes': {
+                    filename: 'wine-tasting-notes-template.pdf',
+                    content: `THE SOMMELIER COMPANY
+PROFESSIONAL WINE TASTING NOTES TEMPLATE
+
+DATE: ________________    WINE: ________________    VINTAGE: ________
+PRODUCER: ________________    REGION: ________________
+PRICE: ________    ALCOHOL: ________%    SERVING TEMP: ________
+
+VISUAL EXAMINATION
+Color Intensity: □ Pale  □ Medium  □ Deep
+Color (White): □ Pale Yellow  □ Lemon  □ Gold  □ Amber
+Color (Red): □ Purple  □ Ruby  □ Garnet  □ Brick  □ Brown
+Clarity: □ Clear  □ Hazy  □ Cloudy
+Viscosity: □ Light  □ Medium  □ Heavy
+
+AROMATIC PROFILE
+Intensity: □ Light  □ Medium-minus  □ Medium  □ Medium-plus  □ Pronounced
+
+Primary Aromas (from grape):
+□ Citrus  □ Green Fruit  □ Stone Fruit  □ Tropical  □ Red Fruit  □ Black Fruit
+Notes: ________________________________________________
+
+Secondary Aromas (from winemaking):
+□ Yeast  □ Malolactic  □ Oak  □ Lees
+Notes: ________________________________________________
+
+Tertiary Aromas (from aging):
+□ Oxidation  □ Petrol  □ Honey  □ Dried Fruit  □ Mushroom  □ Leather
+Notes: ________________________________________________
+
+PALATE ASSESSMENT
+Sweetness: □ Bone Dry  □ Dry  □ Off-Dry  □ Medium-Dry  □ Medium-Sweet  □ Sweet
+Acidity: □ Low  □ Medium-minus  □ Medium  □ Medium-plus  □ High
+Tannins: □ Low  □ Medium-minus  □ Medium  □ Medium-plus  □ High
+Alcohol: □ Low (<11%)  □ Medium (11-13.5%)  □ High (13.5-15%)  □ Very High (>15%)
+Body: □ Light  □ Medium-minus  □ Medium  □ Medium-plus  □ Full
+
+Flavor Profile: ________________________________________________
+____________________________________________________________
+
+Balance: □ Unbalanced  □ Acceptable  □ Good  □ Very Good  □ Outstanding
+Finish: □ Short  □ Medium-minus  □ Medium  □ Medium-plus  □ Long
+
+OVERALL ASSESSMENT
+Quality Level: □ Poor  □ Acceptable  □ Good  □ Very Good  □ Outstanding
+
+WASI Score: _____ / 100
+
+Food Pairing Suggestions:
+____________________________________________________________
+____________________________________________________________
+
+Additional Notes:
+____________________________________________________________
+____________________________________________________________
+____________________________________________________________
+
+© 2024 The Sommelier Company | www.sommeliercompany.com`
+                },
+                'pairing-chart': {
+                    filename: 'wine-food-pairing-guide.pdf',
+                    content: `THE SOMMELIER COMPANY
+MASTER WINE & FOOD PAIRING CHART
+
+WINE PAIRING PRINCIPLES
+1. Match weight with weight (light wines with light foods)
+2. Consider sauce over protein
+3. Acid cuts through fat
+4. Tannins need protein
+5. Sweet wines balance spicy foods
+
+QUICK REFERENCE GUIDE
+
+SPARKLING WINES (Champagne, Cava, Prosecco)
+Best With: Oysters, Caviar, Fried Foods, Salty Snacks, Soft Cheeses
+Why: Bubbles cleanse palate, high acidity cuts through fat
+
+LIGHT WHITE WINES (Pinot Grigio, Albariño, Vermentino)
+Best With: Salads, Light Seafood, Sushi, Vegetables, Goat Cheese
+Why: Delicate flavors won't overpower light dishes
+
+AROMATIC WHITES (Riesling, Gewürztraminer, Torrontés)
+Best With: Asian Cuisine, Spicy Foods, Fruit-based Dishes, Blue Cheese
+Why: Slight sweetness balances heat, aromatics complement spices
+
+FULL-BODIED WHITES (Oaked Chardonnay, Viognier, White Rhône)
+Best With: Lobster, Creamy Sauces, Roasted Chicken, Pork, Rich Fish
+Why: Weight and texture match rich preparations
+
+ROSÉ WINES
+Best With: Mediterranean Cuisine, Charcuterie, Grilled Vegetables, Light BBQ
+Why: Versatile middle ground between white and red
+
+LIGHT REDS (Pinot Noir, Beaujolais, Valpolicella)
+Best With: Salmon, Tuna, Duck, Mushrooms, Earthy Vegetables
+Why: Low tannins work with fish, earthy notes complement umami
+
+MEDIUM REDS (Merlot, Sangiovese, Tempranillo)
+Best With: Pizza, Pasta with Tomato, Roasted Vegetables, Medium Cheeses
+Why: Moderate tannins and acidity match tomato-based dishes
+
+FULL-BODIED REDS (Cabernet Sauvignon, Syrah, Malbec)
+Best With: Steak, Lamb, Hearty Stews, Aged Cheeses, Dark Chocolate
+Why: Bold tannins need protein and fat
+
+DESSERT WINES (Port, Sauternes, Ice Wine)
+Best With: Blue Cheese, Foie Gras, Fruit Tarts, Crème Brûlée
+Why: Sweetness matches or contrasts with rich/sweet foods
+
+SPECIFIC PAIRINGS BY CUISINE
+
+ITALIAN
+- Chianti + Tomato-based Pasta
+- Barbera + Pizza
+- Nebbiolo + Truffle Dishes
+- Verdicchio + Seafood Pasta
+
+FRENCH
+- Burgundy + Coq au Vin
+- Bordeaux + Lamb
+- Sancerre + Goat Cheese
+- Rhône + Cassoulet
+
+ASIAN
+- Riesling + Thai Curry
+- Gewürztraminer + Chinese Takeout
+- Grüner Veltliner + Sushi
+- Rosé + Vietnamese
+
+AMERICAN BBQ
+- Zinfandel + Ribs
+- Malbec + Brisket
+- Syrah + Pulled Pork
+- Riesling + Spicy BBQ Sauce
+
+CHALLENGING FOODS & SOLUTIONS
+
+Artichokes: Grüner Veltliner, Vermentino
+Asparagus: Sauvignon Blanc, Albariño
+Brussels Sprouts: Riesling, Gewürztraminer
+Eggs: Champagne, Chablis
+Salad with Vinaigrette: Sauvignon Blanc, Verdicchio
+Chocolate: Port, Banyuls, Amarone
+
+© 2024 The Sommelier Company | Download more resources at www.sommeliercompany.com`
+                },
+                'party-guide': {
+                    filename: 'wine-party-planning-guide.pdf',
+                    content: `THE SOMMELIER COMPANY
+WINE PARTY PLANNING CALCULATOR & GUIDE
+
+QUANTITY CALCULATOR
+
+STANDARD SERVING
+- 1 Bottle (750ml) = 5 glasses
+- 1 Glass = 5 oz pour
+- Tasting Pour = 2-3 oz
+
+PARTY FORMULA
+Glasses per guest:
+- Cocktail Hour (1 hour): 2 glasses
+- Dinner Party: 3 glasses (1 white, 2 red)
+- Extended Party: 1 glass per hour after first 2 hours
+
+BOTTLE CALCULATOR BY EVENT TYPE
+
+COCKTAIL PARTY (2 hours)
+10 guests = 8 bottles
+20 guests = 16 bottles
+30 guests = 24 bottles
+50 guests = 40 bottles
+
+DINNER PARTY (3-4 hours)
+8 guests = 8 bottles (3 white, 5 red)
+12 guests = 12 bottles (5 white, 7 red)
+16 guests = 16 bottles (6 white, 10 red)
+20 guests = 20 bottles (8 white, 12 red)
+
+WINE TASTING PARTY
+6-8 guests = 1 bottle per wine (plan 4-6 wines)
+10-12 guests = 2 bottles per wine
+15-20 guests = 3 bottles per wine
+
+SELECTION GUIDELINES
+
+VARIETY RATIO
+- Red to White: 60/40 in winter, 40/60 in summer
+- Always include: 1 sparkling, 2 whites, 2 reds minimum
+- Safe Bets: Prosecco, Sauvignon Blanc, Chardonnay, Pinot Noir, Cabernet
+
+BUDGET ALLOCATION
+Total Budget ÷ Number of Bottles = Per Bottle Budget
+- Spend more on first impression wines (arrival/cocktail hour)
+- Mix price points throughout the evening
+- Hidden Gems: Spanish wines, Portuguese wines, Washington State
+
+WINE STYLES BY COURSE
+
+ARRIVAL/COCKTAIL HOUR
+Sparkling: Cava, Prosecco, Crémant
+Light White: Albariño, Vermentino, Pinot Grigio
+
+APPETIZERS
+Rosé, Sauvignon Blanc, Light Reds (chilled)
+
+FIRST COURSE
+Medium Whites: Chardonnay, Viognier
+Light Reds: Pinot Noir, Beaujolais
+
+MAIN COURSE
+Full Whites: Aged Chardonnay, White Rhône
+Medium-Full Reds: Merlot, Syrah, Cabernet
+
+CHEESE COURSE
+Sweet Wines: Port, Sauternes
+Big Reds: Amarone, Aged Rioja
+
+DESSERT
+Moscato, Ice Wine, Tawny Port
+
+SERVING TIPS
+
+TEMPERATURE
+Sparkling: 38-45°F (Refrigerate 3 hours)
+Light Whites: 45-50°F (Refrigerate 2 hours)
+Full Whites: 50-55°F (Refrigerate 1 hour)
+Light Reds: 55-60°F (Refrigerate 30 min)
+Full Reds: 60-65°F (Room temp or cool 15 min)
+
+OPENING ORDER
+1. Sparkling first (most delicate)
+2. White before red
+3. Light before heavy
+4. Dry before sweet
+5. Young before old
+
+GLASSWARE
+Minimum: 1.5 glasses per person
+Ideal: 2-3 glasses per person
+Pro Tip: Rent glassware for parties over 12 people
+
+EXTRAS TO HAVE
+- Wine opener (1 per 20 guests)
+- Decanters for red wines
+- Ice buckets (1 per 10 guests)
+- Water pitchers
+- Dump buckets for tastings
+- Cocktail napkins
+- Wine glass markers
+
+NON-WINE NEEDS
+- Still and sparkling water
+- Non-alcoholic options
+- Bread/crackers for palate cleansing
+- Light snacks between wines
+
+© 2024 The Sommelier Company | Book your sommelier at www.sommeliercompany.com`
+                },
+                'storage-guide': {
+                    filename: 'wine-storage-cellar-guide.pdf',
+                    content: `THE SOMMELIER COMPANY
+COMPLETE WINE STORAGE & CELLAR GUIDE
+
+IDEAL STORAGE CONDITIONS
+
+TEMPERATURE
+Ideal: 55°F (13°C)
+Acceptable Range: 45-65°F (7-18°C)
+Critical: Avoid fluctuations > 5°F daily
+Never: Above 70°F or below 40°F
+
+HUMIDITY
+Ideal: 70% relative humidity
+Acceptable: 50-80%
+Too Dry: Corks shrink, oxidation risk
+Too Humid: Label damage, mold growth
+
+LIGHT
+Best: Complete darkness
+Avoid: Direct sunlight, fluorescent lights
+OK: LED lights, incandescent (limited exposure)
+
+VIBRATION
+Minimize all vibration
+Avoid: Near washing machines, high traffic areas
+Best: Dedicated wine fridge or cellar
+
+POSITION
+Cork Sealed: Store horizontally (keeps cork moist)
+Screw Cap: Can store vertically
+Sparkling: Horizontal or vertical OK
+
+STORAGE SOLUTIONS BY BUDGET
+
+BUDGET ($0-100)
+- Cool, dark closet
+- Under stairs
+- Interior bedroom closet
+- Styrofoam shipping containers
+- Wine rack in coolest room
+
+MID-RANGE ($100-1000)
+- 12-50 bottle wine fridge
+- Converted mini-fridge
+- Wine credenza
+- Modular wine racks
+- Passive wine cellar kit
+
+PREMIUM ($1000+)
+- Dual-zone wine fridge (50+ bottles)
+- Custom closet conversion
+- Professional cellar installation
+- Underground cellar
+- Climate-controlled room
+
+AGING POTENTIAL BY WINE TYPE
+
+WINES THAT IMPROVE WITH AGE
+
+REDS (5-25+ years)
+- Bordeaux: 10-30 years
+- Burgundy: 8-20 years
+- Barolo: 10-25 years
+- Rioja Gran Reserva: 10-20 years
+- Vintage Port: 20-50 years
+- Premium Cabernet: 10-25 years
+
+WHITES (2-10+ years)
+- White Burgundy: 5-15 years
+- German Riesling: 5-30 years
+- Chenin Blanc: 5-20 years
+- White Bordeaux: 5-15 years
+- Vintage Champagne: 10-20 years
+
+DRINK YOUNG (Within 1-3 years)
+- Most Rosé
+- Beaujolais Nouveau
+- Vinho Verde
+- Most Prosecco
+- Inexpensive whites
+- Most wines under $20
+
+CELLAR ORGANIZATION
+
+TRACKING SYSTEM
+- Spreadsheet or cellar app
+- Record: Producer, Vintage, Purchase Date, Price, Drink Window
+- Photo inventory
+- Neck tags with drink dates
+
+ORGANIZATION METHODS
+By Region: French, Italian, Spanish, etc.
+By Color: Whites, Rosés, Reds
+By Drinking Window: Now, 2025, 2030+
+By Occasion: Daily, Special, Investment
+
+ZONES
+Ready to Drink: Eye level, easy access
+Medium Term: Middle shelves
+Long Term: Bottom shelves, back areas
+Everyday: Near front
+Special Bottles: Secure area
+
+COMMON STORAGE MISTAKES
+
+1. Kitchen Storage (too warm, variable temp)
+2. On Top of Fridge (heat rises, vibration)
+3. Next to Window (light damage)
+4. Garage (temperature extremes)
+5. Standing Long-term (cork dries)
+6. Near Heat Sources (radiators, vents)
+7. Original Boxes Long-term (check regularly)
+
+WHEN WINE GOES BAD
+
+SIGNS OF DAMAGE
+Visual: Leaked cork, pushed cork, ullage (low fill)
+Smell: Vinegar, wet cardboard, sherry-like
+Taste: Flat, oxidized, sour
+
+CORK ISSUES
+Dry Cork: Crumbles when opening
+Pushed Cork: Heat damage
+Seepage: Temperature fluctuation
+TCA (Cork Taint): Musty smell
+
+TROUBLESHOOTING
+
+Too Warm: Move immediately, drink sooner
+Too Cold: Warm gradually, check for crystals
+Cork Damage: Filter when pouring
+Sediment: Decant carefully
+Label Damage: Photograph for records
+
+CELLAR STARTER SELECTIONS
+
+INVESTMENT WORTHY (Buy and Hold)
+- Bordeaux First Growths
+- Burgundy Grand Crus
+- Vintage Champagne
+- Barolo from top producers
+- Napa Cult Cabernets
+
+DRINK WHILE WAITING
+- Côtes du Rhône
+- Spanish Garnacha
+- Portuguese reds
+- Washington Merlot
+- Loire Valley wines
+
+© 2024 The Sommelier Company | Professional consultations at www.sommeliercompany.com`
+                },
+                'varietal-guide': {
+                    filename: 'grape-varietal-guide.pdf',
+                    content: `THE SOMMELIER COMPANY
+COMPLETE GRAPE VARIETAL GUIDE
+
+MAJOR RED VARIETIES
+
+CABERNET SAUVIGNON
+Origin: Bordeaux, France
+Profile: Black currant, cedar, tobacco, green bell pepper
+Tannins: High
+Regions: Bordeaux, Napa, Chile, Australia
+Food: Steak, lamb, aged cheese
+
+MERLOT
+Origin: Bordeaux, France
+Profile: Plum, chocolate, herbs, black cherry
+Tannins: Medium
+Regions: Bordeaux, California, Chile, Italy
+Food: Roasted chicken, pork, mushrooms
+
+PINOT NOIR
+Origin: Burgundy, France
+Profile: Cherry, raspberry, earth, mushroom
+Tannins: Low-Medium
+Regions: Burgundy, Oregon, New Zealand, California
+Food: Salmon, duck, mushrooms, soft cheese
+
+SYRAH/SHIRAZ
+Origin: Rhône, France
+Profile: Blackberry, pepper, smoke, bacon
+Tannins: Medium-High
+Regions: Rhône, Australia, California, South Africa
+Food: BBQ, lamb, game meats
+
+TEMPRANILLO
+Origin: Spain
+Profile: Cherry, leather, tobacco, vanilla
+Tannins: Medium
+Regions: Rioja, Ribera del Duero, Portugal
+Food: Tapas, cured meats, paella
+
+SANGIOVESE
+Origin: Tuscany, Italy
+Profile: Cherry, tomato, herbs, earth
+Tannins: High
+Regions: Chianti, Brunello, Vino Nobile
+Food: Tomato sauces, pizza, Italian cuisine
+
+MALBEC
+Origin: Cahors, France
+Profile: Blackberry, plum, chocolate, violet
+Tannins: Medium
+Regions: Argentina, Cahors, California
+Food: Beef, BBQ, strong cheeses
+
+ZINFANDEL
+Origin: Croatia
+Profile: Jam, pepper, tobacco, high alcohol
+Tannins: Medium
+Regions: California, Puglia (Primitivo)
+Food: BBQ, burgers, spicy foods
+
+MAJOR WHITE VARIETIES
+
+CHARDONNAY
+Origin: Burgundy, France
+Profile: Apple, butter, vanilla, tropical fruit
+Body: Medium-Full
+Regions: Burgundy, California, Australia, Chile
+Food: Lobster, creamy sauces, roasted chicken
+
+SAUVIGNON BLANC
+Origin: Loire/Bordeaux, France
+Profile: Grapefruit, grass, herbs, gooseberry
+Body: Light-Medium
+Regions: Loire, New Zealand, California, Chile
+Food: Salads, goat cheese, seafood, Asian
+
+RIESLING
+Origin: Germany
+Profile: Peach, apricot, petrol, honey
+Body: Light-Medium
+Regions: Germany, Alsace, Australia, New York
+Food: Spicy food, Asian cuisine, desserts
+
+PINOT GRIGIO/GRIS
+Origin: France/Italy
+Profile: Pear, apple, citrus, almond
+Body: Light-Medium
+Regions: Northern Italy, Alsace, Oregon
+Food: Light seafood, salads, aperitif
+
+CHENIN BLANC
+Origin: Loire, France
+Profile: Apple, honey, chamomile, quince
+Body: Medium
+Regions: Loire, South Africa, California
+Food: Versatile, Asian food, cheese
+
+ALBARIÑO
+Origin: Spain/Portugal
+Profile: Peach, citrus, floral, mineral
+Body: Light-Medium
+Regions: Rías Baixas, Portugal (Alvarinho)
+Food: Seafood, shellfish, ceviche
+
+GRÜNER VELTLINER
+Origin: Austria
+Profile: Green apple, white pepper, citrus
+Body: Light-Medium
+Regions: Austria, Czech Republic
+Food: Vegetables, Asian, schnitzel
+
+GEWÜRZTRAMINER
+Origin: Germany/Alsace
+Profile: Lychee, rose, ginger, tropical
+Body: Medium-Full
+Regions: Alsace, Germany, Alto Adige
+Food: Asian food, strong cheese, spicy
+
+IMPORTANT BLENDING GRAPES
+
+REDS
+Cabernet Franc: Herbs, pencil lead, raspberry
+Petit Verdot: Violet, graphite, structure
+Carmenère: Green pepper, chocolate, herbs
+Mourvèdre: Game, earth, blackberry
+Grenache: Strawberry, white pepper, high alcohol
+Cinsault: Light, perfumed, strawberry
+
+WHITES
+Sémillon: Waxy, honey, full body
+Viognier: Peach, floral, full body
+Marsanne: Almond, pear, waxy
+Roussanne: Herbal tea, pear, honey
+Verdejo: Citrus, herbs, fennel
+Vermentino: Citrus, almond, sea spray
+
+EMERGING VARIETIES TO WATCH
+
+REDS
+Tannat (Uruguay): Powerful tannins
+Mencía (Spain): Floral, mineral
+Blaufränkisch (Austria): Spicy, elegant
+Aglianico (Italy): Tar, leather, powerful
+Carménère (Chile): Green, chocolatey
+
+WHITES
+Fiano (Italy): Nuts, honey, texture
+Godello (Spain): Mineral, citrus
+Assyrtiko (Greece): Citrus, volcanic
+Grillo (Sicily): Citrus, herbs
+Furmint (Hungary): Apple, smoke
+
+UNDERSTANDING WINE LABELS
+
+OLD WORLD (Place-based)
+Burgundy = Pinot Noir or Chardonnay
+Chianti = Sangiovese
+Rioja = Tempranillo
+Châteauneuf-du-Pape = Grenache blend
+
+NEW WORLD (Grape-based)
+Labels typically show grape variety
+Minimum % varies by country
+Proprietary names for blends
+
+© 2024 The Sommelier Company | Learn more at www.sommeliercompany.com`
+                },
+                'seasonal-calendar': {
+                    filename: 'seasonal-wine-calendar.pdf',
+                    content: `THE SOMMELIER COMPANY
+SEASONAL WINE CALENDAR & HOLIDAY GUIDE
+
+SPRING (March - May)
+
+SEASON PROFILE
+Fresh, light, aromatic wines matching spring produce
+
+MARCH - Spring Awakening
+Wines: Grüner Veltliner, Verdicchio, Light Pinot Noir
+Occasions: St. Patrick's Day, First BBQs
+Feature: Loire Valley wines
+
+APRIL - Easter & Renewal
+Wines: Rosé release, Beaujolais, Riesling
+Occasions: Easter, Passover, Spring parties
+Feature: Provence Rosé
+
+MAY - Outdoor Season
+Wines: Albariño, Vinho Verde, Txakoli
+Occasions: Mother's Day, Memorial Day
+Feature: Spanish whites
+
+SPRING PAIRINGS
+- Asparagus → Sauvignon Blanc
+- Spring Lamb → Light Pinot Noir
+- Strawberries → Moscato
+- Fresh Peas → Vermentino
+
+SUMMER (June - August)
+
+JUNE - Peak Freshness
+Wines: Sancerre, Chablis, Provence Rosé
+Occasions: Father's Day, Graduation
+Feature: All about Rosé
+
+JULY - High Summer
+Wines: Prosecco, Portuguese whites, Chilled reds
+Occasions: July 4th, BBQ season
+Feature: Sparkling wines
+
+AUGUST - Late Summer
+Wines: Vermentino, Fiano, Lambrusco
+Occasions: Beach parties, Picnics
+Feature: Italian summers
+
+SUMMER ESSENTIALS
+Pool Wines: Rosé, Albariño, Prosecco
+BBQ Wines: Zinfandel, Malbec, Syrah
+Beach Wines: Vinho Verde, Txakoli
+Picnic: Beaujolais (chilled), Rosé
+
+FALL (September - November)
+
+SEPTEMBER - Harvest Season
+Wines: Chianti, Tempranillo, Chardonnay
+Occasions: Labor Day, Back to school
+Feature: Harvest wines
+
+OCTOBER - Autumn Colors
+Wines: Pinot Noir, Nebbiolo, Aged Riesling
+Occasions: Halloween, Oktoberfest
+Feature: German wines
+
+NOVEMBER - Thanksgiving
+Wines: Beaujolais Nouveau, Gewürztraminer
+Occasions: Thanksgiving, Friendsgiving
+Feature: Food-friendly wines
+
+THANKSGIVING LINEUP
+Aperitif: Champagne or Sherry
+White: Riesling or Gewürztraminer
+Red: Pinot Noir or Beaujolais
+Dessert: Late Harvest Riesling
+
+WINTER (December - February)
+
+DECEMBER - Celebration
+Wines: Champagne, Burgundy, Port
+Occasions: Holidays, New Year's Eve
+Feature: Celebration wines
+
+JANUARY - Comfort Season
+Wines: Bordeaux, Rhône, Rioja
+Occasions: New Year, Cozy dinners
+Feature: Age-worthy wines
+
+FEBRUARY - Romance
+Wines: Champagne Rosé, Amarone, Sauternes
+Occasions: Valentine's Day, Presidents Day
+Feature: Romantic wines
+
+WINTER WARMERS
+Stews: Côtes du Rhône, Malbec
+Roasts: Cabernet, Barolo
+Cheese: Port, Amarone
+Chocolate: Banyuls, Maury
+
+HOLIDAY SPECIFIC GUIDES
+
+NEW YEAR'S EVE
+Midnight: Champagne or Cava
+Party: Prosecco, Crémant
+Dinner: Vintage Champagne
+
+VALENTINE'S DAY
+Sparkling: Rosé Champagne
+Still: Pinot Noir, Amarone
+Dessert: Ruby Port with chocolate
+
+EASTER
+Brunch: Prosecco, Riesling
+Ham: German Riesling, Beaujolais
+Lamb: Bordeaux, Rioja
+
+JULY 4TH
+Burgers: Zinfandel, Malbec
+Hot Dogs: Beaujolais, Rosé
+Ribs: Syrah, Petite Sirah
+
+THANKSGIVING
+Turkey: Pinot Noir, Beaujolais
+Sides: Riesling, Gewürztraminer
+Pie: Moscato, Ice Wine
+
+CHRISTMAS
+Traditional: Burgundy, Champagne
+Italian: Barolo, Amarone
+Cookies: Moscato, Vin Santo
+
+WINES BY TEMPERATURE
+
+HOT WEATHER (80°F+)
+- Vinho Verde
+- Txakoli
+- Provence Rosé
+- Albariño
+- Vermentino
+
+MILD WEATHER (60-80°F)
+- Sauvignon Blanc
+- Light Pinot Noir
+- Most Rosé
+- Beaujolais
+
+COLD WEATHER (<60°F)
+- Cabernet Sauvignon
+- Syrah
+- Malbec
+- Amarone
+- Port
+
+MONTHLY WINE CLUB THEMES
+
+January: Resolution Wines (Organic/Bio)
+February: Love & Chocolate
+March: Spring Whites
+April: Easter & Passover
+May: Rosé All Day
+June: Summer Kickoff
+July: American Wines
+August: Mediterranean
+September: Harvest Selections
+October: Spooky Good Wines
+November: Gratitude Pairings
+December: Celebration Bubbles
+
+SEASONAL BUYING TIPS
+
+Best Sales:
+- January: Post-holiday clearance
+- September: Rosé closeouts
+- November: Pre-Thanksgiving
+
+Best Releases:
+- April-May: Rosé
+- November: Beaujolais Nouveau
+- September: New vintage reds
+
+© 2024 The Sommelier Company | Plan your wine year at www.sommeliercompany.com`
+                }
+            };
+
+            return resources[type] || resources['tasting-notes'];
+        }
+
+        function downloadResource(type) {
+            const resource = generatePDFContent(type);
+
+            // Create new jsPDF instance
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Split content into lines
+            const lines = resource.content.split('\n');
+            let yPosition = 20;
+            const lineHeight = 7;
+            const pageHeight = 280;
+            const marginLeft = 15;
+            const maxWidth = 180;
+
+            // Add content to PDF
+            lines.forEach((line) => {
+                if (yPosition > pageHeight) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+
+                // Handle different text styles
+                if (line.startsWith('THE SOMMELIER COMPANY')) {
+                    doc.setFontSize(16);
+                    doc.setFont(undefined, 'bold');
+                } else if (line.match(/^[A-Z][A-Z\s]+$/)) {
+                    doc.setFontSize(14);
+                    doc.setFont(undefined, 'bold');
+                } else if (line.startsWith('©')) {
+                    doc.setFontSize(8);
+                    doc.setFont(undefined, 'italic');
+                } else {
+                    doc.setFontSize(10);
+                    doc.setFont(undefined, 'normal');
+                }
+
+                // Wrap long lines
+                const wrappedText = doc.splitTextToSize(line, maxWidth);
+                wrappedText.forEach((textLine) => {
+                    if (yPosition > pageHeight) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                    doc.text(textLine, marginLeft, yPosition);
+                    yPosition += lineHeight;
+                });
+            });
+
+            // Save the PDF
+            doc.save(resource.filename);
+
+            // Show confirmation
+            alert(`Downloading ${resource.filename}! Check your downloads folder.`);
+        }
+
+        // Update download links
+        document.querySelectorAll('.download-btn').forEach((btn, index) => {
+            const types = ['tasting-notes', 'pairing-chart', 'party-guide', 'storage-guide', 'varietal-guide', 'seasonal-calendar'];
+            btn.onclick = (e) => {
+                e.preventDefault();
+                downloadResource(types[index]);
+            };
+        });
+
+        // Update region PDF downloads
+        function downloadRegionGuide(regionName) {
+            const content = `THE SOMMELIER COMPANY
+${regionName.toUpperCase()} WINE GUIDE
+
+Comprehensive guide to ${regionName} wines including:
+- Major wine regions and appellations
+- Key grape varieties
+- Notable producers
+- Vintage guides
+- Food pairing suggestions
+- Travel recommendations
+
+For the full guide, visit www.sommeliercompany.com/regions/${regionName.toLowerCase()}`;
+
+            // Create new jsPDF instance
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Split content into lines
+            const lines = content.split('\n');
+            let yPosition = 20;
+            const lineHeight = 7;
+            const marginLeft = 15;
+
+            // Add content to PDF
+            lines.forEach((line, index) => {
+                // Style the header
+                if (index === 0) {
+                    doc.setFontSize(16);
+                    doc.setFont(undefined, 'bold');
+                } else if (index === 1) {
+                    doc.setFontSize(14);
+                    doc.setFont(undefined, 'bold');
+                } else {
+                    doc.setFontSize(11);
+                    doc.setFont(undefined, 'normal');
+                }
+
+                doc.text(line, marginLeft, yPosition);
+                yPosition += lineHeight;
+            });
+
+            // Save the PDF
+            doc.save(`${regionName.toLowerCase()}-wine-guide.pdf`);
+
+            alert(`Downloading ${regionName} Wine Guide!`);
+        }
+    </script>
+
+    <!-- Sticky Bottom CTA Bar -->
+    <div class="sticky-cta" id="stickyCTA">
+        <span class="download-counter">🔥 127 downloads today</span>
+        <span style="font-size: 1.1rem; font-weight: 600;">Ready to become a wine expert?</span>
+        <a href="../sommelier-company-mvp.html#book" style="background: white; color: var(--primary); padding: 0.75rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 700;">Book a Private Sommelier →</a>
+    </div>
+
+    <!-- Exit Intent Popup for Education Page -->
+    <script>
+        // Analytics tracking
+        function trackEvent(category, action, label, value) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label,
+                    'value': value
+                });
+            }
+            console.log('Event tracked:', {category, action, label, value});
+        }
+
+        // Track page view
+        trackEvent('Page', 'View', 'Wine Education Hub');
+
+        // Track download clicks
+        document.querySelectorAll('[onclick*="downloadGuide"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackEvent('Download', 'PDF Guide', btn.textContent);
+
+                // Update download counter
+                const counter = document.querySelector('.download-counter');
+                if (counter) {
+                    const currentCount = parseInt(counter.textContent.match(/\d+/)[0]);
+                    counter.textContent = `🔥 ${currentCount + 1} downloads today`;
+                }
+            });
+        });
+
+        // Scroll-based CTA visibility
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const stickyCTA = document.getElementById('stickyCTA');
+
+            if (scrollTop > 500) {
+                // Show CTA after scrolling 500px
+                stickyCTA.classList.remove('hidden');
+            }
+
+            // Track scroll depth
+            const scrollPercent = (scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercent > 25 && !window.tracked25) {
+                trackEvent('Engagement', 'Scroll Depth', '25%');
+                window.tracked25 = true;
+            }
+            if (scrollPercent > 50 && !window.tracked50) {
+                trackEvent('Engagement', 'Scroll Depth', '50%');
+                window.tracked50 = true;
+            }
+            if (scrollPercent > 75 && !window.tracked75) {
+                trackEvent('Engagement', 'Scroll Depth', '75%');
+                window.tracked75 = true;
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        // Exit intent for education page
+        let exitShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitShown && !sessionStorage.getItem('eduExitShown')) {
+                exitShown = true;
+                sessionStorage.setItem('eduExitShown', 'true');
+
+                const popup = document.createElement('div');
+                popup.innerHTML = `
+                    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+                        <div style="background: white; padding: 3rem; border-radius: 20px; max-width: 500px; text-align: center; position: relative;">
+                            <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: #999;">×</button>
+                            <h2 style="color: #2c1810; margin-bottom: 1rem;">Want Personalized Wine Education?</h2>
+                            <p style="font-size: 1.2rem; color: #6b5d54; margin-bottom: 1.5rem;">Book a private sommelier for your next event and learn while you taste!</p>
+                            <div style="font-size: 2rem; color: #d4af37; font-weight: 700; margin: 1rem 0;">Save 15% Today</div>
+                            <a href="../sommelier-company-mvp.html#book" style="display: inline-block; background: #722f37; color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600;">Book Your Sommelier →</a>
+                            <p style="font-size: 0.9rem; color: #6b5d54; margin-top: 1rem;">Limited December availability</p>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(popup);
+                trackEvent('Popup', 'Exit Intent Education', 'Shown');
+            }
+        });
+
+        // Track tool usage
+        document.querySelectorAll('.food-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                trackEvent('Tool', 'Wine Pairing', tag.textContent);
+            });
+        });
+
+        // Track article reads
+        document.querySelectorAll('.read-more').forEach(link => {
+            link.addEventListener('click', () => {
+                trackEvent('Content', 'Article Read', link.closest('.article-card').querySelector('h3').textContent);
+            });
+        });
+
+        // Simulate live download counter updates
+        setInterval(() => {
+            const counter = document.querySelector('.download-counter');
+            if (counter && Math.random() > 0.7) {
+                const currentCount = parseInt(counter.textContent.match(/\d+/)[0]);
+                counter.textContent = `🔥 ${currentCount + 1} downloads today`;
+            }
+        }, 30000); // Update every 30 seconds randomly
+    </script>
+</body>
+</html>

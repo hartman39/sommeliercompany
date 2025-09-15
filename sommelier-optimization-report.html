@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sommelier Company - Optimization Report & Enhanced Landing Page</title>
+    <meta name="description" content="Book certified sommeliers for wine tastings in NYC, SF, LA, Chicago. Corporate events, weddings, private parties. Instant quotes. 500+ 5-star reviews.">
+
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="keywords" content="wine tasting near me, private sommelier NYC, corporate wine events San Francisco, wine tasting party Los Angeles, hire sommelier Chicago, virtual wine tasting, wine expert for wedding, team building wine events">
+    <meta property="og:title" content="Book Expert Sommeliers - Wine Tastings & Events | The Sommelier Company">
+    <meta property="og:description" content="⭐ 4.9/5 Rating • 500+ Events • Available in 50+ Cities • Instant Quotes">
+    <meta property="og:image" content="https://www.sommeliercompany.com/images/wine-event-hero.jpg">
+    <meta property="og:url" content="https://www.sommeliercompany.com">
+    <meta property="og:type" content="website">
+
+    <!-- Enhanced Schema Markup for Better SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "The Sommelier Company",
+        "image": "https://www.sommeliercompany.com/logo.png",
+        "url": "https://www.sommeliercompany.com",
+        "telephone": "415-289-9760",
+        "priceRange": "$$$",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 37.7749,
+            "longitude": -122.4194
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "527"
+        },
+        "review": [{
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Jennifer Davis"
+            },
+            "reviewBody": "The sommelier was incredibly knowledgeable and made our corporate event truly memorable."
+        }],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Wine Event Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Corporate Wine Tasting",
+                        "description": "Professional sommelier-led wine tastings for corporate events"
+                    },
+                    "price": "150.00",
+                    "priceCurrency": "USD"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Private Wine Tasting",
+                        "description": "Exclusive in-home wine experiences"
+                    },
+                    "price": "125.00",
+                    "priceCurrency": "USD"
+                }
+            ]
+        },
+        "potentialAction": {
+            "@type": "ReserveAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.sommeliercompany.com/book",
+                "actionPlatform": [
+                    "http://schema.org/DesktopWebPlatform",
+                    "http://schema.org/MobileWebPlatform"
+                ]
+            },
+            "result": {
+                "@type": "Reservation",
+                "name": "Wine Event Booking"
+            }
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema for Common Questions -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "How much does a private sommelier cost?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our sommelier services start at $125 per person for private events and $150 per person for corporate events. Virtual tastings start at $95 per person. Final pricing depends on group size, wine selections, and location."
+            }
+        }, {
+            "@type": "Question",
+            "name": "What cities do you serve?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We provide sommelier services in all major US cities including New York, Los Angeles, San Francisco, Chicago, Boston, Miami, Seattle, Austin, and 40+ more cities nationwide."
+            }
+        }, {
+            "@type": "Question",
+            "name": "What's included in a wine tasting event?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our wine tasting events include: a certified sommelier for 2 hours, 5-6 premium wines, professional glassware, educational materials, and complete setup/cleanup. Food pairings and extended duration available."
+            }
+        }]
+    }
+    </script>
+
+    <!-- Google Analytics 4 Setup -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+
+        // Enhanced Conversion Tracking
+        gtag('event', 'conversion', {
+            'send_to': 'GA_MEASUREMENT_ID/conversion',
+            'value': 1.0,
+            'currency': 'USD'
+        });
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #722f37;
+            --primary-dark: #5a242a;
+            --secondary: #d4af37;
+            --text-dark: #2c1810;
+            --text-light: #6b5d54;
+            --bg-light: #faf8f5;
+            --bg-white: #ffffff;
+            --success: #52a373;
+            --accent: #c9302c;
+            --urgency: #ff6b35;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Sticky Header with CTA */
+        .sticky-header {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .urgency-text {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Hero with Video Background Effect */
+        .hero-enhanced {
+            background: linear-gradient(rgba(114, 47, 55, 0.9), rgba(114, 47, 55, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23722f37" width="1920" height="1080"/></svg>');
+            padding: 8rem 5% 4rem;
+            color: white;
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-enhanced::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent, rgba(212, 175, 55, 0.1));
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero-enhanced h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.7s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .trust-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        /* Instant Booking Widget - Enhanced */
+        .booking-widget-enhanced {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            max-width: 900px;
+            margin: -3rem auto 4rem;
+            position: relative;
+            z-index: 10;
+            border: 3px solid var(--secondary);
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .widget-header h2 {
+            color: var(--text-dark);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-badge {
+            display: inline-block;
+            background: var(--urgency);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            background: var(--bg-light);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .reviews-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .review-card {
+            min-width: 350px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .verified-badge {
+            background: var(--success);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Location-Based Content */
+        .location-section {
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .location-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 2px solid var(--bg-light);
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .location-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Exit Intent Popup */
+        .exit-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .exit-popup.show {
+            display: flex;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .popup-offer {
+            font-size: 3rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        /* Chat Widget - Enhanced */
+        .chat-widget-enhanced {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chat-bubble {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .chat-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--urgency);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-enhanced h1 {
+                font-size: 2rem;
+            }
+
+            .sticky-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .trust-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .location-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Performance Optimizations */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+
+        /* A/B Testing Variations */
+        .variant-a .cta-button {
+            background: var(--primary);
+        }
+
+        .variant-b .cta-button {
+            background: var(--urgency);
+        }
+
+        /* Call Tracking */
+        .tracked-phone {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body class="variant-a">
+    <!-- Sticky Header Bar -->
+    <div class="sticky-header">
+        <div class="urgency-text">
+            <span class="pulse">🔥</span>
+            <span>Limited December Availability - Book Your Holiday Event Now!</span>
+        </div>
+        <a href="#instant-quote" class="cta-button" onclick="trackEvent('Header', 'CTA Click', 'Get Quote')">
+            Get Instant Quote
+        </a>
+    </div>
+
+    <!-- Enhanced Hero Section -->
+    <section class="hero-enhanced">
+        <div class="hero-content">
+            <div class="hero-badge">⭐ Trusted by 500+ Companies</div>
+            <h1>Book a Certified Sommelier in <span id="userCity">Your City</span></h1>
+            <p style="font-size: 1.4rem; margin-bottom: 2rem; opacity: 0.95;">
+                Transform your event with expert-led wine tastings • Available in 50+ cities
+            </p>
+
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <span class="trust-number">4.9</span>
+                    <span>★★★★★ (527 Reviews)</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-number">24hr</span>
+                    <span>Response Time</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-number">100%</span>
+                    <span>Satisfaction Guarantee</span>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <a href="#instant-quote" class="cta-button" style="padding: 1rem 2rem; font-size: 1.2rem;">
+                    Get Instant Pricing →
+                </a>
+                <a href="tel:415-289-9760" class="cta-button" style="background: transparent; border: 2px solid white;">
+                    📞 Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Booking Widget -->
+    <div class="booking-widget-enhanced" id="instant-quote">
+        <div class="widget-header">
+            <h2>Get Your Custom Quote in 30 Seconds</h2>
+            <span class="savings-badge">Save 15% on December Bookings</span>
+        </div>
+
+        <form id="quickQuoteForm" onsubmit="handleQuoteSubmit(event)">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <label>Event Type</label>
+                    <select required style="width: 100%; padding: 1rem; border: 2px solid #e5e5e5; border-radius: 10px;">
+                        <option value="">Select Type</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="private">Private Party</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="virtual">Virtual Tasting</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Date</label>
+                    <input type="date" required style="width: 100%; padding: 1rem; border: 2px solid #e5e5e5; border-radius: 10px;">
+                </div>
+                <div>
+                    <label>Number of Guests</label>
+                    <input type="number" min="10" max="500" required placeholder="10-500" style="width: 100%; padding: 1rem; border: 2px solid #e5e5e5; border-radius: 10px;">
+                </div>
+                <div>
+                    <label>Location</label>
+                    <input type="text" required placeholder="City or Zip" style="width: 100%; padding: 1rem; border: 2px solid #e5e5e5; border-radius: 10px;">
+                </div>
+            </div>
+
+            <button type="submit" style="width: 100%; background: var(--urgency); color: white; padding: 1.25rem; border: none; border-radius: 10px; font-size: 1.2rem; font-weight: 700; margin-top: 1.5rem; cursor: pointer;">
+                Get My Free Quote →
+            </button>
+        </form>
+
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-light);">
+            ✅ No obligation • 💳 No credit card required • 📞 No sales pressure
+        </p>
+    </div>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Join 500+ Happy Clients</h2>
+        <p style="color: var(--text-light); margin-bottom: 2rem;">Recent bookings from verified customers</p>
+
+        <div class="reviews-slider">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">MS</div>
+                        <div>
+                            <strong>Microsoft Team</strong>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">Seattle, WA</div>
+                        </div>
+                    </div>
+                    <span class="verified-badge">✓ Verified</span>
+                </div>
+                <div style="color: var(--secondary); margin: 1rem 0;">★★★★★</div>
+                <p>"Outstanding experience! The sommelier was incredibly knowledgeable and made our team event unforgettable."</p>
+                <div style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">Booked: Corporate Tasting for 45 people</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">GS</div>
+                        <div>
+                            <strong>Goldman Sachs</strong>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">New York, NY</div>
+                        </div>
+                    </div>
+                    <span class="verified-badge">✓ Verified</span>
+                </div>
+                <div style="color: var(--secondary); margin: 1rem 0;">★★★★★</div>
+                <p>"Professional, engaging, and perfectly executed. Our clients loved the virtual tasting experience."</p>
+                <div style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">Booked: Virtual Event for 200 people</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">JK</div>
+                        <div>
+                            <strong>Jessica & Kevin</strong>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">Austin, TX</div>
+                        </div>
+                    </div>
+                    <span class="verified-badge">✓ Verified</span>
+                </div>
+                <div style="color: var(--secondary); margin: 1rem 0;">★★★★★</div>
+                <p>"Made our wedding reception extra special! Guests are still talking about the wine experience."</p>
+                <div style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">Booked: Wedding for 150 people</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location-Based SEO Section -->
+    <section class="location-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Available in Your City</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Professional sommeliers ready to serve you locally</p>
+
+            <div class="location-grid">
+                <div class="location-card" onclick="selectLocation('New York')">
+                    <h3>New York</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Manhattan, Brooklyn, Queens</p>
+                    <p style="color: var(--primary); font-weight: 600;">50+ Sommeliers</p>
+                </div>
+                <div class="location-card" onclick="selectLocation('Los Angeles')">
+                    <h3>Los Angeles</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Hollywood, Beverly Hills, Santa Monica</p>
+                    <p style="color: var(--primary); font-weight: 600;">35+ Sommeliers</p>
+                </div>
+                <div class="location-card" onclick="selectLocation('San Francisco')">
+                    <h3>San Francisco</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">SF, Oakland, San Jose</p>
+                    <p style="color: var(--primary); font-weight: 600;">40+ Sommeliers</p>
+                </div>
+                <div class="location-card" onclick="selectLocation('Chicago')">
+                    <h3>Chicago</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Loop, Lincoln Park, River North</p>
+                    <p style="color: var(--primary); font-weight: 600;">30+ Sommeliers</p>
+                </div>
+                <div class="location-card" onclick="selectLocation('Boston')">
+                    <h3>Boston</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Back Bay, Cambridge, Seaport</p>
+                    <p style="color: var(--primary); font-weight: 600;">25+ Sommeliers</p>
+                </div>
+                <div class="location-card" onclick="selectLocation('Miami')">
+                    <h3>Miami</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">South Beach, Brickell, Coral Gables</p>
+                    <p style="color: var(--primary); font-weight: 600;">20+ Sommeliers</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem;">
+                <a href="#" style="color: var(--primary); font-weight: 600;">View all 50+ cities →</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Exit Intent Popup -->
+    <div class="exit-popup" id="exitPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">×</button>
+            <h2 style="color: var(--text-dark); margin-bottom: 1rem;">Wait! Don't Leave Empty-Handed</h2>
+            <div class="popup-offer">15% OFF</div>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">Your First Wine Event</p>
+            <form onsubmit="handlePopupSubmit(event)">
+                <input type="email" placeholder="Enter your email" required style="width: 100%; padding: 1rem; border: 2px solid #e5e5e5; border-radius: 10px; margin-bottom: 1rem;">
+                <button type="submit" style="width: 100%; background: var(--primary); color: white; padding: 1rem; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">
+                    Claim My Discount
+                </button>
+            </form>
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">
+                Valid for events booked within 30 days
+            </p>
+        </div>
+    </div>
+
+    <!-- Enhanced Chat Widget -->
+    <div class="chat-widget-enhanced">
+        <div class="chat-bubble" onclick="openChat()">
+            💬
+            <div class="chat-notification">Chat with Expert</div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Analytics and Tracking
+        function trackEvent(category, action, label, value) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label,
+                    'value': value
+                });
+            }
+            console.log('Event tracked:', {category, action, label, value});
+        }
+
+        // Geo-location Detection
+        function detectUserLocation() {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    const city = data.city || 'Your City';
+                    document.getElementById('userCity').textContent = city;
+
+                    // Track location
+                    trackEvent('Location', 'Detected', city);
+                })
+                .catch(error => console.log('Location detection failed'));
+        }
+
+        // Exit Intent Detection
+        let exitIntentShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                document.getElementById('exitPopup').classList.add('show');
+                exitIntentShown = true;
+                trackEvent('Popup', 'Exit Intent', 'Shown');
+            }
+        });
+
+        function closePopup() {
+            document.getElementById('exitPopup').classList.remove('show');
+            trackEvent('Popup', 'Exit Intent', 'Closed');
+        }
+
+        function handlePopupSubmit(e) {
+            e.preventDefault();
+            trackEvent('Lead', 'Exit Popup', 'Email Submitted');
+            closePopup();
+            alert('Thank you! Check your email for your 15% discount code.');
+        }
+
+        // Form Submission Handling
+        function handleQuoteSubmit(e) {
+            e.preventDefault();
+            trackEvent('Lead', 'Quote Form', 'Submitted');
+
+            // In production, send to CRM/backend
+            const formData = new FormData(e.target);
+            console.log('Form submitted:', Object.fromEntries(formData));
+
+            // Redirect to booking wizard
+            window.location.href = 'sommelier-booking-wizard-v2.html';
+        }
+
+        // A/B Testing
+        function initABTesting() {
+            const variant = Math.random() > 0.5 ? 'variant-a' : 'variant-b';
+            document.body.className = variant;
+            trackEvent('AB Test', 'Variant Shown', variant);
+        }
+
+        // Chat Function
+        function openChat() {
+            trackEvent('Chat', 'Opened', 'Widget Click');
+            // Integrate with Intercom, Drift, or custom chat
+            alert('Chat feature would open here - integrate with your preferred chat platform');
+        }
+
+        // Location Selection
+        function selectLocation(city) {
+            trackEvent('Location', 'Selected', city);
+            document.querySelector('input[placeholder="City or Zip"]').value = city;
+            document.getElementById('instant-quote').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Urgency Timer
+        function startUrgencyTimer() {
+            const deadline = new Date();
+            deadline.setHours(deadline.getHours() + 24);
+
+            setInterval(() => {
+                const now = new Date();
+                const diff = deadline - now;
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                // Update urgency text if needed
+            }, 60000);
+        }
+
+        // Scroll Tracking
+        let scrollDepth = 0;
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercent > scrollDepth + 25) {
+                scrollDepth = Math.floor(scrollPercent / 25) * 25;
+                trackEvent('Engagement', 'Scroll Depth', `${scrollDepth}%`);
+            }
+        });
+
+        // Phone Number Tracking
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', () => {
+                trackEvent('Contact', 'Phone Click', link.textContent);
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            detectUserLocation();
+            initABTesting();
+            startUrgencyTimer();
+
+            // Set minimum date for booking
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.querySelector('input[type="date"]').min = tomorrow.toISOString().split('T')[0];
+        });
+
+        // Performance Monitoring
+        window.addEventListener('load', () => {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            const loadTime = perfData.loadEventEnd - perfData.fetchStart;
+            trackEvent('Performance', 'Page Load', 'Time', Math.round(loadTime));
+        });
+    </script>
+</body>
+</html>
